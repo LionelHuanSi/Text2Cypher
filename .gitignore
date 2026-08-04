@@ -1,0 +1,28 @@
+# Python Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Project Data & Models (Do not push large datasets & model adapters to Git)
+data/raw/
+data/processed/*.json
+outputs/
+unsloth_compiled_cache/
+scratch/
+
+# Environment Variables & Logs
+.env
+*.log
+*.tmp
+
+# IDE Caches
+.vscode/
+.idea/
+.DS_Store
