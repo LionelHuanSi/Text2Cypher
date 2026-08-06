@@ -7,6 +7,7 @@ sys.path.insert(0, str(BASE_DIR))
 
 from configs.config import OUTPUTS_DIR, STUDENT_MODEL_ID
 from src.evaluation.evaluator import evaluate_model_on_testset
+from src.utils.verifier import verify_stage05
 from src.utils.logger import setup_logger
 
 logger = setup_logger("Stage05_Evaluate")
@@ -33,7 +34,8 @@ def main():
         sample_limit=args.limit
     )
 
-    logger.info(f"Stage 5 Complete: BLEU Score for {args.adapter} = {results.get('bleu_score', 0):.4f}")
+    logger.info(f"Stage 5 Evaluation Finished. Running Output Verification...")
+    verify_stage05(args.adapter)
 
 if __name__ == "__main__":
     main()

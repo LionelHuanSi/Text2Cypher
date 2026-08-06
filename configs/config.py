@@ -26,12 +26,14 @@ TRAIN_BASELINE_37K_PATH = PROCESSED_DATA_DIR / "train_baseline_37k.json"
 TRAIN_KD_37K_PATH = PROCESSED_DATA_DIR / "train_kd_37k.json"
 
 # Default Model Identifiers
-TEACHER_MODEL_ID = os.getenv("TEACHER_MODEL_ID", "gemini-1.5-flash") # Options: gemini-1.5-flash, gpt-4o-mini, local_vllm
+TEACHER_MODEL_ID = os.getenv("TEACHER_MODEL_ID", "ag/gemini-3.6-flash-high") # Options: ag/gemini-3.6-flash-high, gemini-1.5-flash, gpt-4o-mini
 STUDENT_MODEL_ID = os.getenv("STUDENT_MODEL_ID", "unsloth/Qwen2.5-1.5B-Instruct-bnb-4bit") # Secondary: Qwen2.5-3B-Instruct
 
-# API Keys
+# API Keys & Local Router Configuration
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+LOCAL_ROUTER_URL = os.getenv("LOCAL_ROUTER_URL", "http://localhost:20128/v1")
+LOCAL_ROUTER_KEY = os.getenv("LOCAL_ROUTER_KEY", "sk-ac17cce818d45be5-f2gyor-f42f21f8")
 
 # Training Configuration (QLoRA / Unsloth)
 TRAINING_CONFIG = {

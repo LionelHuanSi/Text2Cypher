@@ -12,6 +12,7 @@ from src.prompts.teacher_prompts import create_teacher_prompt
 from src.utils.json_parser import parse_cot_json
 from src.extraction.validator import validate_teacher_ontology_and_cypher
 from src.extraction.teacher import get_teacher_extractor
+from src.utils.verifier import verify_stage02
 from src.utils.logger import setup_logger
 
 logger = setup_logger("Stage02_DistillTeacher")
@@ -53,7 +54,8 @@ def main(sample_limit: int = None):
     logger.info(f"Unprocessed samples remaining: {len(unprocessed_data)} / {len(train_data)} total.")
 
     if not unprocessed_data:
-        logger.info("All requested samples have already been distilled! Nothing to do.")
+        logger.info("All requested samples have already been distilled! Running verification...")
+        verify_stage02()
         return
 
     extractor = get_teacher_extractor(TEACHER_MODEL_ID)
@@ -85,15 +87,14 @@ def main(sample_limit: int = None):
         else:
             invalid_count += 1
 
-        if (i + 1) % save_batch_size == 0:
+        if (i + 1) % 1 == 0:
             save_atomic_checkpoint(DISTILLATION_TRAIN_37K_PATH, clean_distillation_set)
-            logger.info(f"Checkpoint saved: Total {len(clean_distillation_set)} valid distillation samples.")
+            logger.info(f"Checkpoint atomic save [{i + 1}/{len(unprocessed_data)}]: Total {len(clean_distillation_set)} valid samples saved.")
 
     save_atomic_checkpoint(DISTILLATION_TRAIN_37K_PATH, clean_distillation_set)
 
-    logger.info(f"Stage 2 Execution Summary:")
-    logger.info(f" - Total Valid Distillation Samples Saved: {len(clean_distillation_set)}")
-    logger.info(f" - Total Invalid/Hallucinated Samples Rejected: {invalid_count}")
+    logger.info(f"Stage 2 Execution Finished. Running Output Verification...")
+    verify_stage02()
 
 if __name__ == "__main__":
     import argparse

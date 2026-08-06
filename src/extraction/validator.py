@@ -12,12 +12,12 @@ def extract_schema_elements(schema_text: str) -> tuple[set, set]:
         return node_labels, rel_types
 
     # Node labels matching patterns like: - Person {..}, - **Movie**, Node labels:\n Article
-    node_matches = re.findall(r"(?:^|\n)\s*-\s*(?:\*\*)?([A-Za-z0-9_]+)(?:\*\*)?", schema_text)
+    node_matches = re.findall(r"(?:^|\n)\s*-\s*(?:\*\*)?([a-zA-Z0-9_]+)(?:\*\*)?", schema_text)
     node_labels.update(node_matches)
 
     node_label_section = re.search(r"Node labels:\s*\n((?:[^\n]+\n)+)", schema_text)
     if node_label_section:
-        nodes = re.findall(r"([A-Za-z0-9_]+)\s*\{", node_label_section.group(1))
+        nodes = re.findall(r"([a-zA-Z0-9_]+)\s*\{", node_label_section.group(1))
         node_labels.update(nodes)
 
     # Relationship types matching: - ACTED_IN {..}, (:Person)-[:DIRECTED]->(:Movie), 'type': HAS_KEY
@@ -27,7 +27,7 @@ def extract_schema_elements(schema_text: str) -> tuple[set, set]:
     rel_pattern_matches = re.findall(r"-\[:([A-Z0-9_]+)\]->", schema_text)
     rel_types.update(rel_pattern_matches)
 
-    type_matches = re.findall(r"'type':\s*['\"]?([A-Za-z0-9_]+)['\"]?", schema_text)
+    type_matches = re.findall(r"'type':\s*['\"]?([a-zA-Z0-9_]+)['\"]?", schema_text)
     rel_types.update(type_matches)
 
     # Remove generic keywords
@@ -71,9 +71,9 @@ def validate_teacher_ontology_and_cypher(schema: str, parsed_json: dict) -> tupl
 
     if known_nodes or known_rels:
         # Extract node labels in Cypher: (p:Person), (:Movie)
-        cypher_nodes = set(re.findall(r"\(\s*[a-Za-z0-9_]*\s*:\s*([A-Za-z0-9_]+)", cypher_code))
+        cypher_nodes = set(re.findall(r"\(\s*[a-zA-Z0-9_]*\s*:\s*([a-zA-Z0-9_]+)", cypher_code))
         # Extract rel types in Cypher: -[:ACTED_IN]->
-        cypher_rels = set(re.findall(r"-\[\s*[a-Za-z0-9_]*\s*:\s*([A-Za-z0-9_]+)", cypher_code))
+        cypher_rels = set(re.findall(r"-\[\s*[a-zA-Z0-9_]*\s*:\s*([a-zA-Z0-9_]+)", cypher_code))
 
         if known_nodes:
             hallucinated_nodes = [n for n in cypher_nodes if n not in known_nodes]

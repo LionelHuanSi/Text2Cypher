@@ -7,6 +7,7 @@ sys.path.insert(0, str(BASE_DIR))
 
 from configs.config import STUDENT_MODEL_ID, TRAIN_BASELINE_37K_PATH, TRAIN_KD_37K_PATH
 from src.training.trainer import train_student_model
+from src.utils.verifier import verify_stage04
 from src.utils.logger import setup_logger
 
 logger = setup_logger("Stage04_TrainStudent")
@@ -38,7 +39,9 @@ def main():
         output_model_name=output_name,
         epochs=args.epochs
     )
-    logger.info(f"Stage 4 Complete: Fine-tuning finished. Adapter saved under 'outputs/{output_name}'.")
+    
+    logger.info("Stage 4 Fine-tuning Finished. Running Output Verification...")
+    verify_stage04(output_name)
 
 if __name__ == "__main__":
     main()
