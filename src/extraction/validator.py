@@ -11,7 +11,7 @@ def extract_schema_elements(schema_text: str) -> tuple[set, set]:
     if not schema_text:
         return node_labels, rel_types
 
-    # Node labels matching patterns like: - Person {..}, - **Movie**, Node labels:\n Article
+    # Node labels matching patterns: - Person {..}, - **Movie**, Node labels:\n Article, labels=frozenset({'author'})
     node_matches = re.findall(r"(?:^|\n)\s*-\s*(?:\*\*)?([a-zA-Z0-9_]+)(?:\*\*)?", schema_text)
     node_labels.update(node_matches)
 
@@ -20,14 +20,17 @@ def extract_schema_elements(schema_text: str) -> tuple[set, set]:
         nodes = re.findall(r"([a-zA-Z0-9_]+)\s*\{", node_label_section.group(1))
         node_labels.update(nodes)
 
-    # Relationship types matching: - ACTED_IN {..}, (:Person)-[:DIRECTED]->(:Movie), 'type': HAS_KEY
-    rel_matches = re.findall(r"-\s*(?:\*\*)?([A-Z0-9_]{2,})(?:\*\*)?", schema_text)
+    frozenset_matches = re.findall(r"labels=frozenset\(\{['\"]([a-zA-Z0-9_]+)['\"]\}\)", schema_text)
+    node_labels.update(frozenset_matches)
+
+    # Relationship types matching: - ACTED_IN {..}, (:Person)-[:DIRECTED]->(:Movie), 'type': HAS_KEY, type='paper_in_venue', type=author_write_paper
+    rel_matches = re.findall(r"-\s*(?:\*\*)?([a-zA-Z0-9_]{2,})(?:\*\*)?", schema_text)
     rel_types.update(rel_matches)
 
-    rel_pattern_matches = re.findall(r"-\[:([A-Z0-9_]+)\]->", schema_text)
+    rel_pattern_matches = re.findall(r"-\[:([a-zA-Z0-9_]+)\]->", schema_text)
     rel_types.update(rel_pattern_matches)
 
-    type_matches = re.findall(r"'type':\s*['\"]?([a-zA-Z0-9_]+)['\"]?", schema_text)
+    type_matches = re.findall(r"type=['\"]?([a-zA-Z0-9_]+)['\"]?", schema_text)
     rel_types.update(type_matches)
 
     # Remove generic keywords
@@ -75,13 +78,16 @@ def validate_teacher_ontology_and_cypher(schema: str, parsed_json: dict) -> tupl
         # Extract rel types in Cypher: -[:ACTED_IN]->
         cypher_rels = set(re.findall(r"-\[\s*[a-zA-Z0-9_]*\s*:\s*([a-zA-Z0-9_]+)", cypher_code))
 
+        known_nodes_lower = set(n.lower() for n in known_nodes)
+        known_rels_lower = set(r.lower() for r in known_rels)
+
         if known_nodes:
-            hallucinated_nodes = [n for n in cypher_nodes if n not in known_nodes]
+            hallucinated_nodes = [n for n in cypher_nodes if n.lower() not in known_nodes_lower]
             if hallucinated_nodes:
                 return False, f"Tier 3 Fail: Hallucinated Node Label(s) {hallucinated_nodes} not in Schema"
 
         if known_rels:
-            hallucinated_rels = [r for r in cypher_rels if r not in known_rels]
+            hallucinated_rels = [r for r in cypher_rels if r.lower() not in known_rels_lower]
             if hallucinated_rels:
                 return False, f"Tier 3 Fail: Hallucinated Relationship Type(s) {hallucinated_rels} not in Schema"
 

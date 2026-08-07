@@ -1,4 +1,5 @@
 import sys
+import time
 import json
 import logging
 from pathlib import Path
@@ -21,7 +22,25 @@ def save_atomic_checkpoint(filepath: Path, data: list):
     tmp_path = filepath.with_suffix(".tmp")
     with open(tmp_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-    tmp_path.replace(filepath)
+    
+    # Robust replace for Windows file locks
+    for attempt in range(5):
+        try:
+            if filepath.exists():
+                filepath.unlink()
+            tmp_path.replace(filepath)
+            break
+        except Exception:
+            time.sleep(0.2)
+            if attempt == 4:
+                # Direct write fallback
+                with open(filepath, "w", encoding="utf-8") as f:
+                    json.dump(data, f, ensure_ascii=False, indent=2)
+                if tmp_path.exists():
+                    try:
+                        tmp_path.unlink()
+                    except Exception:
+                        pass
 
 def main(sample_limit: int = None):
     logger.info("=== STAGE 2: FULL-SCALE TEACHER DISTILLATION & 3-TIER VALIDATION ===")
@@ -37,21 +56,19 @@ def main(sample_limit: int = None):
         logger.info(f"Limiting distillation scope to first {sample_limit} samples...")
         train_data = train_data[:sample_limit]
 
-    # Resume from existing checkpoint
+    # Resume by strict sample index count (no filtering/deduplication)
     existing_distillation_set = []
-    processed_questions = set()
-
     if DISTILLATION_TRAIN_37K_PATH.exists():
         try:
             with open(DISTILLATION_TRAIN_37K_PATH, "r", encoding="utf-8") as f:
                 existing_distillation_set = json.load(f)
-            processed_questions = set(item["question"].strip().lower() for item in existing_distillation_set if isinstance(item, dict) and "question" in item)
-            logger.info(f"Detected existing checkpoint: {len(existing_distillation_set)} valid samples saved. Resuming!")
+            logger.info(f"Detected existing checkpoint: {len(existing_distillation_set)} samples loaded. Resuming!")
         except Exception as e:
             logger.warning(f"Could not load checkpoint: {e}. Starting fresh.")
 
-    unprocessed_data = [item for item in train_data if item["question"].strip().lower() not in processed_questions]
-    logger.info(f"Unprocessed samples remaining: {len(unprocessed_data)} / {len(train_data)} total.")
+    start_index = len(existing_distillation_set)
+    unprocessed_data = train_data[start_index:]
+    logger.info(f"Resuming from index {start_index}. Remaining: {len(unprocessed_data)} / {len(train_data)} total.")
 
     if not unprocessed_data:
         logger.info("All requested samples have already been distilled! Running verification...")
@@ -63,7 +80,8 @@ def main(sample_limit: int = None):
     invalid_count = 0
     save_batch_size = 10
 
-    for i, item in enumerate(tqdm(unprocessed_data, desc="Distilling 4-Step CoT Knowledge")):
+    pbar = tqdm(unprocessed_data, desc="Distilling 4-Step CoT Knowledge", dynamic_ncols=True)
+    for i, item in enumerate(pbar):
         prompt = create_teacher_prompt(item["schema"], item["question"])
         raw_out = extractor.generate_single(prompt)
 
@@ -73,23 +91,29 @@ def main(sample_limit: int = None):
         parsed = parse_cot_json(raw_out)
         is_valid, reason = validate_teacher_ontology_and_cypher(item["schema"], parsed)
 
-        if is_valid:
+        if parsed:
             clean_distillation_set.append({
                 "schema": item["schema"],
                 "question": item["question"],
                 "ground_truth_cypher": item.get("cypher", ""),
                 "instance_extraction": parsed.get("instance_extraction", []),
                 "relation_mapping": parsed.get("relation_mapping", []),
-                "validation_check": parsed.get("validation_check", {"status": "PASS"}),
+                "validation_check": parsed.get("validation_check", {"status": "PASS" if is_valid else "FAIL"}),
                 "teacher_cypher": parsed.get("cypher", ""),
+                "is_valid": is_valid,
+                "invalid_reason": reason if not is_valid else "PASS",
                 "full_teacher_json": raw_out
             })
+            if not is_valid:
+                invalid_count += 1
+                logger.info(f"[Captured Raw Output] Sample saved (is_valid=False: {reason})")
         else:
             invalid_count += 1
 
-        if (i + 1) % 1 == 0:
+        pbar.set_postfix({"saved": len(clean_distillation_set), "flagged_invalid": invalid_count})
+
+        if (i + 1) % 10 == 0:
             save_atomic_checkpoint(DISTILLATION_TRAIN_37K_PATH, clean_distillation_set)
-            logger.info(f"Checkpoint atomic save [{i + 1}/{len(unprocessed_data)}]: Total {len(clean_distillation_set)} valid samples saved.")
 
     save_atomic_checkpoint(DISTILLATION_TRAIN_37K_PATH, clean_distillation_set)
 
