@@ -28,7 +28,13 @@ def export_sft_datasets():
     for item in distillation_data:
         schema = item["schema"]
         question = item["question"]
-        cypher = item.get("teacher_cypher", item.get("ground_truth_cypher", ""))
+        # Filter out invalid / malformed samples
+        if item.get("is_valid") is False:
+            continue
+
+        cypher = item.get("teacher_cypher", item.get("ground_truth_cypher", "")).strip()
+        if not cypher:
+            continue
 
         # 1. Direct SFT Baseline format
         baseline_prompt = create_baseline_prompt(schema, question)
@@ -38,11 +44,34 @@ def export_sft_datasets():
             "text": f"{baseline_prompt}{cypher}"
         })
 
-        # 2. Proposed KD (4-step JSON) format
+        # 2. Proposed KD (Strict 4-step JSON) format
         kd_prompt = create_student_prompt(schema, question)
-        json_output = item.get("full_teacher_json", "")
-        if isinstance(json_output, dict):
-            json_output = json.dumps(json_output, ensure_ascii=False)
+        
+        inst_ext = item.get("instance_extraction", [])
+        if isinstance(inst_ext, str):
+            inst_ext = [{"entity_or_property": "concept", "value": inst_ext, "entity_type": "Entity"}]
+        elif not isinstance(inst_ext, list):
+            inst_ext = [inst_ext] if inst_ext else []
+
+        rel_map = item.get("relation_mapping", [])
+        if isinstance(rel_map, str):
+            rel_map = [{"source_node": "Node", "relation": rel_map, "target_node": "Node", "direction": "OUTGOING"}]
+        elif not isinstance(rel_map, list):
+            rel_map = [rel_map] if rel_map else []
+
+        val_chk = item.get("validation_check", {"status": "PASS", "description": "Validation successful."})
+        if isinstance(val_chk, str):
+            val_chk = {"status": "PASS", "description": val_chk}
+        elif not isinstance(val_chk, dict) or "status" not in val_chk:
+            val_chk = {"status": "PASS", "description": "Validation successful."}
+
+        cot_dict = {
+            "instance_extraction": inst_ext,
+            "relation_mapping": rel_map,
+            "validation_check": val_chk,
+            "cypher": cypher
+        }
+        json_output = json.dumps(cot_dict, ensure_ascii=False)
 
         kd_samples.append({
             "prompt": kd_prompt,

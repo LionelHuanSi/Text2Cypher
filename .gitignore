@@ -10,8 +10,9 @@ __pycache__/
 *$py.class
 .pytest_cache/
 
-# Project Data & Models (Do not push raw downloads & heavy model adapters to Git)
+# Project Data & Models (Do not push raw downloads & heavy model adapters/json to Git)
 data/raw/
+data/processed/*.json
 outputs/
 unsloth_compiled_cache/
 scratch/

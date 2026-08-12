@@ -86,6 +86,7 @@ python scripts/01_prepare_data.py
 ### 3. Knowledge Distillation
 Extract 4-step CoT reasoning traces using Teacher LLM:
 ```bash
+venv\scripts\activate
 python scripts/02_distill_teacher.py
 ```
 
