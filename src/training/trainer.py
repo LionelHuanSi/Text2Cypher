@@ -3,6 +3,7 @@ import json
 import torch
 from pathlib import Path
 from datasets import Dataset
+from transformers.trainer_utils import get_last_checkpoint
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
@@ -146,11 +147,17 @@ def train_student_model(
     )
 
     # ------------------------------------------------------------------ #
-    # 7. Train
+    # 7. Resume or Start Training
     # ------------------------------------------------------------------ #
-    logger.info("Executing training loop with VRAM gradient checkpointing...")
     torch.cuda.empty_cache()
-    trainer_stats = trainer.train()
+    last_checkpoint = None
+    if output_dir.is_dir():
+        last_checkpoint = get_last_checkpoint(str(output_dir))
+    if last_checkpoint:
+        logger.info(f"Resuming training from checkpoint: {last_checkpoint}")
+    else:
+        logger.info("Starting training from scratch...")
+    trainer_stats = trainer.train(resume_from_checkpoint=last_checkpoint)
 
     # ------------------------------------------------------------------ #
     # 8. Save LoRA adapter
