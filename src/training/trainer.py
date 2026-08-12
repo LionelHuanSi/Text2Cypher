@@ -1,16 +1,24 @@
 import os
-import sys
+import json
 import torch
-import logging
 from pathlib import Path
 from datasets import Dataset
+from transformers import (
+    AutoModelForCausalLM,
+    AutoTokenizer,
+    BitsAndBytesConfig,
+)
+from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+from trl import SFTTrainer, SFTConfig
 
 from configs.config import TRAINING_CONFIG, OUTPUTS_DIR
 from src.utils.logger import setup_logger
 
 logger = setup_logger("StudentTrainer")
 
-def is_bf16_hardware_supported() -> bool:
+
+def _is_bf16_supported() -> bool:
+    """Check hardware compute capability >= 8.0 (Ampere+) for native bf16."""
     if not torch.cuda.is_available():
         return False
     try:
@@ -19,157 +27,135 @@ def is_bf16_hardware_supported() -> bool:
     except Exception:
         return False
 
+
 def train_student_model(
     model_id: str,
     dataset_path: Path,
     output_model_name: str,
-    epochs: int = TRAINING_CONFIG["num_epochs"]
+    epochs: int = TRAINING_CONFIG["num_epochs"],
 ):
     """
-    Fine-tunes student SLM model (e.g. Qwen2.5-1.5B/3B) using Unsloth / QLoRA 4-bit SFT.
+    Fine-tunes a student SLM (e.g. Qwen2.5-1.5B/3B) using 4-bit QLoRA via
+    HuggingFace PEFT + trl SFTTrainer. Compatible with:
+      - transformers >= 4.51.3 (tested on 5.5.0)
+      - trl >= 0.18.2 (tested on 0.24.0)
+      - peft >= 0.18.0
+      - bitsandbytes >= 0.43.0
     """
-    os.environ["UNSLOTH_COMPILE_DISABLE"] = "1"
-    os.environ["TORCH_COMPILE_DISABLE"] = "1"
-
     output_dir = OUTPUTS_DIR / output_model_name
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    logger.info(f"=== Starting Student SFT Training ===")
+    logger.info("=== Starting Student SFT Training ===")
     logger.info(f" - Base Model ID: {model_id}")
     logger.info(f" - Dataset Path: {dataset_path}")
     logger.info(f" - Output Adapter Dir: {output_dir}")
 
-    # Load dataset
-    import json
+    # ------------------------------------------------------------------ #
+    # 1. Load Dataset
+    # ------------------------------------------------------------------ #
     with open(dataset_path, "r", encoding="utf-8") as f:
         data = json.load(f)
-
     hf_dataset = Dataset.from_list(data)
     logger.info(f"Loaded {len(hf_dataset)} samples for fine-tuning.")
 
-    use_bf16 = is_bf16_hardware_supported()
+    # ------------------------------------------------------------------ #
+    # 2. Precision: T4 uses fp16; Ampere+ (A100/L4) uses bf16
+    # ------------------------------------------------------------------ #
+    use_bf16 = _is_bf16_supported()
     use_fp16 = not use_bf16
     compute_dtype = torch.bfloat16 if use_bf16 else torch.float16
+    cap = torch.cuda.get_device_capability() if torch.cuda.is_available() else "N/A"
+    logger.info(f"Precision: {'bf16' if use_bf16 else 'fp16'} (GPU compute cap: {cap})")
 
-    # Attempt Unsloth FastLanguageModel loading
-    try:
-        from unsloth import FastLanguageModel
-        from trl import SFTTrainer
-        from transformers import TrainingArguments
+    # ------------------------------------------------------------------ #
+    # 3. 4-bit QLoRA Quantization Config (NF4 + double quant)
+    # ------------------------------------------------------------------ #
+    bnb_config = BitsAndBytesConfig(
+        load_in_4bit=True,
+        bnb_4bit_quant_type="nf4",
+        bnb_4bit_compute_dtype=compute_dtype,
+        bnb_4bit_use_double_quant=True,
+    )
 
-        model, tokenizer = FastLanguageModel.from_pretrained(
-            model_name=model_id,
-            max_seq_length=TRAINING_CONFIG["max_seq_length"],
-            load_in_4bit=TRAINING_CONFIG["load_in_4bit"],
-            torch_dtype=compute_dtype,
-        )
+    # ------------------------------------------------------------------ #
+    # 4. Load Base Model + Tokenizer
+    # ------------------------------------------------------------------ #
+    logger.info("Loading base model with 4-bit quantization...")
+    tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.padding_side = "right"
 
-        model = FastLanguageModel.get_peft_model(
-            model,
-            r=TRAINING_CONFIG["lora_r"],
-            target_modules=TRAINING_CONFIG["target_modules"],
-            lora_alpha=TRAINING_CONFIG["lora_alpha"],
-            lora_dropout=TRAINING_CONFIG["lora_dropout"],
-            bias="none",
-            use_gradient_checkpointing="unsloth",
-            random_state=TRAINING_CONFIG["seed"],
-        )
+    model = AutoModelForCausalLM.from_pretrained(
+        model_id,
+        quantization_config=bnb_config,
+        device_map="auto",
+        trust_remote_code=True,
+        torch_dtype=compute_dtype,
+    )
+    model.config.use_cache = False
+    model = prepare_model_for_kbit_training(model)
 
-        trainer = SFTTrainer(
-            model=model,
-            tokenizer=tokenizer,
-            train_dataset=hf_dataset,
-            dataset_text_field="text",
-            max_seq_length=TRAINING_CONFIG["max_seq_length"],
-            dataset_num_proc=2,
-            packing=False,
-            args=TrainingArguments(
-                per_device_train_batch_size=TRAINING_CONFIG["batch_size"],
-                gradient_accumulation_steps=TRAINING_CONFIG["gradient_accumulation_steps"],
-                warmup_steps=TRAINING_CONFIG["warmup_steps"],
-                num_train_epochs=epochs,
-                learning_rate=TRAINING_CONFIG["learning_rate"],
-                fp16=use_fp16,
-                bf16=use_bf16,
-                logging_steps=TRAINING_CONFIG["logging_steps"],
-                optim="adamw_8bit",
-                weight_decay=TRAINING_CONFIG["weight_decay"],
-                lr_scheduler_type="linear",
-                seed=TRAINING_CONFIG["seed"],
-                output_dir=str(output_dir),
-                save_strategy="epoch",
-            ),
-        )
+    # ------------------------------------------------------------------ #
+    # 5. LoRA Adapter Config
+    # ------------------------------------------------------------------ #
+    peft_config = LoraConfig(
+        r=TRAINING_CONFIG["lora_r"],
+        lora_alpha=TRAINING_CONFIG["lora_alpha"],
+        target_modules=TRAINING_CONFIG["target_modules"],
+        lora_dropout=TRAINING_CONFIG["lora_dropout"],
+        bias="none",
+        task_type="CAUSAL_LM",
+    )
+    model = get_peft_model(model, peft_config)
+    model.print_trainable_parameters()
 
-        logger.info("Executing training loop...")
-        trainer_stats = trainer.train()
-        
-        # Save LoRA adapter
-        model.save_pretrained(str(output_dir))
-        tokenizer.save_pretrained(str(output_dir))
-        logger.info(f"Saved trained adapter successfully to '{output_dir}'.")
-        return trainer_stats
+    # ------------------------------------------------------------------ #
+    # 6. SFTTrainer via SFTConfig (trl >= 0.18.2, tested on 0.24.0)
+    # ------------------------------------------------------------------ #
+    sft_config = SFTConfig(
+        dataset_text_field="text",
+        max_seq_length=TRAINING_CONFIG["max_seq_length"],
+        dataset_num_proc=2,
+        packing=False,
+        per_device_train_batch_size=TRAINING_CONFIG["batch_size"],
+        gradient_accumulation_steps=TRAINING_CONFIG["gradient_accumulation_steps"],
+        gradient_checkpointing=True,
+        gradient_checkpointing_kwargs={"use_reentrant": False},
+        warmup_steps=TRAINING_CONFIG["warmup_steps"],
+        num_train_epochs=epochs,
+        learning_rate=TRAINING_CONFIG["learning_rate"],
+        fp16=use_fp16,
+        bf16=use_bf16,
+        logging_steps=TRAINING_CONFIG["logging_steps"],
+        optim="paged_adamw_8bit",
+        weight_decay=TRAINING_CONFIG["weight_decay"],
+        lr_scheduler_type="linear",
+        seed=TRAINING_CONFIG["seed"],
+        output_dir=str(output_dir),
+        save_strategy="epoch",
+        report_to="none",
+    )
 
-    except Exception as e:
-        logger.warning(f"Unsloth initialization failed ({e}). Falling back to standard HuggingFace PEFT Trainer...")
-        from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, TrainingArguments
-        from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
-        from trl import SFTTrainer
+    trainer = SFTTrainer(
+        model=model,
+        processing_class=tokenizer,
+        train_dataset=hf_dataset,
+        args=sft_config,
+        peft_config=peft_config,
+    )
 
-        bnb_config = BitsAndBytesConfig(
-            load_in_4bit=True,
-            bnb_4bit_quant_type="nf4",
-            bnb_4bit_compute_dtype=compute_dtype,
-            bnb_4bit_use_double_quant=True,
-        )
+    # ------------------------------------------------------------------ #
+    # 7. Train
+    # ------------------------------------------------------------------ #
+    logger.info("Executing training loop...")
+    trainer_stats = trainer.train()
 
-        tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
-        if tokenizer.pad_token is None:
-            tokenizer.pad_token = tokenizer.eos_token
+    # ------------------------------------------------------------------ #
+    # 8. Save LoRA adapter
+    # ------------------------------------------------------------------ #
+    model.save_pretrained(str(output_dir))
+    tokenizer.save_pretrained(str(output_dir))
+    logger.info(f"Saved trained LoRA adapter to '{output_dir}'.")
+    return trainer_stats
 
-        model = AutoModelForCausalLM.from_pretrained(
-            model_id,
-            quantization_config=bnb_config,
-            device_map="auto",
-            trust_remote_code=True,
-            torch_dtype=compute_dtype,
-        )
-        model = prepare_model_for_kbit_training(model)
-
-        peft_config = LoraConfig(
-            r=TRAINING_CONFIG["lora_r"],
-            lora_alpha=TRAINING_CONFIG["lora_alpha"],
-            target_modules=TRAINING_CONFIG["target_modules"],
-            lora_dropout=TRAINING_CONFIG["lora_dropout"],
-            bias="none",
-            task_type="CAUSAL_LM",
-        )
-        model = get_peft_model(model, peft_config)
-
-        trainer = SFTTrainer(
-            model=model,
-            tokenizer=tokenizer,
-            train_dataset=hf_dataset,
-            dataset_text_field="text",
-            max_seq_length=TRAINING_CONFIG["max_seq_length"],
-            args=TrainingArguments(
-                per_device_train_batch_size=TRAINING_CONFIG["batch_size"],
-                gradient_accumulation_steps=TRAINING_CONFIG["gradient_accumulation_steps"],
-                warmup_steps=TRAINING_CONFIG["warmup_steps"],
-                num_train_epochs=epochs,
-                learning_rate=TRAINING_CONFIG["learning_rate"],
-                fp16=use_fp16,
-                bf16=use_bf16,
-                logging_steps=TRAINING_CONFIG["logging_steps"],
-                optim="paged_adamw_8bit",
-                output_dir=str(output_dir),
-                save_strategy="epoch",
-            ),
-        )
-
-        logger.info("Executing standard HuggingFace PEFT training loop...")
-        trainer_stats = trainer.train()
-        model.save_pretrained(str(output_dir))
-        tokenizer.save_pretrained(str(output_dir))
-        logger.info(f"Saved trained HF adapter successfully to '{output_dir}'.")
-        return trainer_stats
