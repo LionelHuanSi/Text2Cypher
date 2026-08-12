@@ -10,6 +10,15 @@ from src.utils.logger import setup_logger
 
 logger = setup_logger("StudentTrainer")
 
+def is_bf16_hardware_supported() -> bool:
+    if not torch.cuda.is_available():
+        return False
+    try:
+        major, _ = torch.cuda.get_device_capability()
+        return major >= 8
+    except Exception:
+        return False
+
 def train_student_model(
     model_id: str,
     dataset_path: Path,
@@ -38,7 +47,7 @@ def train_student_model(
     hf_dataset = Dataset.from_list(data)
     logger.info(f"Loaded {len(hf_dataset)} samples for fine-tuning.")
 
-    use_bf16 = torch.cuda.is_bf16_supported()
+    use_bf16 = is_bf16_hardware_supported()
     use_fp16 = not use_bf16
     compute_dtype = torch.bfloat16 if use_bf16 else torch.float16
 
