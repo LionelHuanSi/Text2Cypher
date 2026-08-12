@@ -7,9 +7,10 @@ from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
     BitsAndBytesConfig,
+    TrainingArguments,
 )
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
-from trl import SFTTrainer, SFTConfig
+from trl import SFTTrainer
 
 from configs.config import TRAINING_CONFIG, OUTPUTS_DIR
 from src.utils.logger import setup_logger
@@ -36,11 +37,7 @@ def train_student_model(
 ):
     """
     Fine-tunes a student SLM (e.g. Qwen2.5-1.5B/3B) using 4-bit QLoRA via
-    HuggingFace PEFT + trl SFTTrainer. Compatible with:
-      - transformers >= 4.51.3 (tested on 5.5.0)
-      - trl >= 0.18.2 (tested on 0.24.0)
-      - peft >= 0.18.0
-      - bitsandbytes >= 0.43.0
+    HuggingFace PEFT + trl SFTTrainer. Compatible across all trl versions.
     """
     output_dir = OUTPUTS_DIR / output_model_name
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -111,17 +108,11 @@ def train_student_model(
     model.print_trainable_parameters()
 
     # ------------------------------------------------------------------ #
-    # 6. SFTTrainer via SFTConfig (trl >= 0.18.2, tested on 0.24.0)
+    # 6. SFTTrainer via TrainingArguments (Universal trl compatibility)
     # ------------------------------------------------------------------ #
-    sft_config = SFTConfig(
-        dataset_text_field="text",
-        max_seq_length=TRAINING_CONFIG["max_seq_length"],
-        dataset_num_proc=2,
-        packing=False,
+    training_args = TrainingArguments(
         per_device_train_batch_size=TRAINING_CONFIG["batch_size"],
         gradient_accumulation_steps=TRAINING_CONFIG["gradient_accumulation_steps"],
-        gradient_checkpointing=True,
-        gradient_checkpointing_kwargs={"use_reentrant": False},
         warmup_steps=TRAINING_CONFIG["warmup_steps"],
         num_train_epochs=epochs,
         learning_rate=TRAINING_CONFIG["learning_rate"],
@@ -139,10 +130,12 @@ def train_student_model(
 
     trainer = SFTTrainer(
         model=model,
-        processing_class=tokenizer,
+        tokenizer=tokenizer,
         train_dataset=hf_dataset,
-        args=sft_config,
+        dataset_text_field="text",
+        max_seq_length=TRAINING_CONFIG["max_seq_length"],
         peft_config=peft_config,
+        args=training_args,
     )
 
     # ------------------------------------------------------------------ #
