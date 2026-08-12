@@ -97,6 +97,63 @@ def train_student_model(
         return trainer_stats
 
     except Exception as e:
-        logger.error(f"Unsloth training error: {e}. Falling back to standard HuggingFace PEFT Trainer...")
-        # Fallback HuggingFace PEFT training can be implemented here if Unsloth is unavailable
-        raise e
+        logger.warning(f"Unsloth initialization failed ({e}). Falling back to standard HuggingFace PEFT Trainer...")
+        from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig, TrainingArguments
+        from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+        from trl import SFTTrainer
+
+        bnb_config = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_use_double_quant=True,
+        )
+
+        tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
+        if tokenizer.pad_token is None:
+            tokenizer.pad_token = tokenizer.eos_token
+
+        model = AutoModelForCausalLM.from_pretrained(
+            model_id,
+            quantization_config=bnb_config,
+            device_map="auto",
+            trust_remote_code=True,
+        )
+        model = prepare_model_for_kbit_training(model)
+
+        peft_config = LoraConfig(
+            r=TRAINING_CONFIG["lora_r"],
+            lora_alpha=TRAINING_CONFIG["lora_alpha"],
+            target_modules=TRAINING_CONFIG["target_modules"],
+            lora_dropout=TRAINING_CONFIG["lora_dropout"],
+            bias="none",
+            task_type="CAUSAL_LM",
+        )
+        model = get_peft_model(model, peft_config)
+
+        trainer = SFTTrainer(
+            model=model,
+            tokenizer=tokenizer,
+            train_dataset=hf_dataset,
+            dataset_text_field="text",
+            max_seq_length=TRAINING_CONFIG["max_seq_length"],
+            args=TrainingArguments(
+                per_device_train_batch_size=TRAINING_CONFIG["batch_size"],
+                gradient_accumulation_steps=TRAINING_CONFIG["gradient_accumulation_steps"],
+                warmup_steps=TRAINING_CONFIG["warmup_steps"],
+                num_train_epochs=epochs,
+                learning_rate=TRAINING_CONFIG["learning_rate"],
+                fp16=True,
+                logging_steps=TRAINING_CONFIG["logging_steps"],
+                optim="paged_adamw_8bit",
+                output_dir=str(output_dir),
+                save_strategy="epoch",
+            ),
+        )
+
+        logger.info("Executing standard HuggingFace PEFT training loop...")
+        trainer_stats = trainer.train()
+        model.save_pretrained(str(output_dir))
+        tokenizer.save_pretrained(str(output_dir))
+        logger.info(f"Saved trained HF adapter successfully to '{output_dir}'.")
+        return trainer_stats
