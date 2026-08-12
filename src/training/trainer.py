@@ -105,14 +105,21 @@ def train_student_model(
         task_type="CAUSAL_LM",
     )
     model = get_peft_model(model, peft_config)
+    model.gradient_checkpointing_enable()
     model.print_trainable_parameters()
 
     # ------------------------------------------------------------------ #
-    # 6. SFTTrainer via TrainingArguments (Universal trl compatibility)
+    # 6. SFTTrainer via TrainingArguments (VRAM Optimized for T4 GPU)
     # ------------------------------------------------------------------ #
+    # Batch size = 2 per GPU, accumulation = 16 => Total batch size = 32 (Same effective batch size, 75% less VRAM)
+    per_device_bs = 2
+    grad_accum_steps = 16
+
     training_args = TrainingArguments(
-        per_device_train_batch_size=TRAINING_CONFIG["batch_size"],
-        gradient_accumulation_steps=TRAINING_CONFIG["gradient_accumulation_steps"],
+        per_device_train_batch_size=per_device_bs,
+        gradient_accumulation_steps=grad_accum_steps,
+        gradient_checkpointing=True,
+        gradient_checkpointing_kwargs={"use_reentrant": False},
         warmup_steps=TRAINING_CONFIG["warmup_steps"],
         num_train_epochs=epochs,
         learning_rate=TRAINING_CONFIG["learning_rate"],
@@ -133,7 +140,7 @@ def train_student_model(
         tokenizer=tokenizer,
         train_dataset=hf_dataset,
         dataset_text_field="text",
-        max_seq_length=TRAINING_CONFIG["max_seq_length"],
+        max_seq_length=min(TRAINING_CONFIG["max_seq_length"], 1280),
         peft_config=peft_config,
         args=training_args,
     )
@@ -141,7 +148,8 @@ def train_student_model(
     # ------------------------------------------------------------------ #
     # 7. Train
     # ------------------------------------------------------------------ #
-    logger.info("Executing training loop...")
+    logger.info("Executing training loop with VRAM gradient checkpointing...")
+    torch.cuda.empty_cache()
     trainer_stats = trainer.train()
 
     # ------------------------------------------------------------------ #
