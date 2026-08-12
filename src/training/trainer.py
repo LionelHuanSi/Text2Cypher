@@ -38,6 +38,10 @@ def train_student_model(
     hf_dataset = Dataset.from_list(data)
     logger.info(f"Loaded {len(hf_dataset)} samples for fine-tuning.")
 
+    use_bf16 = torch.cuda.is_bf16_supported()
+    use_fp16 = not use_bf16
+    compute_dtype = torch.bfloat16 if use_bf16 else torch.float16
+
     # Attempt Unsloth FastLanguageModel loading
     try:
         from unsloth import FastLanguageModel
@@ -48,6 +52,7 @@ def train_student_model(
             model_name=model_id,
             max_seq_length=TRAINING_CONFIG["max_seq_length"],
             load_in_4bit=TRAINING_CONFIG["load_in_4bit"],
+            torch_dtype=compute_dtype,
         )
 
         model = FastLanguageModel.get_peft_model(
@@ -75,8 +80,8 @@ def train_student_model(
                 warmup_steps=TRAINING_CONFIG["warmup_steps"],
                 num_train_epochs=epochs,
                 learning_rate=TRAINING_CONFIG["learning_rate"],
-                fp16=not torch.cuda.is_bf16_supported(),
-                bf16=torch.cuda.is_bf16_supported(),
+                fp16=use_fp16,
+                bf16=use_bf16,
                 logging_steps=TRAINING_CONFIG["logging_steps"],
                 optim="adamw_8bit",
                 weight_decay=TRAINING_CONFIG["weight_decay"],
@@ -105,7 +110,7 @@ def train_student_model(
         bnb_config = BitsAndBytesConfig(
             load_in_4bit=True,
             bnb_4bit_quant_type="nf4",
-            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_compute_dtype=compute_dtype,
             bnb_4bit_use_double_quant=True,
         )
 
@@ -118,6 +123,7 @@ def train_student_model(
             quantization_config=bnb_config,
             device_map="auto",
             trust_remote_code=True,
+            torch_dtype=compute_dtype,
         )
         model = prepare_model_for_kbit_training(model)
 
@@ -143,7 +149,8 @@ def train_student_model(
                 warmup_steps=TRAINING_CONFIG["warmup_steps"],
                 num_train_epochs=epochs,
                 learning_rate=TRAINING_CONFIG["learning_rate"],
-                fp16=True,
+                fp16=use_fp16,
+                bf16=use_bf16,
                 logging_steps=TRAINING_CONFIG["logging_steps"],
                 optim="paged_adamw_8bit",
                 output_dir=str(output_dir),
