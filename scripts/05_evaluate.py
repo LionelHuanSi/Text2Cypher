@@ -14,7 +14,7 @@ logger = setup_logger("Stage05_Evaluate")
 
 def main():
     parser = argparse.ArgumentParser(description="Evaluate Student Model Adapter on Test Dataset")
-    parser.add_argument("--adapter", type=str, default="qwen2.5_1.5b_student_kd", help="Adapter folder name inside outputs/")
+    parser.add_argument("--adapter", type=str, default="results/qwen2.5_1.5b_kd_adapter/final_adapter", help="Adapter folder path inside outputs/")
     parser.add_argument("--model_id", type=str, default=STUDENT_MODEL_ID, help="Base Model ID")
     parser.add_argument("--is_kd", action="store_true", default=True, help="Set True if adapter outputs 4-step JSON CoT")
     parser.add_argument("--limit", type=int, default=None, help="Limit number of test samples")
