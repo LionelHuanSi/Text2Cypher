@@ -1,0 +1,1035 @@
+{
+ "graph": "company",
+ "source": "bolt://localhost:15062",
+ "builder_version": "0.1",
+ "entities": [
+  {
+   "label": "Company",
+   "count": 547969,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "launch_year": {
+     "types": [
+      "Long"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q4830453",
+     "support": 0.45,
+     "label": "business",
+     "description": "organization undertaking commercial, industrial, or professional activity",
+     "aliases": [
+      "businesses"
+     ]
+    },
+    {
+     "qid": "Q43229",
+     "support": 0.15,
+     "label": "organization",
+     "description": "social entity established to meet needs or pursue goals",
+     "aliases": [
+      "organisation",
+      "organizations",
+      "organisations",
+      "institution"
+     ]
+    },
+    {
+     "qid": "Q14350",
+     "support": 0.1,
+     "label": "radio station",
+     "description": "organization for the production and transmission of radio programs",
+     "aliases": [
+      "radio broadcasting station"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Country",
+   "count": 217,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q6256",
+     "support": 1.0,
+     "label": "country",
+     "description": "distinct territorial body or political entity",
+     "aliases": [
+      "countries"
+     ]
+    },
+    {
+     "qid": "Q3624078",
+     "support": 1.0,
+     "label": "sovereign state",
+     "description": "state that has the highest authority over a territory",
+     "aliases": [
+      "sovereign nation",
+      "sovereign country",
+      "Westphalian state",
+      "country",
+      "nation"
+     ]
+    },
+    {
+     "qid": "Q7270",
+     "support": 0.35,
+     "label": "republic",
+     "description": "form of government where the head of state is elected",
+     "aliases": [
+      "republican state",
+      "republican government"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Industry",
+   "count": 526,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q268592",
+     "support": 0.6,
+     "label": "industry",
+     "description": "group of firms that produce a closely related set of raw materials, goods, or services",
+     "aliases": [
+      "economic industry",
+      "industrial branch",
+      "industry (economics)",
+      "industries",
+      "industrial sector"
+     ]
+    },
+    {
+     "qid": "Q136653105",
+     "support": 0.15,
+     "label": "type of industry",
+     "description": "metaclass for industry",
+     "aliases": [
+      "industry type"
+     ]
+    },
+    {
+     "qid": "Q12015335",
+     "support": 0.05,
+     "label": "technical sciences",
+     "description": "metaclass for engineering as a science concerned with the technical development and design of products and systems",
+     "aliases": [
+      "technical sciences"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Person",
+   "count": 32594,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "country_of_citizenship": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 358
+    },
+    "date_of_birth": {
+     "types": [
+      "Date"
+     ]
+    },
+    "date_of_death": {
+     "types": [
+      "Date"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "gender": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 10,
+     "vocab": [
+      "male",
+      "female",
+      "trans woman",
+      "non-binary",
+      "trans man",
+      "bigender",
+      "cisgender man",
+      "genderqueer",
+      "transgender",
+      "undisclosed gender"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "place_of_birth": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 8396
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q5",
+     "support": 1.0,
+     "label": "human",
+     "description": "any single member of Homo sapiens, unique extant species of the genus Homo",
+     "aliases": [
+      "human being",
+      "people",
+      "nonfictional human",
+      "non-fictional human",
+      "individual Homo sapiens",
+      "modern human",
+      "person"
+     ]
+    }
+   ]
+  }
+ ],
+ "relations": [
+  {
+   "label": "subsidiaryOf",
+   "subj_label": "Company",
+   "obj_label": "Company",
+   "n_edges": 25298,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0438,
+    "obj_participation": 0.0182,
+    "objs_per_subj": {
+     "avg": 1.053,
+     "max": 9,
+     "frac_one": 0.9557
+    },
+    "subjs_per_obj": {
+     "avg": 2.538,
+     "max": 127,
+     "frac_one": 0.5968
+    },
+    "reciprocity": 0.0007
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P749",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "parent organization or unit",
+      "description": "parent organization or unit of an organization or unit, opposite of child organization or unit (P355); use instance of (P31) to distinguish organization (Q43229) and organization unit (Q10387680)",
+      "aliases": [
+       "parent organisation",
+       "owned by (company or organisation)",
+       "holding",
+       "holding company",
+       "part of",
+       "parent unit",
+       "parent agency",
+       "superior formation"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P355"
+     },
+     {
+      "pid": "P355",
+      "direction": "inverse",
+      "support": 0.583,
+      "label": "child organization or unit",
+      "description": "child organization/unit of an org./unit; usually a fully owned separate org.; for non-independent sub-units, see org. division (P199); opposite of parent org./unit (P749); use instance of (P31) to distinguish org. (Q43229) and org. unit (Q10387680)",
+      "aliases": [
+       "subsidiary company",
+       "subsidiary entities",
+       "imprint",
+       "has imprint",
+       "subordinate body",
+       "subordinate unit",
+       "parent company of",
+       "owns"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P749"
+     },
+     {
+      "pid": "P1830",
+      "direction": "inverse",
+      "support": 0.167,
+      "label": "owner of",
+      "description": "entities owned by the subject",
+      "aliases": [
+       "owns",
+       "shareholder of",
+       "owns property",
+       "item owned"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": false,
+      "inverse_property": "P127"
+     },
+     {
+      "pid": "P127",
+      "direction": "forward",
+      "support": 0.167,
+      "label": "owned by",
+      "description": "owner of the subject",
+      "aliases": [
+       "is owned by",
+       "owner",
+       "belongs to",
+       "shareholder",
+       "stockholder",
+       "shareholders",
+       "stockholders",
+       "owners"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P1830"
+     },
+     {
+      "pid": "P1716",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": null,
+      "description": null,
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P355",
+    "wikidata_direction": "inverse",
+    "meaning": "child organization/unit of an org./unit; usually a fully owned separate org.; for non-independent sub-units, see org. division (P199); opposite of parent org./unit (P749); use instance of (P31) to distinguish org. (Q43229) and org. unit (Q10387680)",
+    "reading": "child organization or unit",
+    "aliases": [
+     "subsidiary company",
+     "subsidiary entities",
+     "imprint",
+     "has imprint",
+     "subordinate body",
+     "subordinate unit",
+     "parent company of",
+     "owns"
+    ]
+   }
+  },
+  {
+   "label": "hasCEO",
+   "subj_label": "Company",
+   "obj_label": "Person",
+   "n_edges": 4664,
+   "properties": {
+    "start_year": [
+     "Long"
+    ],
+    "end_year": [
+     "Long"
+    ]
+   },
+   "temporal_properties": {
+    "start_year": [
+     "Long"
+    ],
+    "end_year": [
+     "Long"
+    ]
+   },
+   "stats": {
+    "subj_participation": 0.0062,
+    "obj_participation": 0.1325,
+    "objs_per_subj": {
+     "avg": 1.356,
+     "max": 14,
+     "frac_one": 0.8317
+    },
+    "subjs_per_obj": {
+     "avg": 1.075,
+     "max": 7,
+     "frac_one": 0.9412
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P169",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "chief executive officer",
+      "description": "highest-ranking corporate officer appointed as the CEO within an organization",
+      "aliases": [
+       "CEO",
+       "chief executive",
+       "executive director"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P127",
+      "direction": "forward",
+      "support": 0.333,
+      "label": "owned by",
+      "description": "owner of the subject",
+      "aliases": [
+       "is owned by",
+       "owner",
+       "belongs to",
+       "shareholder",
+       "stockholder",
+       "shareholders",
+       "stockholders",
+       "owners"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P1830"
+     },
+     {
+      "pid": "P108",
+      "direction": "inverse",
+      "support": 0.167,
+      "label": "employer",
+      "description": "person or organization for which the subject works or worked",
+      "aliases": [
+       "employed by",
+       "works at",
+       "working for",
+       "worked for",
+       "works for",
+       "worked at",
+       "working place",
+       "working at"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P1830",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": "owner of",
+      "description": "entities owned by the subject",
+      "aliases": [
+       "owns",
+       "shareholder of",
+       "owns property",
+       "item owned"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": false,
+      "inverse_property": "P127"
+     },
+     {
+      "pid": "P126",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": null,
+      "description": null,
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": true,
+    "interval_properties": [
+     "end_year",
+     "start_year"
+    ],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P169",
+    "wikidata_direction": "forward",
+    "meaning": "highest-ranking corporate officer appointed as the CEO within an organization",
+    "reading": "chief executive officer",
+    "aliases": [
+     "CEO",
+     "chief executive",
+     "executive director"
+    ]
+   }
+  },
+  {
+   "label": "hasBoardMember",
+   "subj_label": "Company",
+   "obj_label": "Person",
+   "n_edges": 3724,
+   "properties": {
+    "start_year": [
+     "Long"
+    ],
+    "end_year": [
+     "Long"
+    ]
+   },
+   "temporal_properties": {
+    "start_year": [
+     "Long"
+    ],
+    "end_year": [
+     "Long"
+    ]
+   },
+   "stats": {
+    "subj_participation": 0.002,
+    "obj_participation": 0.0967,
+    "objs_per_subj": {
+     "avg": 3.298,
+     "max": 39,
+     "frac_one": 0.5378
+    },
+    "subjs_per_obj": {
+     "avg": 1.175,
+     "max": 10,
+     "frac_one": 0.869
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P3320",
+      "direction": "forward",
+      "support": 0.917,
+      "label": "board member",
+      "description": "member(s) of the board for an organization",
+      "aliases": [
+       "member of the board of directors",
+       "member of the board"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P127",
+      "direction": "forward",
+      "support": 0.75,
+      "label": "owned by",
+      "description": "owner of the subject",
+      "aliases": [
+       "is owned by",
+       "owner",
+       "belongs to",
+       "shareholder",
+       "stockholder",
+       "shareholders",
+       "stockholders",
+       "owners"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P1830"
+     },
+     {
+      "pid": "P5052",
+      "direction": "forward",
+      "support": 0.083,
+      "label": "supervisory board member",
+      "description": "member(s) of the supervisory board for the organization",
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P1268",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": null,
+      "description": null,
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P112",
+      "direction": "forward",
+      "support": 0.083,
+      "label": "founder",
+      "description": "founder or co-founder of this organization, religion, place or entity",
+      "aliases": [
+       "co-founder",
+       "founders",
+       "established by",
+       "co-founded by",
+       "founder",
+       "started by",
+       "cofounder",
+       "cofounded by"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": true,
+    "interval_properties": [
+     "end_year",
+     "start_year"
+    ],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P3320",
+    "wikidata_direction": "forward",
+    "meaning": "member(s) of the board for an organization",
+    "reading": "board member",
+    "aliases": [
+     "member of the board of directors",
+     "member of the board"
+    ]
+   }
+  },
+  {
+   "label": "foundedBy",
+   "subj_label": "Company",
+   "obj_label": "Person",
+   "n_edges": 27728,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0416,
+    "obj_participation": 0.7493,
+    "objs_per_subj": {
+     "avg": 1.217,
+     "max": 25,
+     "frac_one": 0.8364
+    },
+    "subjs_per_obj": {
+     "avg": 1.135,
+     "max": 33,
+     "frac_one": 0.9059
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P112",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "founder",
+      "description": "founder or co-founder of this organization, religion, place or entity",
+      "aliases": [
+       "co-founder",
+       "founders",
+       "established by",
+       "co-founded by",
+       "founder",
+       "started by",
+       "cofounder",
+       "cofounded by"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P1830",
+      "direction": "inverse",
+      "support": 0.167,
+      "label": "owner of",
+      "description": "entities owned by the subject",
+      "aliases": [
+       "owns",
+       "shareholder of",
+       "owns property",
+       "item owned"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": false,
+      "inverse_property": "P127"
+     },
+     {
+      "pid": "P127",
+      "direction": "forward",
+      "support": 0.167,
+      "label": "owned by",
+      "description": "owner of the subject",
+      "aliases": [
+       "is owned by",
+       "owner",
+       "belongs to",
+       "shareholder",
+       "stockholder",
+       "shareholders",
+       "stockholders",
+       "owners"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P1830"
+     },
+     {
+      "pid": "P8938",
+      "direction": "forward",
+      "support": 0.083,
+      "label": null,
+      "description": null,
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P1268",
+      "direction": "forward",
+      "support": 0.083,
+      "label": null,
+      "description": null,
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P112",
+    "wikidata_direction": "forward",
+    "meaning": "founder or co-founder of this organization, religion, place or entity",
+    "reading": "founder",
+    "aliases": [
+     "co-founder",
+     "founders",
+     "established by",
+     "co-founded by",
+     "founder",
+     "started by",
+     "cofounder",
+     "cofounded by"
+    ]
+   }
+  },
+  {
+   "label": "basedIn",
+   "subj_label": "Company",
+   "obj_label": "Country",
+   "n_edges": 194832,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.3538,
+    "obj_participation": 0.8618,
+    "objs_per_subj": {
+     "avg": 1.005,
+     "max": 16,
+     "frac_one": 0.9955
+    },
+    "subjs_per_obj": {
+     "avg": 1041.882,
+     "max": 41091,
+     "frac_one": 0.016
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P17",
+      "direction": "forward",
+      "support": 0.917,
+      "label": "country",
+      "description": "sovereign state that this subject item is in (not to be used for human beings)",
+      "aliases": [
+       "sovereign state",
+       "state",
+       "land",
+       "host country"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P127",
+      "direction": "forward",
+      "support": 0.083,
+      "label": "owned by",
+      "description": "owner of the subject",
+      "aliases": [
+       "is owned by",
+       "owner",
+       "belongs to",
+       "shareholder",
+       "stockholder",
+       "shareholders",
+       "stockholders",
+       "owners"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P1830"
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P17",
+    "wikidata_direction": "forward",
+    "meaning": "sovereign state that this subject item is in (not to be used for human beings)",
+    "reading": "country",
+    "aliases": [
+     "sovereign state",
+     "state",
+     "land",
+     "host country"
+    ]
+   }
+  },
+  {
+   "label": "operatesIn",
+   "subj_label": "Company",
+   "obj_label": "Industry",
+   "n_edges": 43335,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0741,
+    "obj_participation": 0.9696,
+    "objs_per_subj": {
+     "avg": 1.067,
+     "max": 6,
+     "frac_one": 0.9417
+    },
+    "subjs_per_obj": {
+     "avg": 84.971,
+     "max": 5544,
+     "frac_one": 0.151
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P452",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "industry",
+      "description": "specific industry of company or organization",
+      "aliases": [
+       "field of exercise",
+       "branch",
+       "economic branch",
+       "field of action",
+       "sector"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P452",
+    "wikidata_direction": "forward",
+    "meaning": "specific industry of company or organization",
+    "reading": "industry",
+    "aliases": [
+     "field of exercise",
+     "branch",
+     "economic branch",
+     "field of action",
+     "sector"
+    ]
+   }
+  }
+ ],
+ "qid_key": "eid",
+ "build_seconds": 3.3
+}

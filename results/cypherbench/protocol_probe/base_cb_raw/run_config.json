@@ -1,0 +1,10 @@
+{
+ "model": "Qwen/Qwen2.5-Coder-7B",
+ "protocol": "cb_raw",
+ "per_graph": 30,
+ "out": "results/cypherbench/protocol_probe/base_cb_raw",
+ "n": 210,
+ "decoding": "greedy",
+ "backend": "mlx_lm bf16",
+ "machine": "macOS-26.4.1-arm64-arm-64bit"
+}

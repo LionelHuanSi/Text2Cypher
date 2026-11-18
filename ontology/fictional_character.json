@@ -1,0 +1,1566 @@
+{
+ "graph": "fictional_character",
+ "source": "bolt://localhost:15063",
+ "builder_version": "0.1",
+ "entities": [
+  {
+   "label": "Character",
+   "count": 25299,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "birth_name": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 747
+    },
+    "country_of_citizenship": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 349
+    },
+    "creator": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 1051
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "gender": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 20,
+     "vocab": [
+      "male",
+      "female",
+      "male organism",
+      "female organism",
+      "agender",
+      "gender unknown",
+      "trans woman",
+      "gender determined by the player",
+      "non-binary",
+      "gender not disclosed in work",
+      "intersex",
+      "genderfluid",
+      "hermaphroditism",
+      "undisclosed gender",
+      "androgyne",
+      "genderqueer",
+      "hermaphrodite",
+      "neutral sex",
+      "trans man",
+      "transgender"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "occupation": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 1190
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q15632617",
+     "support": 0.9,
+     "label": "fictional human",
+     "description": "human being that only exists in fictional works",
+     "aliases": [
+      "human fictional character",
+      "fictional person",
+      "fictional woman",
+      "fictional man",
+      "human fictional characters",
+      "fictional persons"
+     ]
+    },
+    {
+     "qid": "Q3658341",
+     "support": 0.45,
+     "label": "literary character",
+     "description": "fictional character appearing in written works",
+     "aliases": [
+      "book character",
+      "novel character",
+      "literature character",
+      "character in a book",
+      "character in a novel",
+      "character in literature",
+      "short story character",
+      "character in a short story"
+     ]
+    },
+    {
+     "qid": "Q1569167",
+     "support": 0.35,
+     "label": "video game character",
+     "description": "fictional character appearing in a video game",
+     "aliases": [
+      "game character"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "FictionalUniverse",
+   "count": 1278,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "copyright_holder": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 6
+    },
+    "creator": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 261
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "inception_year": {
+     "types": [
+      "Long"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q559618",
+     "support": 0.9,
+     "label": "fictional universe",
+     "description": "imaginary, typically self-consistent world with its own rules and characters, different from the real world; often used as a background or basis in story telling",
+     "aliases": [
+      "fictional world",
+      "fictional space",
+      "fictive universe",
+      "fictive world",
+      "fictive space",
+      "narrative universe",
+      "fictional universes",
+      "world"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Location",
+   "count": 594,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q2775969",
+     "support": 0.2,
+     "label": "fictional planet",
+     "description": "planet that only appears in works of fiction",
+     "aliases": []
+    },
+    {
+     "qid": "Q108059870",
+     "support": 0.15,
+     "label": "Star Wars planet",
+     "description": "planet appearing in the Star Wars universe",
+     "aliases": []
+    },
+    {
+     "qid": "Q65630486",
+     "support": 0.1,
+     "label": "fictional city-state",
+     "description": "city-state only existing in fiction",
+     "aliases": []
+    }
+   ]
+  },
+  {
+   "label": "Organization",
+   "count": 1744,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q56561355",
+     "support": 0.2,
+     "label": "fictional gang",
+     "description": "gang which only exists in a work of fiction",
+     "aliases": []
+    },
+    {
+     "qid": "Q5446565",
+     "support": 0.15,
+     "label": "fictional company",
+     "description": "business organization which only exists in fiction",
+     "aliases": [
+      "fictional corporation",
+      "fictional companies",
+      "fictional corporations",
+      "fictional business",
+      "fictional businesses",
+      "fictional enterprise",
+      "fictional establishment",
+      "fictional shop"
+     ]
+    },
+    {
+     "qid": "Q14623646",
+     "support": 0.1,
+     "label": "fictional organization",
+     "description": "organization which only appears in works of fiction",
+     "aliases": [
+      "fictional organisation",
+      "fictive organization",
+      "fictional working group",
+      "fictive working group",
+      "fictional consortium",
+      "fictive consortium",
+      "fictional foundation",
+      "fictive foundation"
+     ]
+    }
+   ]
+  }
+ ],
+ "relations": [
+  {
+   "label": "fromUniverse",
+   "subj_label": "Character",
+   "obj_label": "FictionalUniverse",
+   "n_edges": 26549,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.9981,
+    "obj_participation": 0.5446,
+    "objs_per_subj": {
+     "avg": 1.051,
+     "max": 7,
+     "frac_one": 0.9505
+    },
+    "subjs_per_obj": {
+     "avg": 38.145,
+     "max": 2663,
+     "frac_one": 0.1609
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P1080",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "from narrative universe",
+      "description": "subject's fictional entity is in the object narrative. See also P1441 (present in work) and P1445 (fictional universe described in)",
+      "aliases": [
+       "from universe",
+       "universe",
+       "featured in universe",
+       "appears in universe",
+       "fictional universe where entity is from",
+       "from mythology",
+       "mythology",
+       "continuity"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": true,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P1080",
+    "wikidata_direction": "forward",
+    "meaning": "subject's fictional entity is in the object narrative. See also P1441 (present in work) and P1445 (fictional universe described in)",
+    "reading": "from narrative universe",
+    "aliases": [
+     "from universe",
+     "universe",
+     "featured in universe",
+     "appears in universe",
+     "fictional universe where entity is from",
+     "from mythology",
+     "mythology",
+     "continuity"
+    ]
+   }
+  },
+  {
+   "label": "fromUniverse",
+   "subj_label": "Organization",
+   "obj_label": "FictionalUniverse",
+   "n_edges": 1805,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.9983,
+    "obj_participation": 0.1784,
+    "objs_per_subj": {
+     "avg": 1.037,
+     "max": 2,
+     "frac_one": 0.9632
+    },
+    "subjs_per_obj": {
+     "avg": 7.917,
+     "max": 144,
+     "frac_one": 0.4737
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P1080",
+      "direction": "forward",
+      "support": 0.25,
+      "label": "from narrative universe",
+      "description": "subject's fictional entity is in the object narrative. See also P1441 (present in work) and P1445 (fictional universe described in)",
+      "aliases": [
+       "from universe",
+       "universe",
+       "featured in universe",
+       "appears in universe",
+       "fictional universe where entity is from",
+       "from mythology",
+       "mythology",
+       "continuity"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": true,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": null,
+    "wikidata_direction": null,
+    "meaning": null,
+    "reading": null,
+    "aliases": []
+   }
+  },
+  {
+   "label": "memberOf",
+   "subj_label": "Character",
+   "obj_label": "Organization",
+   "n_edges": 3354,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0926,
+    "obj_participation": 0.2603,
+    "objs_per_subj": {
+     "avg": 1.431,
+     "max": 10,
+     "frac_one": 0.7546
+    },
+    "subjs_per_obj": {
+     "avg": 7.388,
+     "max": 140,
+     "frac_one": 0.2555
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P463",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "member of",
+      "description": "organization, club or musical group to which the subject belongs. Do not use for membership in ethnic or social groups, nor for holding a political position, such as a member of parliament (use P39 for that)",
+      "aliases": [
+       "membership",
+       "band member of",
+       "member of musical group",
+       "in musical group",
+       "of organization",
+       "is member of",
+       "club"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P527",
+      "direction": "inverse",
+      "support": 0.25,
+      "label": "has part(s)",
+      "description": "part of this subject; inverse property of \"part of\" (P361). See also \"has parts of the class\" (P2670).",
+      "aliases": [
+       "formed from",
+       "formed out of",
+       "assembled from",
+       "assembled out of",
+       "created from",
+       "created out of",
+       "amalgamation of",
+       "set of"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": true,
+      "inverse_property": "P361"
+     },
+     {
+      "pid": "P1412",
+      "direction": "forward",
+      "support": 0.083,
+      "label": "languages spoken, written or signed",
+      "description": "language(s) that a person or a people speaks, writes or signs, including the native language(s)",
+      "aliases": [
+       "language spoken",
+       "languages of expression",
+       "languages signed",
+       "language signed",
+       "language written",
+       "language read",
+       "language used",
+       "language"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P463",
+    "wikidata_direction": "forward",
+    "meaning": "organization, club or musical group to which the subject belongs. Do not use for membership in ethnic or social groups, nor for holding a political position, such as a member of parliament (use P39 for that)",
+    "reading": "member of",
+    "aliases": [
+     "membership",
+     "band member of",
+     "member of musical group",
+     "in musical group",
+     "of organization",
+     "is member of",
+     "club"
+    ]
+   }
+  },
+  {
+   "label": "hasMother",
+   "subj_label": "Character",
+   "obj_label": "Character",
+   "n_edges": 1430,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0559,
+    "obj_participation": 0.034,
+    "objs_per_subj": {
+     "avg": 1.011,
+     "max": 2,
+     "frac_one": 0.9887
+    },
+    "subjs_per_obj": {
+     "avg": 1.663,
+     "max": 85,
+     "frac_one": 0.657
+    },
+    "reciprocity": 0.0
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P40",
+      "direction": "inverse",
+      "support": 1.0,
+      "label": "child",
+      "description": "subject has object as child. Do not use for stepchildren—use \"relative\" (P1038), qualified with \"kinship to subject\" (P1039)",
+      "aliases": [
+       "son",
+       "daughter",
+       "kid",
+       "has child",
+       "children",
+       "sons",
+       "daughters",
+       "kids"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P8810"
+     },
+     {
+      "pid": "P25",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "mother",
+      "description": "female parent of the subject. For stepmother, use \"stepparent\" (P3448)",
+      "aliases": [
+       "mum",
+       "mom",
+       "mam",
+       "has mother",
+       "parent",
+       "is son of",
+       "is daughter of",
+       "is child of"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P25",
+    "wikidata_direction": "forward",
+    "meaning": "female parent of the subject. For stepmother, use \"stepparent\" (P3448)",
+    "reading": "mother",
+    "aliases": [
+     "mum",
+     "mom",
+     "mam",
+     "has mother",
+     "parent",
+     "is son of",
+     "is daughter of",
+     "is child of"
+    ]
+   }
+  },
+  {
+   "label": "hasFather",
+   "subj_label": "Character",
+   "obj_label": "Character",
+   "n_edges": 2365,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0922,
+    "obj_participation": 0.0613,
+    "objs_per_subj": {
+     "avg": 1.014,
+     "max": 2,
+     "frac_one": 0.9858
+    },
+    "subjs_per_obj": {
+     "avg": 1.526,
+     "max": 15,
+     "frac_one": 0.6955
+    },
+    "reciprocity": 0.0
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P40",
+      "direction": "inverse",
+      "support": 1.0,
+      "label": "child",
+      "description": "subject has object as child. Do not use for stepchildren—use \"relative\" (P1038), qualified with \"kinship to subject\" (P1039)",
+      "aliases": [
+       "son",
+       "daughter",
+       "kid",
+       "has child",
+       "children",
+       "sons",
+       "daughters",
+       "kids"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P8810"
+     },
+     {
+      "pid": "P22",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "father",
+      "description": "male parent of the subject. For stepfather, use \"stepparent\" (P3448)",
+      "aliases": [
+       "dad",
+       "daddy",
+       "has father",
+       "parent",
+       "is son of",
+       "is daughter of",
+       "is child of",
+       "son of"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P22",
+    "wikidata_direction": "forward",
+    "meaning": "male parent of the subject. For stepfather, use \"stepparent\" (P3448)",
+    "reading": "father",
+    "aliases": [
+     "dad",
+     "daddy",
+     "has father",
+     "parent",
+     "is son of",
+     "is daughter of",
+     "is child of",
+     "son of"
+    ]
+   }
+  },
+  {
+   "label": "hasSpouse",
+   "subj_label": "Character",
+   "obj_label": "Character",
+   "n_edges": 2250,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0835,
+    "obj_participation": 0.0834,
+    "objs_per_subj": {
+     "avg": 1.065,
+     "max": 9,
+     "frac_one": 0.9531
+    },
+    "subjs_per_obj": {
+     "avg": 1.066,
+     "max": 9,
+     "frac_one": 0.9522
+    },
+    "reciprocity": 0.9884
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P26",
+      "direction": "inverse",
+      "support": 1.0,
+      "label": "spouse",
+      "description": "the subject has the object as their spouse (husband, wife, partner, etc.). Use \"unmarried partner\" (P451) for non-married companions",
+      "aliases": [
+       "wife",
+       "married to",
+       "marry",
+       "marriage partner",
+       "married",
+       "wedded to",
+       "wed",
+       "wives"
+      ],
+      "symmetric": true,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P26"
+     },
+     {
+      "pid": "P26",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "spouse",
+      "description": "the subject has the object as their spouse (husband, wife, partner, etc.). Use \"unmarried partner\" (P451) for non-married companions",
+      "aliases": [
+       "wife",
+       "married to",
+       "marry",
+       "marriage partner",
+       "married",
+       "wedded to",
+       "wed",
+       "wives"
+      ],
+      "symmetric": true,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P26"
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": true,
+    "symmetric_evidence": [
+     "data_reciprocity",
+     "wikidata"
+    ],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "one",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P26",
+    "wikidata_direction": "forward",
+    "meaning": "the subject has the object as their spouse (husband, wife, partner, etc.). Use \"unmarried partner\" (P451) for non-married companions",
+    "reading": "spouse",
+    "aliases": [
+     "wife",
+     "married to",
+     "marry",
+     "marriage partner",
+     "married",
+     "wedded to",
+     "wed",
+     "wives"
+    ]
+   }
+  },
+  {
+   "label": "hasStudent",
+   "subj_label": "Character",
+   "obj_label": "Character",
+   "n_edges": 476,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0102,
+    "obj_participation": 0.014,
+    "objs_per_subj": {
+     "avg": 1.838,
+     "max": 16,
+     "frac_one": 0.6332
+    },
+    "subjs_per_obj": {
+     "avg": 1.341,
+     "max": 7,
+     "frac_one": 0.7887
+    },
+    "reciprocity": 0.0042
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P802",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "student",
+      "description": "notable student(s) of the subject individual",
+      "aliases": [
+       "students",
+       "teacher of",
+       "pupil",
+       "pupils",
+       "disciple",
+       "disciples",
+       "teacher to",
+       "had student"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P1066"
+     },
+     {
+      "pid": "P1066",
+      "direction": "inverse",
+      "support": 1.0,
+      "label": "student of",
+      "description": "person who has taught this person",
+      "aliases": [
+       "teacher",
+       "professor",
+       "pupil of",
+       "supervisor",
+       "academic supervisor",
+       "disciple of",
+       "studied under",
+       "master"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P802"
+     },
+     {
+      "pid": "P26",
+      "direction": "inverse",
+      "support": 0.167,
+      "label": "spouse",
+      "description": "the subject has the object as their spouse (husband, wife, partner, etc.). Use \"unmarried partner\" (P451) for non-married companions",
+      "aliases": [
+       "wife",
+       "married to",
+       "marry",
+       "marriage partner",
+       "married",
+       "wedded to",
+       "wed",
+       "wives"
+      ],
+      "symmetric": true,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P26"
+     },
+     {
+      "pid": "P26",
+      "direction": "forward",
+      "support": 0.167,
+      "label": "spouse",
+      "description": "the subject has the object as their spouse (husband, wife, partner, etc.). Use \"unmarried partner\" (P451) for non-married companions",
+      "aliases": [
+       "wife",
+       "married to",
+       "marry",
+       "marriage partner",
+       "married",
+       "wedded to",
+       "wed",
+       "wives"
+      ],
+      "symmetric": true,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P26"
+     },
+     {
+      "pid": "P7047",
+      "direction": "forward",
+      "support": 0.083,
+      "label": "enemy",
+      "description": "opponent character or group of this fictive character or group",
+      "aliases": [
+       "opponent",
+       "rival",
+       "archenemy",
+       "arch-enemy",
+       "archrival",
+       "archfoe",
+       "archvillain",
+       "archnemesis"
+      ],
+      "symmetric": true,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P802",
+    "wikidata_direction": "forward",
+    "meaning": "notable student(s) of the subject individual",
+    "reading": "student",
+    "aliases": [
+     "students",
+     "teacher of",
+     "pupil",
+     "pupils",
+     "disciple",
+     "disciples",
+     "teacher to",
+     "had student"
+    ]
+   }
+  },
+  {
+   "label": "killedBy",
+   "subj_label": "Character",
+   "obj_label": "Character",
+   "n_edges": 775,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0295,
+    "obj_participation": 0.0167,
+    "objs_per_subj": {
+     "avg": 1.037,
+     "max": 4,
+     "frac_one": 0.9652
+    },
+    "subjs_per_obj": {
+     "avg": 1.836,
+     "max": 23,
+     "frac_one": 0.6919
+    },
+    "reciprocity": 0.0077
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P157",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "killed by",
+      "description": "person or organization who killed the subject",
+      "aliases": [
+       "killer",
+       "assassin",
+       "murderer",
+       "murdered by",
+       "executioner",
+       "assassinated by",
+       "slain by",
+       "mortally wounded by"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P7047",
+      "direction": "inverse",
+      "support": 0.167,
+      "label": "enemy",
+      "description": "opponent character or group of this fictive character or group",
+      "aliases": [
+       "opponent",
+       "rival",
+       "archenemy",
+       "arch-enemy",
+       "archrival",
+       "archfoe",
+       "archvillain",
+       "archnemesis"
+      ],
+      "symmetric": true,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P7047",
+      "direction": "forward",
+      "support": 0.167,
+      "label": "enemy",
+      "description": "opponent character or group of this fictive character or group",
+      "aliases": [
+       "opponent",
+       "rival",
+       "archenemy",
+       "arch-enemy",
+       "archrival",
+       "archfoe",
+       "archvillain",
+       "archnemesis"
+      ],
+      "symmetric": true,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P157",
+    "wikidata_direction": "forward",
+    "meaning": "person or organization who killed the subject",
+    "reading": "killed by",
+    "aliases": [
+     "killer",
+     "assassin",
+     "murderer",
+     "murdered by",
+     "executioner",
+     "assassinated by",
+     "slain by",
+     "mortally wounded by"
+    ]
+   }
+  },
+  {
+   "label": "bornIn",
+   "subj_label": "Character",
+   "obj_label": "Location",
+   "n_edges": 518,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0204,
+    "obj_participation": 0.3771,
+    "objs_per_subj": {
+     "avg": 1.002,
+     "max": 2,
+     "frac_one": 0.9981
+    },
+    "subjs_per_obj": {
+     "avg": 2.312,
+     "max": 30,
+     "frac_one": 0.6295
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P19",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "place of birth",
+      "description": "most specific known birth location of a person, animal or fictional character",
+      "aliases": [
+       "birthplace",
+       "born in",
+       "POB",
+       "birth place",
+       "location born",
+       "born at",
+       "birth location",
+       "location of birth"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P551",
+      "direction": "forward",
+      "support": 0.167,
+      "label": "residence",
+      "description": "the place where the person is or has been, resident",
+      "aliases": [
+       "lives in",
+       "hometown",
+       "home town",
+       "place of residence",
+       "resident of",
+       "resided in",
+       "resided at",
+       "lived in"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P27",
+      "direction": "forward",
+      "support": 0.167,
+      "label": "country of citizenship",
+      "description": "the object is a country that recognizes the subject as its citizen",
+      "aliases": [
+       "subject of (country)",
+       "citizenship",
+       "citizen of",
+       "nation of citizenship",
+       "national of",
+       "(legal) nationality",
+       "nationality",
+       "country"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P35",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": null,
+      "description": null,
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P263",
+      "direction": "forward",
+      "support": 0.083,
+      "label": null,
+      "description": null,
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P19",
+    "wikidata_direction": "forward",
+    "meaning": "most specific known birth location of a person, animal or fictional character",
+    "reading": "place of birth",
+    "aliases": [
+     "birthplace",
+     "born in",
+     "POB",
+     "birth place",
+     "location born",
+     "born at",
+     "birth location",
+     "location of birth"
+    ]
+   }
+  },
+  {
+   "label": "diedIn",
+   "subj_label": "Character",
+   "obj_label": "Location",
+   "n_edges": 957,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0377,
+    "obj_participation": 0.6599,
+    "objs_per_subj": {
+     "avg": 1.003,
+     "max": 2,
+     "frac_one": 0.9969
+    },
+    "subjs_per_obj": {
+     "avg": 2.441,
+     "max": 29,
+     "frac_one": 0.5612
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P20",
+      "direction": "forward",
+      "support": 0.917,
+      "label": "place of death",
+      "description": "most specific known (e.g. city instead of country, or hospital instead of city) death location of a person, animal or fictional character",
+      "aliases": [
+       "deathplace",
+       "died in",
+       "death place",
+       "POD",
+       "location of death",
+       "death location",
+       "killed in",
+       "died"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P551",
+      "direction": "forward",
+      "support": 0.167,
+      "label": "residence",
+      "description": "the place where the person is or has been, resident",
+      "aliases": [
+       "lives in",
+       "hometown",
+       "home town",
+       "place of residence",
+       "resident of",
+       "resided in",
+       "resided at",
+       "lived in"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P2632",
+      "direction": "forward",
+      "support": 0.167,
+      "label": "place of detention",
+      "description": "place where this person is or was detained",
+      "aliases": [
+       "prison",
+       "jail",
+       "gaol",
+       "imprisoned in",
+       "in jail",
+       "penitentiary",
+       "detention place",
+       "detained at"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P466",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": "occupant",
+      "description": "person or organization occupying property",
+      "aliases": [
+       "tenant",
+       "inhabitant",
+       "renter",
+       "lessee",
+       "houses",
+       "location of",
+       "resident",
+       "home team"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P119",
+      "direction": "forward",
+      "support": 0.083,
+      "label": null,
+      "description": null,
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P20",
+    "wikidata_direction": "forward",
+    "meaning": "most specific known (e.g. city instead of country, or hospital instead of city) death location of a person, animal or fictional character",
+    "reading": "place of death",
+    "aliases": [
+     "deathplace",
+     "died in",
+     "death place",
+     "POD",
+     "location of death",
+     "death location",
+     "killed in",
+     "died"
+    ]
+   }
+  },
+  {
+   "label": "basedIn",
+   "subj_label": "Organization",
+   "obj_label": "Location",
+   "n_edges": 69,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0378,
+    "obj_participation": 0.0791,
+    "objs_per_subj": {
+     "avg": 1.045,
+     "max": 3,
+     "frac_one": 0.9697
+    },
+    "subjs_per_obj": {
+     "avg": 1.468,
+     "max": 5,
+     "frac_one": 0.7447
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P159",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "headquarters location",
+      "description": "city or town where an organization's headquarters is or has been situated. Use P276 qualifier for specific building",
+      "aliases": [
+       "head office location",
+       "HQ",
+       "garrison",
+       "admin HQ",
+       "seat",
+       "headquarters",
+       "head quarters",
+       "HQ location"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P466",
+      "direction": "inverse",
+      "support": 0.167,
+      "label": "occupant",
+      "description": "person or organization occupying property",
+      "aliases": [
+       "tenant",
+       "inhabitant",
+       "renter",
+       "lessee",
+       "houses",
+       "location of",
+       "resident",
+       "home team"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P1535",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": "used by",
+      "description": "item or concept that makes use of the subject (use sub-properties when appropriate)",
+      "aliases": [
+       "user",
+       "played by",
+       "armiger",
+       "of"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P2283"
+     },
+     {
+      "pid": "P1001",
+      "direction": "forward",
+      "support": 0.083,
+      "label": null,
+      "description": null,
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P159",
+    "wikidata_direction": "forward",
+    "meaning": "city or town where an organization's headquarters is or has been situated. Use P276 qualifier for specific building",
+    "reading": "headquarters location",
+    "aliases": [
+     "head office location",
+     "HQ",
+     "garrison",
+     "admin HQ",
+     "seat",
+     "headquarters",
+     "head quarters",
+     "HQ location"
+    ]
+   }
+  }
+ ],
+ "qid_key": "eid",
+ "build_seconds": 2.2
+}

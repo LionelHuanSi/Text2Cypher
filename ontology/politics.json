@@ -1,0 +1,1693 @@
+{
+ "graph": "politics",
+ "source": "bolt://localhost:15068",
+ "builder_version": "0.1",
+ "entities": [
+  {
+   "label": "Country",
+   "count": 217,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "founding_date": {
+     "types": [
+      "Date"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "official_language": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 204
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q6256",
+     "support": 1.0,
+     "label": "country",
+     "description": "distinct territorial body or political entity",
+     "aliases": [
+      "countries"
+     ]
+    },
+    {
+     "qid": "Q3624078",
+     "support": 1.0,
+     "label": "sovereign state",
+     "description": "state that has the highest authority over a territory",
+     "aliases": [
+      "sovereign nation",
+      "sovereign country",
+      "Westphalian state",
+      "country",
+      "nation"
+     ]
+    },
+    {
+     "qid": "Q7270",
+     "support": 0.35,
+     "label": "republic",
+     "description": "form of government where the head of state is elected",
+     "aliases": [
+      "republican state",
+      "republican government"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "GovernmentOrganization",
+   "count": 251643,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q484170",
+     "support": 0.25,
+     "label": "commune of France",
+     "description": "France territorial subdivision for municipalities",
+     "aliases": [
+      "commune (France)"
+     ]
+    },
+    {
+     "qid": "Q15978299",
+     "support": 0.25,
+     "label": "municipality with town privileges in the Czech Republic",
+     "description": "municipality in the Czech Republic which has received town privileges",
+     "aliases": []
+    },
+    {
+     "qid": "Q5153359",
+     "support": 0.25,
+     "label": "municipality of the Czech Republic",
+     "description": "administrative territorial division of the Czech Republic",
+     "aliases": [
+      "municipality of Czechia"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "InternationalOrganization",
+   "count": 2772,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "founding_year": {
+     "types": [
+      "Long"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q7840289",
+     "support": 0.4,
+     "label": "tribal council",
+     "description": "alliances of band governments of Canadian First Nations for the purposes of administration",
+     "aliases": [
+      "regional first nations council"
+     ]
+    },
+    {
+     "qid": "Q484652",
+     "support": 0.25,
+     "label": "international organization",
+     "description": "organization established by treaty between governments",
+     "aliases": [
+      "international organisation"
+     ]
+    },
+    {
+     "qid": "Q43229",
+     "support": 0.1,
+     "label": "organization",
+     "description": "social entity established to meet needs or pursue goals",
+     "aliases": [
+      "organisation",
+      "organizations",
+      "organisations",
+      "institution"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "PoliticalParty",
+   "count": 19998,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "founding_date": {
+     "types": [
+      "Date"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q7278",
+     "support": 0.8,
+     "label": "political party",
+     "description": "organization that seeks to influence government policy and actions and be elected to directly take part on government or legislation",
+     "aliases": [
+      "party in politics",
+      "party (politics)",
+      "political parties",
+      "parties in politics",
+      "parties (politics)"
+     ]
+    },
+    {
+     "qid": "Q43791339",
+     "support": 0.1,
+     "label": "political party in Bulgaria",
+     "description": null,
+     "aliases": []
+    },
+    {
+     "qid": "Q2023214",
+     "support": 0.1,
+     "label": "political party in Germany",
+     "description": "political party active in German politics",
+     "aliases": [
+      "German political party",
+      "political party of Germany"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Politician",
+   "count": 540962,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "country_of_citizenship": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 1135
+    },
+    "date_of_birth": {
+     "types": [
+      "Date"
+     ]
+    },
+    "date_of_death": {
+     "types": [
+      "Date"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "gender": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 11,
+     "vocab": [
+      "male",
+      "female",
+      "eunuch",
+      "trans woman",
+      "non-binary",
+      "trans man",
+      "transgender",
+      "two-spirit",
+      "agender",
+      "genderqueer",
+      "travesti"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "place_of_birth": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 72558
+    },
+    "place_of_death": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 28982
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "schools_attended": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 21179
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q5",
+     "support": 1.0,
+     "label": "human",
+     "description": "any single member of Homo sapiens, unique extant species of the genus Homo",
+     "aliases": [
+      "human being",
+      "people",
+      "nonfictional human",
+      "non-fictional human",
+      "individual Homo sapiens",
+      "modern human",
+      "person"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Position",
+   "count": 69596,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q4164871",
+     "support": 0.75,
+     "label": "position",
+     "description": "social role with a set of powers and responsibilities within an organization",
+     "aliases": [
+      "office",
+      "function",
+      "post",
+      "officeholder",
+      "station",
+      "mantle",
+      "title",
+      "occupational role"
+     ]
+    },
+    {
+     "qid": "Q294414",
+     "support": 0.25,
+     "label": "public office",
+     "description": "elected or appointed political position",
+     "aliases": [
+      "political office",
+      "political post",
+      "public service",
+      "public mandate",
+      "government position",
+      "office",
+      "government office",
+      "government job"
+     ]
+    }
+   ]
+  }
+ ],
+ "relations": [
+  {
+   "label": "hasHeadOfState",
+   "subj_label": "Country",
+   "obj_label": "Politician",
+   "n_edges": 688,
+   "properties": {
+    "end_year": [
+     "Long"
+    ],
+    "start_year": [
+     "Long"
+    ]
+   },
+   "temporal_properties": {
+    "end_year": [
+     "Long"
+    ],
+    "start_year": [
+     "Long"
+    ]
+   },
+   "stats": {
+    "subj_participation": 0.8295,
+    "obj_participation": 0.0012,
+    "objs_per_subj": {
+     "avg": 3.644,
+     "max": 38,
+     "frac_one": 0.4111
+    },
+    "subjs_per_obj": {
+     "avg": 1.04,
+     "max": 20,
+     "frac_one": 0.9905
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P27",
+      "direction": "inverse",
+      "support": 1.0,
+      "label": "country of citizenship",
+      "description": "the object is a country that recognizes the subject as its citizen",
+      "aliases": [
+       "subject of (country)",
+       "citizenship",
+       "citizen of",
+       "nation of citizenship",
+       "national of",
+       "(legal) nationality",
+       "nationality",
+       "country"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P35",
+      "direction": "forward",
+      "support": 0.917,
+      "label": "head of state",
+      "description": "official with the highest formal authority in a country/state",
+      "aliases": [
+       "president",
+       "king",
+       "queen",
+       "emperor",
+       "monarch",
+       "state headed by",
+       "governor",
+       "leader"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P6",
+      "direction": "forward",
+      "support": 0.167,
+      "label": "head of government",
+      "description": "head of the executive power of this town, city, municipality, state, country, or other governmental body",
+      "aliases": [
+       "mayor",
+       "prime minister",
+       "premier",
+       "first minister",
+       "head of national government",
+       "chancellor",
+       "governor",
+       "government headed by"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P551",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": null,
+      "description": null,
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": true,
+    "interval_properties": [
+     "end_year",
+     "start_year"
+    ],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "one",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P35",
+    "wikidata_direction": "forward",
+    "meaning": "official with the highest formal authority in a country/state",
+    "reading": "head of state",
+    "aliases": [
+     "president",
+     "king",
+     "queen",
+     "emperor",
+     "monarch",
+     "state headed by",
+     "governor",
+     "leader"
+    ]
+   }
+  },
+  {
+   "label": "hasHeadOfGovernment",
+   "subj_label": "Country",
+   "obj_label": "Politician",
+   "n_edges": 939,
+   "properties": {
+    "end_year": [
+     "Long"
+    ],
+    "start_year": [
+     "Long"
+    ]
+   },
+   "temporal_properties": {
+    "end_year": [
+     "Long"
+    ],
+    "start_year": [
+     "Long"
+    ]
+   },
+   "stats": {
+    "subj_participation": 0.871,
+    "obj_participation": 0.0015,
+    "objs_per_subj": {
+     "avg": 4.37,
+     "max": 56,
+     "frac_one": 0.3757
+    },
+    "subjs_per_obj": {
+     "avg": 1.01,
+     "max": 3,
+     "frac_one": 0.9914
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P27",
+      "direction": "inverse",
+      "support": 1.0,
+      "label": "country of citizenship",
+      "description": "the object is a country that recognizes the subject as its citizen",
+      "aliases": [
+       "subject of (country)",
+       "citizenship",
+       "citizen of",
+       "nation of citizenship",
+       "national of",
+       "(legal) nationality",
+       "nationality",
+       "country"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P6",
+      "direction": "forward",
+      "support": 0.667,
+      "label": "head of government",
+      "description": "head of the executive power of this town, city, municipality, state, country, or other governmental body",
+      "aliases": [
+       "mayor",
+       "prime minister",
+       "premier",
+       "first minister",
+       "head of national government",
+       "chancellor",
+       "governor",
+       "government headed by"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P35",
+      "direction": "forward",
+      "support": 0.167,
+      "label": "head of state",
+      "description": "official with the highest formal authority in a country/state",
+      "aliases": [
+       "president",
+       "king",
+       "queen",
+       "emperor",
+       "monarch",
+       "state headed by",
+       "governor",
+       "leader"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": true,
+    "interval_properties": [
+     "end_year",
+     "start_year"
+    ],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "one",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P6",
+    "wikidata_direction": "forward",
+    "meaning": "head of the executive power of this town, city, municipality, state, country, or other governmental body",
+    "reading": "head of government",
+    "aliases": [
+     "mayor",
+     "prime minister",
+     "premier",
+     "first minister",
+     "head of national government",
+     "chancellor",
+     "governor",
+     "government headed by"
+    ]
+   }
+  },
+  {
+   "label": "headedBy",
+   "subj_label": "PoliticalParty",
+   "obj_label": "Politician",
+   "n_edges": 3661,
+   "properties": {
+    "end_year": [
+     "Long"
+    ],
+    "start_year": [
+     "Long"
+    ]
+   },
+   "temporal_properties": {
+    "end_year": [
+     "Long"
+    ],
+    "start_year": [
+     "Long"
+    ]
+   },
+   "stats": {
+    "subj_participation": 0.1103,
+    "obj_participation": 0.0061,
+    "objs_per_subj": {
+     "avg": 1.614,
+     "max": 23,
+     "frac_one": 0.8032
+    },
+    "subjs_per_obj": {
+     "avg": 1.073,
+     "max": 5,
+     "frac_one": 0.9367
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P488",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "chairperson",
+      "description": "presiding member of an organization, group or body",
+      "aliases": [
+       "leader",
+       "headed by",
+       "chairwoman",
+       "president",
+       "chair",
+       "dean",
+       "head of",
+       "rector"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P102",
+      "direction": "inverse",
+      "support": 0.75,
+      "label": "member of political party",
+      "description": "the political party of which a person is or has been a member or otherwise affiliated",
+      "aliases": [
+       "party",
+       "member of",
+       "member of party",
+       "party membership",
+       "political party member",
+       "political party"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P112",
+      "direction": "forward",
+      "support": 0.333,
+      "label": "founder",
+      "description": "founder or co-founder of this organization, religion, place or entity",
+      "aliases": [
+       "co-founder",
+       "founders",
+       "established by",
+       "co-founded by",
+       "founder",
+       "started by",
+       "cofounder",
+       "cofounded by"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": true,
+    "interval_properties": [
+     "end_year",
+     "start_year"
+    ],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P488",
+    "wikidata_direction": "forward",
+    "meaning": "presiding member of an organization, group or body",
+    "reading": "chairperson",
+    "aliases": [
+     "leader",
+     "headed by",
+     "chairwoman",
+     "president",
+     "chair",
+     "dean",
+     "head of",
+     "rector"
+    ]
+   }
+  },
+  {
+   "label": "holdsPosition",
+   "subj_label": "Politician",
+   "obj_label": "Position",
+   "n_edges": 975844,
+   "properties": {
+    "end_year": [
+     "Long"
+    ],
+    "start_year": [
+     "Long"
+    ]
+   },
+   "temporal_properties": {
+    "end_year": [
+     "Long"
+    ],
+    "start_year": [
+     "Long"
+    ]
+   },
+   "stats": {
+    "subj_participation": 0.9885,
+    "obj_participation": 0.9977,
+    "objs_per_subj": {
+     "avg": 1.528,
+     "max": 55,
+     "frac_one": 0.7193
+    },
+    "subjs_per_obj": {
+     "avg": 11.767,
+     "max": 13706,
+     "frac_one": 0.4884
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P39",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "position held",
+      "description": "subject currently or formerly holds the object position or public office",
+      "aliases": [
+       "political office held",
+       "political seat",
+       "public office",
+       "office held",
+       "position occupied",
+       "holds position",
+       "function",
+       "held position"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P1308"
+     },
+     {
+      "pid": "P1308",
+      "direction": "inverse",
+      "support": 1.0,
+      "label": "position holder",
+      "description": "persons who hold and/or held the position",
+      "aliases": [
+       "incumbent",
+       "noble title holder",
+       "office holder",
+       "position held by"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P39"
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": true,
+    "interval_properties": [
+     "end_year",
+     "start_year"
+    ],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": true,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P39",
+    "wikidata_direction": "forward",
+    "meaning": "subject currently or formerly holds the object position or public office",
+    "reading": "position held",
+    "aliases": [
+     "political office held",
+     "political seat",
+     "public office",
+     "office held",
+     "position occupied",
+     "holds position",
+     "function",
+     "held position"
+    ]
+   }
+  },
+  {
+   "label": "leads",
+   "subj_label": "Position",
+   "obj_label": "GovernmentOrganization",
+   "n_edges": 4603,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.065,
+    "obj_participation": 0.018,
+    "objs_per_subj": {
+     "avg": 1.017,
+     "max": 7,
+     "frac_one": 0.9872
+    },
+    "subjs_per_obj": {
+     "avg": 1.018,
+     "max": 4,
+     "frac_one": 0.9841
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P2389",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "organization directed by the office or position",
+      "description": "organization or project which is directed by this office",
+      "aliases": [
+       "organization directed from the office",
+       "head of",
+       "directs",
+       "leads",
+       "heads",
+       "runs",
+       "leader of",
+       "organization led from the office or person"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P2388"
+     },
+     {
+      "pid": "P2388",
+      "direction": "inverse",
+      "support": 1.0,
+      "label": "position held by head of the organization",
+      "description": "position of the head of this item",
+      "aliases": [
+       "position held by head of the organisation",
+       "office held by head of the organisation",
+       "headed by",
+       "head of the organization",
+       "directed by / from",
+       "position held by head of the organization",
+       "leader's position",
+       "secretary's position"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P2389"
+     },
+     {
+      "pid": "P748",
+      "direction": "forward",
+      "support": 0.083,
+      "label": "appointed by",
+      "description": "who appointed the person to the position, can be used as a qualifier",
+      "aliases": [
+       "named by",
+       "inaugurated by",
+       "appointer"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P527",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": "has part(s)",
+      "description": "part of this subject; inverse property of \"part of\" (P361). See also \"has parts of the class\" (P2670).",
+      "aliases": [
+       "formed from",
+       "formed out of",
+       "assembled from",
+       "assembled out of",
+       "created from",
+       "created out of",
+       "amalgamation of",
+       "set of"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": true,
+      "inverse_property": "P361"
+     },
+     {
+      "pid": "P361",
+      "direction": "forward",
+      "support": 0.083,
+      "label": null,
+      "description": null,
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "one",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P2389",
+    "wikidata_direction": "forward",
+    "meaning": "organization or project which is directed by this office",
+    "reading": "organization directed by the office or position",
+    "aliases": [
+     "organization directed from the office",
+     "head of",
+     "directs",
+     "leads",
+     "heads",
+     "runs",
+     "leader of",
+     "organization led from the office or person"
+    ]
+   }
+  },
+  {
+   "label": "belongsTo",
+   "subj_label": "GovernmentOrganization",
+   "obj_label": "Country",
+   "n_edges": 237577,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.943,
+    "obj_participation": 0.8756,
+    "objs_per_subj": {
+     "avg": 1.001,
+     "max": 9,
+     "frac_one": 0.999
+    },
+    "subjs_per_obj": {
+     "avg": 1250.405,
+     "max": 46471,
+     "frac_one": 0.0053
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P17",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "country",
+      "description": "sovereign state that this subject item is in (not to be used for human beings)",
+      "aliases": [
+       "sovereign state",
+       "state",
+       "land",
+       "host country"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P1001",
+      "direction": "forward",
+      "support": 0.75,
+      "label": "applies to jurisdiction",
+      "description": "the item (institution, law, public office, public register, etc) or statement belongs to or has power over or applies to the value (a territorial jurisdiction: a country, state, municipality, etc)",
+      "aliases": [
+       "of jurisdiction",
+       "belongs to jurisdiction",
+       "jurisdiction",
+       "country of jurisdiction",
+       "valid in jurisdiction",
+       "applies to territorial jurisdiction",
+       "applied to jurisdiction",
+       "applies to place"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P1001",
+    "wikidata_direction": "forward",
+    "meaning": "the item (institution, law, public office, public register, etc) or statement belongs to or has power over or applies to the value (a territorial jurisdiction: a country, state, municipality, etc)",
+    "reading": "applies to jurisdiction",
+    "aliases": [
+     "of jurisdiction",
+     "belongs to jurisdiction",
+     "jurisdiction",
+     "country of jurisdiction",
+     "valid in jurisdiction",
+     "applies to territorial jurisdiction",
+     "applied to jurisdiction",
+     "applies to place"
+    ]
+   }
+  },
+  {
+   "label": "memberOf",
+   "subj_label": "Politician",
+   "obj_label": "PoliticalParty",
+   "n_edges": 298726,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.4878,
+    "obj_participation": 0.3363,
+    "objs_per_subj": {
+     "avg": 1.132,
+     "max": 10,
+     "frac_one": 0.8978
+    },
+    "subjs_per_obj": {
+     "avg": 44.414,
+     "max": 23976,
+     "frac_one": 0.3394
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P102",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "member of political party",
+      "description": "the political party of which a person is or has been a member or otherwise affiliated",
+      "aliases": [
+       "party",
+       "member of",
+       "member of party",
+       "party membership",
+       "political party member",
+       "political party"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P488",
+      "direction": "inverse",
+      "support": 0.167,
+      "label": "chairperson",
+      "description": "presiding member of an organization, group or body",
+      "aliases": [
+       "leader",
+       "headed by",
+       "chairwoman",
+       "president",
+       "chair",
+       "dean",
+       "head of",
+       "rector"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P112",
+      "direction": "inverse",
+      "support": 0.167,
+      "label": "founder",
+      "description": "founder or co-founder of this organization, religion, place or entity",
+      "aliases": [
+       "co-founder",
+       "founders",
+       "established by",
+       "co-founded by",
+       "founder",
+       "started by",
+       "cofounder",
+       "cofounded by"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P102",
+    "wikidata_direction": "forward",
+    "meaning": "the political party of which a person is or has been a member or otherwise affiliated",
+    "reading": "member of political party",
+    "aliases": [
+     "party",
+     "member of",
+     "member of party",
+     "party membership",
+     "political party member",
+     "political party"
+    ]
+   }
+  },
+  {
+   "label": "foundedBy",
+   "subj_label": "PoliticalParty",
+   "obj_label": "Politician",
+   "n_edges": 1806,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0763,
+    "obj_participation": 0.0031,
+    "objs_per_subj": {
+     "avg": 1.184,
+     "max": 15,
+     "frac_one": 0.897
+    },
+    "subjs_per_obj": {
+     "avg": 1.092,
+     "max": 6,
+     "frac_one": 0.9196
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P112",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "founder",
+      "description": "founder or co-founder of this organization, religion, place or entity",
+      "aliases": [
+       "co-founder",
+       "founders",
+       "established by",
+       "co-founded by",
+       "founder",
+       "started by",
+       "cofounder",
+       "cofounded by"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P102",
+      "direction": "inverse",
+      "support": 0.917,
+      "label": "member of political party",
+      "description": "the political party of which a person is or has been a member or otherwise affiliated",
+      "aliases": [
+       "party",
+       "member of",
+       "member of party",
+       "party membership",
+       "political party member",
+       "political party"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P488",
+      "direction": "forward",
+      "support": 0.333,
+      "label": "chairperson",
+      "description": "presiding member of an organization, group or body",
+      "aliases": [
+       "leader",
+       "headed by",
+       "chairwoman",
+       "president",
+       "chair",
+       "dean",
+       "head of",
+       "rector"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P112",
+    "wikidata_direction": "forward",
+    "meaning": "founder or co-founder of this organization, religion, place or entity",
+    "reading": "founder",
+    "aliases": [
+     "co-founder",
+     "founders",
+     "established by",
+     "co-founded by",
+     "founder",
+     "started by",
+     "cofounder",
+     "cofounded by"
+    ]
+   }
+  },
+  {
+   "label": "operatesIn",
+   "subj_label": "PoliticalParty",
+   "obj_label": "Country",
+   "n_edges": 14399,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.7169,
+    "obj_participation": 0.8618,
+    "objs_per_subj": {
+     "avg": 1.004,
+     "max": 18,
+     "frac_one": 0.9975
+    },
+    "subjs_per_obj": {
+     "avg": 77.0,
+     "max": 951,
+     "frac_one": 0.0214
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P17",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "country",
+      "description": "sovereign state that this subject item is in (not to be used for human beings)",
+      "aliases": [
+       "sovereign state",
+       "state",
+       "land",
+       "host country"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P17",
+    "wikidata_direction": "forward",
+    "meaning": "sovereign state that this subject item is in (not to be used for human beings)",
+    "reading": "country",
+    "aliases": [
+     "sovereign state",
+     "state",
+     "land",
+     "host country"
+    ]
+   }
+  },
+  {
+   "label": "hasDiplomaticRelationWith",
+   "subj_label": "Country",
+   "obj_label": "Country",
+   "n_edges": 5721,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.8525,
+    "obj_participation": 0.8479,
+    "objs_per_subj": {
+     "avg": 30.924,
+     "max": 179,
+     "frac_one": 0.0054
+    },
+    "subjs_per_obj": {
+     "avg": 31.092,
+     "max": 174,
+     "frac_one": 0.0054
+    },
+    "reciprocity": 0.9516
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P530",
+      "direction": "inverse",
+      "support": 1.0,
+      "label": "diplomatic relation",
+      "description": "diplomatic relations of the country",
+      "aliases": [
+       "diplomatic relations",
+       "ambassadorial relations",
+       "foreign relations",
+       "foreign relation",
+       "diplomatic relation",
+       "ambassadorial relation",
+       "political relations",
+       "political relation"
+      ],
+      "symmetric": true,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P530",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "diplomatic relation",
+      "description": "diplomatic relations of the country",
+      "aliases": [
+       "diplomatic relations",
+       "ambassadorial relations",
+       "foreign relations",
+       "foreign relation",
+       "diplomatic relation",
+       "ambassadorial relation",
+       "political relations",
+       "political relation"
+      ],
+      "symmetric": true,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": true,
+    "symmetric_evidence": [
+     "data_reciprocity",
+     "wikidata"
+    ],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P530",
+    "wikidata_direction": "forward",
+    "meaning": "diplomatic relations of the country",
+    "reading": "diplomatic relation",
+    "aliases": [
+     "diplomatic relations",
+     "ambassadorial relations",
+     "foreign relations",
+     "foreign relation",
+     "diplomatic relation",
+     "ambassadorial relation",
+     "political relations",
+     "political relation"
+    ]
+   }
+  },
+  {
+   "label": "memberOf",
+   "subj_label": "Country",
+   "obj_label": "InternationalOrganization",
+   "n_edges": 4452,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.8664,
+    "obj_participation": 0.0703,
+    "objs_per_subj": {
+     "avg": 23.681,
+     "max": 66,
+     "frac_one": 0.0053
+    },
+    "subjs_per_obj": {
+     "avg": 22.831,
+     "max": 180,
+     "frac_one": 0.2308
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P463",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "member of",
+      "description": "organization, club or musical group to which the subject belongs. Do not use for membership in ethnic or social groups, nor for holding a political position, such as a member of parliament (use P39 for that)",
+      "aliases": [
+       "membership",
+       "band member of",
+       "member of musical group",
+       "in musical group",
+       "of organization",
+       "is member of",
+       "club"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P527",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": "has part(s)",
+      "description": "part of this subject; inverse property of \"part of\" (P361). See also \"has parts of the class\" (P2670).",
+      "aliases": [
+       "formed from",
+       "formed out of",
+       "assembled from",
+       "assembled out of",
+       "created from",
+       "created out of",
+       "amalgamation of",
+       "set of"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": true,
+      "inverse_property": "P361"
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P463",
+    "wikidata_direction": "forward",
+    "meaning": "organization, club or musical group to which the subject belongs. Do not use for membership in ethnic or social groups, nor for holding a political position, such as a member of parliament (use P39 for that)",
+    "reading": "member of",
+    "aliases": [
+     "membership",
+     "band member of",
+     "member of musical group",
+     "in musical group",
+     "of organization",
+     "is member of",
+     "club"
+    ]
+   }
+  }
+ ],
+ "qid_key": "eid",
+ "build_seconds": 6.1
+}

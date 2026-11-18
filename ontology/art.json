@@ -1,0 +1,1130 @@
+{
+ "graph": "art",
+ "source": "bolt://localhost:15060",
+ "builder_version": "0.1",
+ "entities": [
+  {
+   "label": "ArtMovement",
+   "count": 1288,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "end_year": {
+     "types": [
+      "Long"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "start_year": {
+     "types": [
+      "Long"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q3326717",
+     "support": 0.25,
+     "label": "literary movement",
+     "description": "art movement in literature",
+     "aliases": [
+      "literary movements",
+      "poetry movement",
+      "movement in literature",
+      "literature movement"
+     ]
+    },
+    {
+     "qid": "Q968159",
+     "support": 0.25,
+     "label": "art movement",
+     "description": "tendency or style in art with a specific common philosophy or goal, possibly associated with a specific historical period",
+     "aliases": [
+      "artistic movement"
+     ]
+    },
+    {
+     "qid": "Q3326867",
+     "support": 0.2,
+     "label": "painting movement",
+     "description": "art movement in painting",
+     "aliases": []
+    }
+   ]
+  },
+  {
+   "label": "Genre",
+   "count": 17135,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q188451",
+     "support": 0.35,
+     "label": "music genre",
+     "description": "category that identifies pieces of music as belonging to a shared tradition or set of conventions",
+     "aliases": [
+      "music style",
+      "musical genre",
+      "musical style",
+      "genre of music",
+      "style of music"
+     ]
+    },
+    {
+     "qid": "Q107357104",
+     "support": 0.2,
+     "label": "type of dance",
+     "description": "Wikidata metaclass",
+     "aliases": [
+      "dance type",
+      "dance style",
+      "dance genre",
+      "style of dance",
+      "genre of dance"
+     ]
+    },
+    {
+     "qid": "Q223393",
+     "support": 0.15,
+     "label": "literary genre",
+     "description": "category of literary composition",
+     "aliases": [
+      "book genre",
+      "writing genre",
+      "literature genre"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Museum",
+   "count": 4703,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q33506",
+     "support": 0.6,
+     "label": "museum",
+     "description": "institution that holds artifacts and other objects of scientific, artistic, cultural, historical, or other importance",
+     "aliases": [
+      "museum-style institution",
+      "museal institution"
+     ]
+    },
+    {
+     "qid": "Q207694",
+     "support": 0.25,
+     "label": "art museum",
+     "description": "building or space for the exhibition of art",
+     "aliases": [
+      "museum of art",
+      "art museums",
+      "museums of art"
+     ]
+    },
+    {
+     "qid": "Q1497649",
+     "support": 0.1,
+     "label": "memory institution",
+     "description": "institution which has curatorial care over a collection and whose mission it is to preserve the collection for future generations",
+     "aliases": [
+      "heritage institution"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Painting",
+   "count": 663144,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "country_of_origin": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 236
+    },
+    "creation_year": {
+     "types": [
+      "Long"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q3305213",
+     "support": 1.0,
+     "label": "painting",
+     "description": "visual artwork, surface artistically covered with paint",
+     "aliases": [
+      "paintings",
+      "painting (object)"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Person",
+   "count": 83686,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "date_of_birth": {
+     "types": [
+      "Date"
+     ]
+    },
+    "date_of_death": {
+     "types": [
+      "Date"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "gender": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 7,
+     "vocab": [
+      "male",
+      "female",
+      "non-binary",
+      "trans woman",
+      "trans man",
+      "genderfluid",
+      "two-spirit"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "place_of_birth": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 14590
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q5",
+     "support": 1.0,
+     "label": "human",
+     "description": "any single member of Homo sapiens, unique extant species of the genus Homo",
+     "aliases": [
+      "human being",
+      "people",
+      "nonfictional human",
+      "non-fictional human",
+      "individual Homo sapiens",
+      "modern human",
+      "person"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Sculpture",
+   "count": 346515,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "country_of_origin": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 173
+    },
+    "creation_year": {
+     "types": [
+      "Long"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q860861",
+     "support": 0.5,
+     "label": "sculpture",
+     "description": "three-dimensional work of art",
+     "aliases": [
+      "sculptures",
+      "piece of sculpture",
+      "sculptural work",
+      "sculptural piece"
+     ]
+    },
+    {
+     "qid": "Q4823517",
+     "support": 0.2,
+     "label": "big thing in Australia",
+     "description": "novelty structure in Australia",
+     "aliases": [
+      "Australian novelty architecture",
+      "outdoor sculpture of Australia",
+      "novelty sculpture of Australia",
+      "Australia's big things",
+      "big thing (Australia)",
+      "Big sculptures of Australia"
+     ]
+    },
+    {
+     "qid": "Q179700",
+     "support": 0.1,
+     "label": "statue",
+     "description": "sculpture primarily conceived as a representational figure",
+     "aliases": []
+    }
+   ]
+  }
+ ],
+ "relations": [
+  {
+   "label": "createdBy",
+   "subj_label": "Painting",
+   "obj_label": "Person",
+   "n_edges": 510369,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.7662,
+    "obj_participation": 0.6672,
+    "objs_per_subj": {
+     "avg": 1.004,
+     "max": 18,
+     "frac_one": 0.9959
+    },
+    "subjs_per_obj": {
+     "avg": 9.14,
+     "max": 3709,
+     "frac_one": 0.39
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P170",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "creator",
+      "description": "maker of this creative work or other object (where no more specific property exists)",
+      "aliases": [
+       "artist (non-musical)",
+       "created by",
+       "painter",
+       "sculptor",
+       "made by",
+       "painted by",
+       "sculpted by",
+       "visual artist"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P800"
+     },
+     {
+      "pid": "P800",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": "notable work",
+      "description": "notable scientific, artistic or literary work, or other work of significance among subject's works",
+      "aliases": [
+       "artwork",
+       "author of",
+       "bibliography",
+       "books by",
+       "creator of",
+       "famous books",
+       "famous for",
+       "famous works"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P170",
+    "wikidata_direction": "forward",
+    "meaning": "maker of this creative work or other object (where no more specific property exists)",
+    "reading": "creator",
+    "aliases": [
+     "artist (non-musical)",
+     "created by",
+     "painter",
+     "sculptor",
+     "made by",
+     "painted by",
+     "sculpted by",
+     "visual artist"
+    ]
+   }
+  },
+  {
+   "label": "createdBy",
+   "subj_label": "Sculpture",
+   "obj_label": "Person",
+   "n_edges": 59342,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.1649,
+    "obj_participation": 0.177,
+    "objs_per_subj": {
+     "avg": 1.039,
+     "max": 19,
+     "frac_one": 0.9689
+    },
+    "subjs_per_obj": {
+     "avg": 4.007,
+     "max": 17499,
+     "frac_one": 0.5863
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P170",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "creator",
+      "description": "maker of this creative work or other object (where no more specific property exists)",
+      "aliases": [
+       "artist (non-musical)",
+       "created by",
+       "painter",
+       "sculptor",
+       "made by",
+       "painted by",
+       "sculpted by",
+       "visual artist"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P800"
+     },
+     {
+      "pid": "P800",
+      "direction": "inverse",
+      "support": 0.167,
+      "label": "notable work",
+      "description": "notable scientific, artistic or literary work, or other work of significance among subject's works",
+      "aliases": [
+       "artwork",
+       "author of",
+       "bibliography",
+       "books by",
+       "creator of",
+       "famous books",
+       "famous for",
+       "famous works"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P170",
+    "wikidata_direction": "forward",
+    "meaning": "maker of this creative work or other object (where no more specific property exists)",
+    "reading": "creator",
+    "aliases": [
+     "artist (non-musical)",
+     "created by",
+     "painter",
+     "sculptor",
+     "made by",
+     "painted by",
+     "sculpted by",
+     "visual artist"
+    ]
+   }
+  },
+  {
+   "label": "associatedWith",
+   "subj_label": "Painting",
+   "obj_label": "ArtMovement",
+   "n_edges": 9722,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.013,
+    "obj_participation": 0.1739,
+    "objs_per_subj": {
+     "avg": 1.128,
+     "max": 6,
+     "frac_one": 0.875
+    },
+    "subjs_per_obj": {
+     "avg": 43.402,
+     "max": 788,
+     "frac_one": 0.2277
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P135",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "movement",
+      "description": "literary, artistic, scientific or philosophical movement or scene associated with this person or work. For political ideologies use P1142.",
+      "aliases": [
+       "subculture",
+       "school",
+       "trend",
+       "music scene",
+       "artistic movement",
+       "philosophical movement",
+       "scientific movement",
+       "literary movement"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P135",
+    "wikidata_direction": "forward",
+    "meaning": "literary, artistic, scientific or philosophical movement or scene associated with this person or work. For political ideologies use P1142.",
+    "reading": "movement",
+    "aliases": [
+     "subculture",
+     "school",
+     "trend",
+     "music scene",
+     "artistic movement",
+     "philosophical movement",
+     "scientific movement",
+     "literary movement"
+    ]
+   }
+  },
+  {
+   "label": "associatedWith",
+   "subj_label": "Sculpture",
+   "obj_label": "ArtMovement",
+   "n_edges": 914,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0025,
+    "obj_participation": 0.0776,
+    "objs_per_subj": {
+     "avg": 1.065,
+     "max": 4,
+     "frac_one": 0.9382
+    },
+    "subjs_per_obj": {
+     "avg": 9.14,
+     "max": 144,
+     "frac_one": 0.31
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P135",
+      "direction": "forward",
+      "support": 0.917,
+      "label": "movement",
+      "description": "literary, artistic, scientific or philosophical movement or scene associated with this person or work. For political ideologies use P1142.",
+      "aliases": [
+       "subculture",
+       "school",
+       "trend",
+       "music scene",
+       "artistic movement",
+       "philosophical movement",
+       "scientific movement",
+       "literary movement"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P135",
+    "wikidata_direction": "forward",
+    "meaning": "literary, artistic, scientific or philosophical movement or scene associated with this person or work. For political ideologies use P1142.",
+    "reading": "movement",
+    "aliases": [
+     "subculture",
+     "school",
+     "trend",
+     "music scene",
+     "artistic movement",
+     "philosophical movement",
+     "scientific movement",
+     "literary movement"
+    ]
+   }
+  },
+  {
+   "label": "hasGenre",
+   "subj_label": "Painting",
+   "obj_label": "Genre",
+   "n_edges": 228634,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.3373,
+    "obj_participation": 0.0156,
+    "objs_per_subj": {
+     "avg": 1.022,
+     "max": 5,
+     "frac_one": 0.9793
+    },
+    "subjs_per_obj": {
+     "avg": 856.307,
+     "max": 91351,
+     "frac_one": 0.3296
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P136",
+      "direction": "forward",
+      "support": 0.917,
+      "label": "genre",
+      "description": "creative work's genre or an artist's field of work (P101). Use main subject (P921) to relate creative works to their topic",
+      "aliases": [
+       "music genre",
+       "film genre",
+       "artistic genre",
+       "literary genre",
+       "kind of music",
+       "type of film",
+       "genre of music",
+       "type of music"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P136",
+    "wikidata_direction": "forward",
+    "meaning": "creative work's genre or an artist's field of work (P101). Use main subject (P921) to relate creative works to their topic",
+    "reading": "genre",
+    "aliases": [
+     "music genre",
+     "film genre",
+     "artistic genre",
+     "literary genre",
+     "kind of music",
+     "type of film",
+     "genre of music",
+     "type of music"
+    ]
+   }
+  },
+  {
+   "label": "hasGenre",
+   "subj_label": "Sculpture",
+   "obj_label": "Genre",
+   "n_edges": 36573,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.097,
+    "obj_participation": 0.0124,
+    "objs_per_subj": {
+     "avg": 1.088,
+     "max": 5,
+     "frac_one": 0.9182
+    },
+    "subjs_per_obj": {
+     "avg": 171.704,
+     "max": 19279,
+     "frac_one": 0.3897
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P136",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "genre",
+      "description": "creative work's genre or an artist's field of work (P101). Use main subject (P921) to relate creative works to their topic",
+      "aliases": [
+       "music genre",
+       "film genre",
+       "artistic genre",
+       "literary genre",
+       "kind of music",
+       "type of film",
+       "genre of music",
+       "type of music"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P136",
+    "wikidata_direction": "forward",
+    "meaning": "creative work's genre or an artist's field of work (P101). Use main subject (P921) to relate creative works to their topic",
+    "reading": "genre",
+    "aliases": [
+     "music genre",
+     "film genre",
+     "artistic genre",
+     "literary genre",
+     "kind of music",
+     "type of film",
+     "genre of music",
+     "type of music"
+    ]
+   }
+  },
+  {
+   "label": "displayedAt",
+   "subj_label": "Painting",
+   "obj_label": "Museum",
+   "n_edges": 469026,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.7024,
+    "obj_participation": 0.7653,
+    "objs_per_subj": {
+     "avg": 1.007,
+     "max": 15,
+     "frac_one": 0.9933
+    },
+    "subjs_per_obj": {
+     "avg": 130.321,
+     "max": 14908,
+     "frac_one": 0.2559
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P276",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "location",
+      "description": "location of the object, structure or event; use P131 to indicate the containing administrative entity, P8138 for statistical entities, or P706 for geographic entities; use P7153 for locations associated with the object",
+      "aliases": [
+       "whereabouts",
+       "located in",
+       "venue",
+       "is in",
+       "place held",
+       "based in",
+       "neighborhood",
+       "region"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": true,
+      "inverse_property": null
+     },
+     {
+      "pid": "P195",
+      "direction": "forward",
+      "support": 0.5,
+      "label": "collection",
+      "description": "art, museum, archival, or bibliographic collection of which the subject is part (item is in the collection of X)",
+      "aliases": [
+       "art collection",
+       "museum collection",
+       "archives",
+       "archival holdings",
+       "GLAM",
+       "bibliographic collection",
+       "editorial collection",
+       "series"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P127",
+      "direction": "forward",
+      "support": 0.083,
+      "label": "owned by",
+      "description": "owner of the subject",
+      "aliases": [
+       "is owned by",
+       "owner",
+       "belongs to",
+       "shareholder",
+       "stockholder",
+       "shareholders",
+       "stockholders",
+       "owners"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P1830"
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P276",
+    "wikidata_direction": "forward",
+    "meaning": "location of the object, structure or event; use P131 to indicate the containing administrative entity, P8138 for statistical entities, or P706 for geographic entities; use P7153 for locations associated with the object",
+    "reading": "location",
+    "aliases": [
+     "whereabouts",
+     "located in",
+     "venue",
+     "is in",
+     "place held",
+     "based in",
+     "neighborhood",
+     "region"
+    ]
+   }
+  },
+  {
+   "label": "displayedAt",
+   "subj_label": "Sculpture",
+   "obj_label": "Museum",
+   "n_edges": 24899,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0713,
+    "obj_participation": 0.2549,
+    "objs_per_subj": {
+     "avg": 1.008,
+     "max": 36,
+     "frac_one": 0.9947
+    },
+    "subjs_per_obj": {
+     "avg": 20.766,
+     "max": 6923,
+     "frac_one": 0.5922
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P276",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "location",
+      "description": "location of the object, structure or event; use P131 to indicate the containing administrative entity, P8138 for statistical entities, or P706 for geographic entities; use P7153 for locations associated with the object",
+      "aliases": [
+       "whereabouts",
+       "located in",
+       "venue",
+       "is in",
+       "place held",
+       "based in",
+       "neighborhood",
+       "region"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": true,
+      "inverse_property": null
+     },
+     {
+      "pid": "P195",
+      "direction": "forward",
+      "support": 0.417,
+      "label": "collection",
+      "description": "art, museum, archival, or bibliographic collection of which the subject is part (item is in the collection of X)",
+      "aliases": [
+       "art collection",
+       "museum collection",
+       "archives",
+       "archival holdings",
+       "GLAM",
+       "bibliographic collection",
+       "editorial collection",
+       "series"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P276",
+    "wikidata_direction": "forward",
+    "meaning": "location of the object, structure or event; use P131 to indicate the containing administrative entity, P8138 for statistical entities, or P706 for geographic entities; use P7153 for locations associated with the object",
+    "reading": "location",
+    "aliases": [
+     "whereabouts",
+     "located in",
+     "venue",
+     "is in",
+     "place held",
+     "based in",
+     "neighborhood",
+     "region"
+    ]
+   }
+  }
+ ],
+ "qid_key": "eid",
+ "build_seconds": 6.3
+}

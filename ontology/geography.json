@@ -1,0 +1,1713 @@
+{
+ "graph": "geography",
+ "source": "bolt://localhost:15065",
+ "builder_version": "0.1",
+ "entities": [
+  {
+   "label": "Continent",
+   "count": 7,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q5107",
+     "support": 1.0,
+     "label": "continent",
+     "description": "large landmass identified by convention",
+     "aliases": []
+    },
+    {
+     "qid": "Q2418896",
+     "support": 0.857,
+     "label": "part of the world",
+     "description": "continent with islands in nearby waters",
+     "aliases": [
+      "continent",
+      "Continent"
+     ]
+    },
+    {
+     "qid": "Q82794",
+     "support": 0.714,
+     "label": "region",
+     "description": "2D or 3D defined space on something, mainly in terrestrial and astrophysics sciences",
+     "aliases": [
+      "geographical region",
+      "delimited region",
+      "bounded region",
+      "bounded area",
+      "geographical area",
+      "geographic area",
+      "geographic zone",
+      "geographical zone"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Country",
+   "count": 217,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "area_km2": {
+     "types": [
+      "Double"
+     ]
+    },
+    "capital": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 195
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q6256",
+     "support": 1.0,
+     "label": "country",
+     "description": "distinct territorial body or political entity",
+     "aliases": [
+      "countries"
+     ]
+    },
+    {
+     "qid": "Q3624078",
+     "support": 1.0,
+     "label": "sovereign state",
+     "description": "state that has the highest authority over a territory",
+     "aliases": [
+      "sovereign nation",
+      "sovereign country",
+      "Westphalian state",
+      "country",
+      "nation"
+     ]
+    },
+    {
+     "qid": "Q7270",
+     "support": 0.35,
+     "label": "republic",
+     "description": "form of government where the head of state is elected",
+     "aliases": [
+      "republican state",
+      "republican government"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "DrainageBasin",
+   "count": 1392,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "area_km2": {
+     "types": [
+      "Double"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q166620",
+     "support": 0.95,
+     "label": "drainage basin",
+     "description": "area of land where precipitation collects and drains off into a common outlet, such as into a river, bay, or other body of water",
+     "aliases": [
+      "river basin",
+      "catchment",
+      "catchment area",
+      "water basin",
+      "watershed",
+      "watershed area"
+     ]
+    },
+    {
+     "qid": "Q194502",
+     "support": 0.2,
+     "label": "endorheic basin",
+     "description": "closed drainage basin that retains water and allows no outflow to other external bodies of water",
+     "aliases": [
+      "sink"
+     ]
+    },
+    {
+     "qid": "Q187223",
+     "support": 0.15,
+     "label": "lagoon",
+     "description": "shallow body of water separated from larger body of water by a barrier",
+     "aliases": [
+      "haff",
+      "albufera",
+      "liman"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Lake",
+   "count": 239318,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "area_km2": {
+     "types": [
+      "Double"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "vertical_depth_m": {
+     "types": [
+      "Double"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q23397",
+     "support": 0.7,
+     "label": "lake",
+     "description": "body of relatively still water, localized in a basin",
+     "aliases": [
+      "lakes"
+     ]
+    },
+    {
+     "qid": "Q187223",
+     "support": 0.1,
+     "label": "lagoon",
+     "description": "shallow body of water separated from larger body of water by a barrier",
+     "aliases": [
+      "haff",
+      "albufera",
+      "liman"
+     ]
+    },
+    {
+     "qid": "Q131681",
+     "support": 0.1,
+     "label": "reservoir",
+     "description": "artificial lake impounded using a dam or lock to store water",
+     "aliases": [
+      "impoundment",
+      "impounded lake",
+      "barrage lake",
+      "dam reservoir",
+      "reservoir lake",
+      "dam lake"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Mountain",
+   "count": 447475,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "elevation_m": {
+     "types": [
+      "Double"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q8502",
+     "support": 0.9,
+     "label": "mountain",
+     "description": "large natural elevation of the Earth's surface",
+     "aliases": [
+      "mount",
+      "mt.",
+      "mtn."
+     ]
+    },
+    {
+     "qid": "Q179049",
+     "support": 0.05,
+     "label": "nature reserve",
+     "description": "protected area for flora, fauna or features of geological interest",
+     "aliases": [
+      "natural reserve",
+      "nature preserve",
+      "natural preserve",
+      "bioreserve",
+      "preserve",
+      "preserves",
+      "wildlife preserve"
+     ]
+    },
+    {
+     "qid": "Q1139493",
+     "support": 0.05,
+     "label": "inselberg",
+     "description": "isolated rock hill, knob, ridge, or small mountain in the tropics, rises abruptly from a gently sloping or virtually level surrounding plain",
+     "aliases": [
+      "island mountain",
+      "monadnock"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "MountainRange",
+   "count": 2436,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q46831",
+     "support": 0.9,
+     "label": "mountain range",
+     "description": "geographic area containing several geologically related mountains",
+     "aliases": [
+      "mountain belt",
+      "mountain barrier",
+      "hill range",
+      "range",
+      "mountains",
+      "oceanic range",
+      "mountain system"
+     ]
+    },
+    {
+     "qid": "Q3491088",
+     "support": 0.1,
+     "label": "mesoregion",
+     "description": "in geomorphology, a natural region of intermediate size",
+     "aliases": []
+    },
+    {
+     "qid": "Q473972",
+     "support": 0.05,
+     "label": "protected area",
+     "description": "areas protected for having ecological or cultural importance",
+     "aliases": [
+      "conservation area",
+      "conservation zone",
+      "protected zone",
+      "conservation areas",
+      "protected areas",
+      "protected land"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Ocean",
+   "count": 5,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "area_km2": {
+     "types": [
+      "Double"
+     ]
+    },
+    "avg_vertical_depth_m": {
+     "types": [
+      "Double"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "max_vertical_depth_m": {
+     "types": [
+      "Double"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q9430",
+     "support": 1.0,
+     "label": "ocean",
+     "description": "very large body of saline water",
+     "aliases": [
+      "sea",
+      "oceans",
+      "oceanic"
+     ]
+    },
+    {
+     "qid": "Q82794",
+     "support": 0.2,
+     "label": "region",
+     "description": "2D or 3D defined space on something, mainly in terrestrial and astrophysics sciences",
+     "aliases": [
+      "geographical region",
+      "delimited region",
+      "bounded region",
+      "bounded area",
+      "geographical area",
+      "geographic area",
+      "geographic zone",
+      "geographical zone"
+     ]
+    },
+    {
+     "qid": "Q165",
+     "support": 0.2,
+     "label": "sea",
+     "description": "large body of saline water",
+     "aliases": [
+      "seas"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "River",
+   "count": 82639,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "discharge_m3_s": {
+     "types": [
+      "Double"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "length_km": {
+     "types": [
+      "Double"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q4022",
+     "support": 0.95,
+     "label": "river",
+     "description": "larger natural watercourse",
+     "aliases": [
+      "rivers"
+     ]
+    },
+    {
+     "qid": "Q373315",
+     "support": 0.05,
+     "label": "arroyo",
+     "description": "dry creek or stream bed which temporarily or seasonally fills and flows after sufficient rain",
+     "aliases": [
+      "rambla",
+      "arroyos",
+      "wash",
+      "balka"
+     ]
+    }
+   ]
+  }
+ ],
+ "relations": [
+  {
+   "label": "flowsInto",
+   "subj_label": "River",
+   "obj_label": "River",
+   "n_edges": 64853,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.784,
+    "obj_participation": 0.225,
+    "objs_per_subj": {
+     "avg": 1.001,
+     "max": 3,
+     "frac_one": 0.999
+    },
+    "subjs_per_obj": {
+     "avg": 3.488,
+     "max": 701,
+     "frac_one": 0.4927
+    },
+    "reciprocity": 0.0005
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P403",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "mouth of the watercourse",
+      "description": "the body of water to which the watercourse drains",
+      "aliases": [
+       "watercourse outflow",
+       "watercourse drain",
+       "outflow",
+       "drain",
+       "river mouth",
+       "outlet",
+       "watercourse ends in",
+       "flows into"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": true,
+      "inverse_property": null
+     },
+     {
+      "pid": "P974",
+      "direction": "inverse",
+      "support": 0.917,
+      "label": "tributary",
+      "description": "watercourse that flows into an other one (for lake inflows use P200)",
+      "aliases": [
+       "affluent",
+       "has tributary",
+       "receives river",
+       "has river inflow",
+       "has inflow of",
+       "receives tributary"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": true,
+    "wikidata_pid": "P403",
+    "wikidata_direction": "forward",
+    "meaning": "the body of water to which the watercourse drains",
+    "reading": "mouth of the watercourse",
+    "aliases": [
+     "watercourse outflow",
+     "watercourse drain",
+     "outflow",
+     "drain",
+     "river mouth",
+     "outlet",
+     "watercourse ends in",
+     "flows into"
+    ]
+   }
+  },
+  {
+   "label": "flowsInto",
+   "subj_label": "River",
+   "obj_label": "Ocean",
+   "n_edges": 5989,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0621,
+    "obj_participation": 1.0,
+    "objs_per_subj": {
+     "avg": 1.167,
+     "max": 3,
+     "frac_one": 0.8334
+    },
+    "subjs_per_obj": {
+     "avg": 1197.8,
+     "max": 3129,
+     "frac_one": 0.0
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P403",
+      "direction": "forward",
+      "support": 0.5,
+      "label": "mouth of the watercourse",
+      "description": "the body of water to which the watercourse drains",
+      "aliases": [
+       "watercourse outflow",
+       "watercourse drain",
+       "outflow",
+       "drain",
+       "river mouth",
+       "outlet",
+       "watercourse ends in",
+       "flows into"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": true,
+      "inverse_property": null
+     },
+     {
+      "pid": "P200",
+      "direction": "inverse",
+      "support": 0.417,
+      "label": "inflows",
+      "description": "major inflow sources — rivers, aquifers, glacial runoff, etc. Some terms may not be place names, e.g. none",
+      "aliases": [
+       "inflow",
+       "lake inflow",
+       "river inflows"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P403",
+    "wikidata_direction": "forward",
+    "meaning": "the body of water to which the watercourse drains",
+    "reading": "mouth of the watercourse",
+    "aliases": [
+     "watercourse outflow",
+     "watercourse drain",
+     "outflow",
+     "drain",
+     "river mouth",
+     "outlet",
+     "watercourse ends in",
+     "flows into"
+    ]
+   }
+  },
+  {
+   "label": "flowsInto",
+   "subj_label": "River",
+   "obj_label": "Lake",
+   "n_edges": 4297,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0518,
+    "obj_participation": 0.0089,
+    "objs_per_subj": {
+     "avg": 1.003,
+     "max": 6,
+     "frac_one": 0.9977
+    },
+    "subjs_per_obj": {
+     "avg": 2.026,
+     "max": 84,
+     "frac_one": 0.7011
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P403",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "mouth of the watercourse",
+      "description": "the body of water to which the watercourse drains",
+      "aliases": [
+       "watercourse outflow",
+       "watercourse drain",
+       "outflow",
+       "drain",
+       "river mouth",
+       "outlet",
+       "watercourse ends in",
+       "flows into"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": true,
+      "inverse_property": null
+     },
+     {
+      "pid": "P200",
+      "direction": "inverse",
+      "support": 0.667,
+      "label": "inflows",
+      "description": "major inflow sources — rivers, aquifers, glacial runoff, etc. Some terms may not be place names, e.g. none",
+      "aliases": [
+       "inflow",
+       "lake inflow",
+       "river inflows"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P469",
+      "direction": "forward",
+      "support": 0.083,
+      "label": "lake on watercourse",
+      "description": "lake or reservoir through which the river or stream flows",
+      "aliases": [
+       "reservoir on this river",
+       "lake on this river",
+       "lakes on river",
+       "lake on river",
+       "lake on stream"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P403",
+    "wikidata_direction": "forward",
+    "meaning": "the body of water to which the watercourse drains",
+    "reading": "mouth of the watercourse",
+    "aliases": [
+     "watercourse outflow",
+     "watercourse drain",
+     "outflow",
+     "drain",
+     "river mouth",
+     "outlet",
+     "watercourse ends in",
+     "flows into"
+    ]
+   }
+  },
+  {
+   "label": "partOf",
+   "subj_label": "River",
+   "obj_label": "DrainageBasin",
+   "n_edges": 27966,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.3367,
+    "obj_participation": 0.732,
+    "objs_per_subj": {
+     "avg": 1.005,
+     "max": 2,
+     "frac_one": 0.9949
+    },
+    "subjs_per_obj": {
+     "avg": 27.445,
+     "max": 3004,
+     "frac_one": 0.2993
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P4614",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "drainage basin",
+      "description": "area where precipitation collects and drains off into a common outlet, such as into a river, bay, or other body of water",
+      "aliases": [
+       "river basin",
+       "water basin",
+       "catchment area",
+       "river basin district",
+       "watershed"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P138",
+      "direction": "inverse",
+      "support": 0.5,
+      "label": "named after",
+      "description": "entity or event that inspired the subject's name, or namesake (in at least one language). Qualifier \"applies to name\" (P5168) can be used to indicate which one",
+      "aliases": [
+       "eponym",
+       "named for",
+       "namesake",
+       "etymology",
+       "toponym",
+       "name after",
+       "named in honor of",
+       "name origin"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P206",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": "located in or next to body of water",
+      "description": "body of water on or next to which a place is located",
+      "aliases": [
+       "on lake",
+       "next to lake",
+       "located on body of water",
+       "on bay",
+       "on harbour",
+       "on shore of",
+       "on the shore of",
+       "on the coast of"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P1269",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": null,
+      "description": null,
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P4614",
+    "wikidata_direction": "forward",
+    "meaning": "area where precipitation collects and drains off into a common outlet, such as into a river, bay, or other body of water",
+    "reading": "drainage basin",
+    "aliases": [
+     "river basin",
+     "water basin",
+     "catchment area",
+     "river basin district",
+     "watershed"
+    ]
+   }
+  },
+  {
+   "label": "partOf",
+   "subj_label": "Lake",
+   "obj_label": "DrainageBasin",
+   "n_edges": 6676,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0278,
+    "obj_participation": 0.4116,
+    "objs_per_subj": {
+     "avg": 1.002,
+     "max": 2,
+     "frac_one": 0.9977
+    },
+    "subjs_per_obj": {
+     "avg": 11.651,
+     "max": 289,
+     "frac_one": 0.3281
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P4614",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "drainage basin",
+      "description": "area where precipitation collects and drains off into a common outlet, such as into a river, bay, or other body of water",
+      "aliases": [
+       "river basin",
+       "water basin",
+       "catchment area",
+       "river basin district",
+       "watershed"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P206",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": "located in or next to body of water",
+      "description": "body of water on or next to which a place is located",
+      "aliases": [
+       "on lake",
+       "next to lake",
+       "located on body of water",
+       "on bay",
+       "on harbour",
+       "on shore of",
+       "on the shore of",
+       "on the coast of"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P138",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": "named after",
+      "description": "entity or event that inspired the subject's name, or namesake (in at least one language). Qualifier \"applies to name\" (P5168) can be used to indicate which one",
+      "aliases": [
+       "eponym",
+       "named for",
+       "namesake",
+       "etymology",
+       "toponym",
+       "name after",
+       "named in honor of",
+       "name origin"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P4614",
+    "wikidata_direction": "forward",
+    "meaning": "area where precipitation collects and drains off into a common outlet, such as into a river, bay, or other body of water",
+    "reading": "drainage basin",
+    "aliases": [
+     "river basin",
+     "water basin",
+     "catchment area",
+     "river basin district",
+     "watershed"
+    ]
+   }
+  },
+  {
+   "label": "locatedIn",
+   "subj_label": "DrainageBasin",
+   "obj_label": "Country",
+   "n_edges": 1647,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.9964,
+    "obj_participation": 0.5207,
+    "objs_per_subj": {
+     "avg": 1.187,
+     "max": 19,
+     "frac_one": 0.8875
+    },
+    "subjs_per_obj": {
+     "avg": 14.575,
+     "max": 224,
+     "frac_one": 0.2832
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P17",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "country",
+      "description": "sovereign state that this subject item is in (not to be used for human beings)",
+      "aliases": [
+       "sovereign state",
+       "state",
+       "land",
+       "host country"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": true,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P17",
+    "wikidata_direction": "forward",
+    "meaning": "sovereign state that this subject item is in (not to be used for human beings)",
+    "reading": "country",
+    "aliases": [
+     "sovereign state",
+     "state",
+     "land",
+     "host country"
+    ]
+   }
+  },
+  {
+   "label": "flowsThrough",
+   "subj_label": "River",
+   "obj_label": "Country",
+   "n_edges": 82155,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.9768,
+    "obj_participation": 0.7465,
+    "objs_per_subj": {
+     "avg": 1.018,
+     "max": 8,
+     "frac_one": 0.9839
+    },
+    "subjs_per_obj": {
+     "avg": 507.13,
+     "max": 27461,
+     "frac_one": 0.0494
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P17",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "country",
+      "description": "sovereign state that this subject item is in (not to be used for human beings)",
+      "aliases": [
+       "sovereign state",
+       "state",
+       "land",
+       "host country"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P131",
+      "direction": "forward",
+      "support": 0.167,
+      "label": "located in the administrative territorial entity",
+      "description": "the item is located on the territory of the following administrative entity. Use P276 for specifying locations that are non-administrative places and for items about events. Use P1382 if the item falls only partially into the administrative entity",
+      "aliases": [
+       "located in the administrative unit",
+       "located in administrative unit",
+       "is in administrative unit",
+       "is located in",
+       "is in the state of",
+       "is in the province of",
+       "is in the county of",
+       "is in the district of"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": true,
+      "inverse_property": "P150"
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": true,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P17",
+    "wikidata_direction": "forward",
+    "meaning": "sovereign state that this subject item is in (not to be used for human beings)",
+    "reading": "country",
+    "aliases": [
+     "sovereign state",
+     "state",
+     "land",
+     "host country"
+    ]
+   }
+  },
+  {
+   "label": "locatedIn",
+   "subj_label": "Lake",
+   "obj_label": "Country",
+   "n_edges": 238909,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.9969,
+    "obj_participation": 0.8157,
+    "objs_per_subj": {
+     "avg": 1.001,
+     "max": 5,
+     "frac_one": 0.9987
+    },
+    "subjs_per_obj": {
+     "avg": 1349.768,
+     "max": 122228,
+     "frac_one": 0.0452
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P17",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "country",
+      "description": "sovereign state that this subject item is in (not to be used for human beings)",
+      "aliases": [
+       "sovereign state",
+       "state",
+       "land",
+       "host country"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P205",
+      "direction": "forward",
+      "support": 0.167,
+      "label": "basin country",
+      "description": "country that have drainage to/from or border the body of water",
+      "aliases": [
+       "basin countries"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": true,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P17",
+    "wikidata_direction": "forward",
+    "meaning": "sovereign state that this subject item is in (not to be used for human beings)",
+    "reading": "country",
+    "aliases": [
+     "sovereign state",
+     "state",
+     "land",
+     "host country"
+    ]
+   }
+  },
+  {
+   "label": "locatedIn",
+   "subj_label": "Mountain",
+   "obj_label": "Country",
+   "n_edges": 441340,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.9821,
+    "obj_participation": 0.8479,
+    "objs_per_subj": {
+     "avg": 1.004,
+     "max": 3,
+     "frac_one": 0.9958
+    },
+    "subjs_per_obj": {
+     "avg": 2398.587,
+     "max": 65444,
+     "frac_one": 0.0489
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P17",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "country",
+      "description": "sovereign state that this subject item is in (not to be used for human beings)",
+      "aliases": [
+       "sovereign state",
+       "state",
+       "land",
+       "host country"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P610",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": "highest point",
+      "description": "point with highest elevation in a region or path",
+      "aliases": [
+       "highest peak",
+       "zenith",
+       "summit",
+       "extreme point highest",
+       "pinnacle",
+       "elevation of highest point",
+       "tallest point"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": true,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P17",
+    "wikidata_direction": "forward",
+    "meaning": "sovereign state that this subject item is in (not to be used for human beings)",
+    "reading": "country",
+    "aliases": [
+     "sovereign state",
+     "state",
+     "land",
+     "host country"
+    ]
+   }
+  },
+  {
+   "label": "partOf",
+   "subj_label": "Mountain",
+   "obj_label": "MountainRange",
+   "n_edges": 28741,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0636,
+    "obj_participation": 0.9696,
+    "objs_per_subj": {
+     "avg": 1.011,
+     "max": 4,
+     "frac_one": 0.9908
+    },
+    "subjs_per_obj": {
+     "avg": 12.168,
+     "max": 2659,
+     "frac_one": 0.3298
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P4552",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "mountain range",
+      "description": "range or subrange to which the geographical item belongs",
+      "aliases": [
+       "range",
+       "located in mountain range",
+       "parent range",
+       "mountain system",
+       "located on mountain range",
+       "system of mountains",
+       "hill range",
+       "mountain belt"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P610",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": "highest point",
+      "description": "point with highest elevation in a region or path",
+      "aliases": [
+       "highest peak",
+       "zenith",
+       "summit",
+       "extreme point highest",
+       "pinnacle",
+       "elevation of highest point",
+       "tallest point"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P4552",
+    "wikidata_direction": "forward",
+    "meaning": "range or subrange to which the geographical item belongs",
+    "reading": "mountain range",
+    "aliases": [
+     "range",
+     "located in mountain range",
+     "parent range",
+     "mountain system",
+     "located on mountain range",
+     "system of mountains",
+     "hill range",
+     "mountain belt"
+    ]
+   }
+  },
+  {
+   "label": "partOf",
+   "subj_label": "MountainRange",
+   "obj_label": "MountainRange",
+   "n_edges": 1021,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.4154,
+    "obj_participation": 0.1305,
+    "objs_per_subj": {
+     "avg": 1.009,
+     "max": 3,
+     "frac_one": 0.9921
+    },
+    "subjs_per_obj": {
+     "avg": 3.211,
+     "max": 28,
+     "frac_one": 0.4465
+    },
+    "reciprocity": 0.0
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P4552",
+      "direction": "forward",
+      "support": 0.917,
+      "label": "mountain range",
+      "description": "range or subrange to which the geographical item belongs",
+      "aliases": [
+       "range",
+       "located in mountain range",
+       "parent range",
+       "mountain system",
+       "located on mountain range",
+       "system of mountains",
+       "hill range",
+       "mountain belt"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P527",
+      "direction": "inverse",
+      "support": 0.167,
+      "label": "has part(s)",
+      "description": "part of this subject; inverse property of \"part of\" (P361). See also \"has parts of the class\" (P2670).",
+      "aliases": [
+       "formed from",
+       "formed out of",
+       "assembled from",
+       "assembled out of",
+       "created from",
+       "created out of",
+       "amalgamation of",
+       "set of"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": true,
+      "inverse_property": "P361"
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P4552",
+    "wikidata_direction": "forward",
+    "meaning": "range or subrange to which the geographical item belongs",
+    "reading": "mountain range",
+    "aliases": [
+     "range",
+     "located in mountain range",
+     "parent range",
+     "mountain system",
+     "located on mountain range",
+     "system of mountains",
+     "hill range",
+     "mountain belt"
+    ]
+   }
+  },
+  {
+   "label": "locatedIn",
+   "subj_label": "Country",
+   "obj_label": "Continent",
+   "n_edges": 200,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.8848,
+    "obj_participation": 0.8571,
+    "objs_per_subj": {
+     "avg": 1.042,
+     "max": 2,
+     "frac_one": 0.9583
+    },
+    "subjs_per_obj": {
+     "avg": 33.333,
+     "max": 55,
+     "frac_one": 0.1667
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P30",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "continent",
+      "description": "continent of which the subject is a part",
+      "aliases": [],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P361",
+      "direction": "forward",
+      "support": 0.083,
+      "label": "part of",
+      "description": "object of which the subject is a part (as directly as possible); inverse property of \"has part\" (P527, see also \"has parts of the class\" (P2670))",
+      "aliases": [
+       "meronym of",
+       "section of",
+       "system of",
+       "subsystem of",
+       "subassembly of",
+       "contained within",
+       "assembly of",
+       "part of-property"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": true,
+      "inverse_property": "P527"
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P30",
+    "wikidata_direction": "forward",
+    "meaning": "continent of which the subject is a part",
+    "reading": "continent",
+    "aliases": []
+   }
+  }
+ ],
+ "qid_key": "eid",
+ "build_seconds": 4.9
+}

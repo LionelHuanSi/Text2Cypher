@@ -1,0 +1,928 @@
+{
+ "graph": "flight_accident",
+ "source": "bolt://localhost:15064",
+ "builder_version": "0.1",
+ "entities": [
+  {
+   "label": "AircraftManufacturer",
+   "count": 58,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "country": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 17,
+     "vocab": [
+      "United States of America",
+      "Russia",
+      "United Kingdom",
+      "France",
+      "Canada",
+      "Czech Republic",
+      "Italy",
+      "Poland",
+      "Brazil",
+      "Germany",
+      "Indonesia",
+      "Japan",
+      "Netherlands",
+      "Soviet Union",
+      "Spain",
+      "Sweden",
+      "Ukraine"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "launch_year": {
+     "types": [
+      "Long"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q936518",
+     "support": 0.95,
+     "label": "aerospace manufacturer",
+     "description": "company involved in manufacturing aircraft, aircraft parts, missiles, rockets, and/or spacecraft",
+     "aliases": [
+      "aerospace manufacturing company"
+     ]
+    },
+    {
+     "qid": "Q4830453",
+     "support": 0.25,
+     "label": "business",
+     "description": "organization undertaking commercial, industrial, or professional activity",
+     "aliases": [
+      "businesses"
+     ]
+    },
+    {
+     "qid": "Q891723",
+     "support": 0.15,
+     "label": "public company",
+     "description": "company that offers its securities for sale to the general public",
+     "aliases": [
+      "publicly traded company",
+      "publicly held company",
+      "listed company",
+      "publicly listed company",
+      "public corporation"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "AircraftModel",
+   "count": 152,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "first_flight": {
+     "types": [
+      "Date"
+     ]
+    },
+    "height_metre": {
+     "types": [
+      "Double"
+     ]
+    },
+    "length_metre": {
+     "types": [
+      "Double"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "range_km": {
+     "types": [
+      "Double"
+     ]
+    },
+    "service_entry": {
+     "types": [
+      "Date"
+     ]
+    },
+    "wingspan_metre": {
+     "types": [
+      "Double"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q15056993",
+     "support": 1.0,
+     "label": "aircraft family",
+     "description": "group of related aircraft models sharing the same basic design",
+     "aliases": [
+      "aircraft series",
+      "acfam",
+      "airliner family",
+      "airliner series",
+      "aircraft class"
+     ]
+    },
+    {
+     "qid": "Q15056995",
+     "support": 0.05,
+     "label": "aircraft model",
+     "description": "specific aircraft design and specification, differentiated from others of its family",
+     "aliases": [
+      "aircraft version",
+      "aircraft variant",
+      "acmod",
+      "model of aircraft",
+      "airplane model",
+      "plane model"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Airport",
+   "count": 519,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "country": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 123
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "iata_code": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 491
+    },
+    "icao_code": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 511
+    },
+    "location": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 487
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q94993988",
+     "support": 0.95,
+     "label": "commercial traffic aerodrome",
+     "description": "aerodrome having commercial flights not just hobbyists",
+     "aliases": [
+      "commercial traffic airport",
+      "customs airport",
+      "customs aerodrome"
+     ]
+    },
+    {
+     "qid": "Q1248784",
+     "support": 0.9,
+     "label": "airport",
+     "description": "location where aircraft take off and land with extended support facilities, mostly for commercial air transport",
+     "aliases": [
+      "airports",
+      "air port",
+      "aerodrome"
+     ]
+    },
+    {
+     "qid": "Q644371",
+     "support": 0.8,
+     "label": "international airport",
+     "description": "airport serving international destinations",
+     "aliases": []
+    }
+   ]
+  },
+  {
+   "label": "FlightAccident",
+   "count": 605,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "date": {
+     "types": [
+      "Date"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "flight_number": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 141
+    },
+    "location": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 534
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "number_of_deaths": {
+     "types": [
+      "Long"
+     ]
+    },
+    "number_of_injuries": {
+     "types": [
+      "Long"
+     ]
+    },
+    "number_of_survivors": {
+     "types": [
+      "Long"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q744913",
+     "support": 0.85,
+     "label": "aviation accident",
+     "description": "aviation occurrence involving serious injury, death, or destruction of aircraft",
+     "aliases": [
+      "air accident",
+      "aircraft accident",
+      "flight accident",
+      "helicopter accident"
+     ]
+    },
+    {
+     "qid": "Q3002150",
+     "support": 0.15,
+     "label": "aircraft crash",
+     "description": "accident involving an aircraft",
+     "aliases": [
+      "aircrash",
+      "air crash"
+     ]
+    },
+    {
+     "qid": "Q106955175",
+     "support": 0.05,
+     "label": "passenger flight",
+     "description": "flight dedicated for people",
+     "aliases": []
+    }
+   ]
+  },
+  {
+   "label": "Operator",
+   "count": 349,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "country": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 108
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "launch_year": {
+     "types": [
+      "Long"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q46970",
+     "support": 0.8,
+     "label": "airline",
+     "description": "company that provides air transport services for traveling passengers and freight",
+     "aliases": [
+      "air carrier",
+      "air company"
+     ]
+    },
+    {
+     "qid": "Q1792374",
+     "support": 0.05,
+     "label": "aerobatic team",
+     "description": "type of team",
+     "aliases": [
+      "display team"
+     ]
+    },
+    {
+     "qid": "Q123480",
+     "support": 0.05,
+     "label": "landlocked country",
+     "description": "country fully enclosed by land areas, or whose only coastlines lie on closed seas or lakes",
+     "aliases": [
+      "landlocked state",
+      "landlocked province"
+     ]
+    }
+   ]
+  }
+ ],
+ "relations": [
+  {
+   "label": "operatedBy",
+   "subj_label": "FlightAccident",
+   "obj_label": "Operator",
+   "n_edges": 556,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.9107,
+    "obj_participation": 0.9799,
+    "objs_per_subj": {
+     "avg": 1.009,
+     "max": 3,
+     "frac_one": 0.9927
+    },
+    "subjs_per_obj": {
+     "avg": 1.626,
+     "max": 17,
+     "frac_one": 0.7398
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P137",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "operator",
+      "description": "person, profession, organization or entity that operates the equipment, facility, or service",
+      "aliases": [
+       "service operator",
+       "facility operator",
+       "operated by",
+       "managed by",
+       "administrator",
+       "item operator",
+       "user",
+       "webmaster"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P121"
+     },
+     {
+      "pid": "P793",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": "significant event",
+      "description": "significant or notable events associated with the subject",
+      "aliases": [
+       "key event",
+       "key incident",
+       "significant incident",
+       "notable event",
+       "notable incident",
+       "major event",
+       "big event",
+       "main events"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P137",
+    "wikidata_direction": "forward",
+    "meaning": "person, profession, organization or entity that operates the equipment, facility, or service",
+    "reading": "operator",
+    "aliases": [
+     "service operator",
+     "facility operator",
+     "operated by",
+     "managed by",
+     "administrator",
+     "item operator",
+     "user",
+     "webmaster"
+    ]
+   }
+  },
+  {
+   "label": "involves",
+   "subj_label": "FlightAccident",
+   "obj_label": "AircraftModel",
+   "n_edges": 530,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.8744,
+    "obj_participation": 0.9737,
+    "objs_per_subj": {
+     "avg": 1.002,
+     "max": 2,
+     "frac_one": 0.9981
+    },
+    "subjs_per_obj": {
+     "avg": 3.581,
+     "max": 42,
+     "frac_one": 0.5338
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P1876",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "vessel",
+      "description": "vessel involved in this mission, navigation or event",
+      "aliases": [
+       "orbiter",
+       "spaceship",
+       "spacecraft",
+       "ship",
+       "boat",
+       "craft",
+       "vessel",
+       "uses vehicle"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P121",
+      "direction": "forward",
+      "support": 0.083,
+      "label": "item operated",
+      "description": "equipment, installation or service operated by the subject",
+      "aliases": [
+       "fleet",
+       "aircraft in fleet",
+       "aircraft operated",
+       "equipment operated",
+       "facility operated",
+       "service operated",
+       "operator of",
+       "operated"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P137"
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P1876",
+    "wikidata_direction": "forward",
+    "meaning": "vessel involved in this mission, navigation or event",
+    "reading": "vessel",
+    "aliases": [
+     "orbiter",
+     "spaceship",
+     "spacecraft",
+     "ship",
+     "boat",
+     "craft",
+     "vessel",
+     "uses vehicle"
+    ]
+   }
+  },
+  {
+   "label": "manufacturedBy",
+   "subj_label": "AircraftModel",
+   "obj_label": "AircraftManufacturer",
+   "n_edges": 128,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.6842,
+    "obj_participation": 0.9483,
+    "objs_per_subj": {
+     "avg": 1.231,
+     "max": 3,
+     "frac_one": 0.8077
+    },
+    "subjs_per_obj": {
+     "avg": 2.327,
+     "max": 10,
+     "frac_one": 0.4727
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P176",
+      "direction": "forward",
+      "support": 0.917,
+      "label": "manufacturer",
+      "description": "(main or final) manufacturer or producer of this product",
+      "aliases": [
+       "manufactured by",
+       "maker",
+       "built by",
+       "builder",
+       "made by",
+       "product of",
+       "provider",
+       "provided by"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": "P1056"
+     },
+     {
+      "pid": "P178",
+      "direction": "forward",
+      "support": 0.333,
+      "label": "developer",
+      "description": "organization or person that developed the item",
+      "aliases": [
+       "developed by",
+       "written by",
+       "created by",
+       "game developer",
+       "game dev",
+       "dev",
+       "video game developer",
+       "video game dev"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P176",
+    "wikidata_direction": "forward",
+    "meaning": "(main or final) manufacturer or producer of this product",
+    "reading": "manufacturer",
+    "aliases": [
+     "manufactured by",
+     "maker",
+     "built by",
+     "builder",
+     "made by",
+     "product of",
+     "provider",
+     "provided by"
+    ]
+   }
+  },
+  {
+   "label": "departsFrom",
+   "subj_label": "FlightAccident",
+   "obj_label": "Airport",
+   "n_edges": 507,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.8248,
+    "obj_participation": 0.578,
+    "objs_per_subj": {
+     "avg": 1.016,
+     "max": 2,
+     "frac_one": 0.984
+    },
+    "subjs_per_obj": {
+     "avg": 1.69,
+     "max": 19,
+     "frac_one": 0.7
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P1427",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "start point",
+      "description": "starting place of this journey, flight, voyage, trek, migration etc.",
+      "aliases": [
+       "flight origin",
+       "start location",
+       "from",
+       "journey start",
+       "journey origin",
+       "launch location",
+       "launch site",
+       "launch pad"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P276",
+      "direction": "forward",
+      "support": 0.083,
+      "label": "location",
+      "description": "location of the object, structure or event; use P131 to indicate the containing administrative entity, P8138 for statistical entities, or P706 for geographic entities; use P7153 for locations associated with the object",
+      "aliases": [
+       "whereabouts",
+       "located in",
+       "venue",
+       "is in",
+       "place held",
+       "based in",
+       "neighborhood",
+       "region"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": true,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P1427",
+    "wikidata_direction": "forward",
+    "meaning": "starting place of this journey, flight, voyage, trek, migration etc.",
+    "reading": "start point",
+    "aliases": [
+     "flight origin",
+     "start location",
+     "from",
+     "journey start",
+     "journey origin",
+     "launch location",
+     "launch site",
+     "launch pad"
+    ]
+   }
+  },
+  {
+   "label": "destinedFor",
+   "subj_label": "FlightAccident",
+   "obj_label": "Airport",
+   "n_edges": 491,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.8,
+    "obj_participation": 0.6339,
+    "objs_per_subj": {
+     "avg": 1.014,
+     "max": 2,
+     "frac_one": 0.9855
+    },
+    "subjs_per_obj": {
+     "avg": 1.492,
+     "max": 13,
+     "frac_one": 0.7356
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P1444",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "destination point",
+      "description": "destination for this route (journey, flight, sailing, exploration, migration, etc.)",
+      "aliases": [
+       "destination",
+       "to",
+       "end of journey",
+       "finish",
+       "journey destination",
+       "ending at",
+       "stopping at",
+       "end point (journey)"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P276",
+      "direction": "forward",
+      "support": 0.333,
+      "label": "location",
+      "description": "location of the object, structure or event; use P131 to indicate the containing administrative entity, P8138 for statistical entities, or P706 for geographic entities; use P7153 for locations associated with the object",
+      "aliases": [
+       "whereabouts",
+       "located in",
+       "venue",
+       "is in",
+       "place held",
+       "based in",
+       "neighborhood",
+       "region"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": true,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P1444",
+    "wikidata_direction": "forward",
+    "meaning": "destination for this route (journey, flight, sailing, exploration, migration, etc.)",
+    "reading": "destination point",
+    "aliases": [
+     "destination",
+     "to",
+     "end of journey",
+     "finish",
+     "journey destination",
+     "ending at",
+     "stopping at",
+     "end point (journey)"
+    ]
+   }
+  }
+ ],
+ "qid_key": "eid",
+ "build_seconds": 1.1
+}

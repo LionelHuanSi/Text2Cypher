@@ -1,0 +1,1331 @@
+{
+ "graph": "movie",
+ "source": "bolt://localhost:15066",
+ "builder_version": "0.1",
+ "entities": [
+  {
+   "label": "Award",
+   "count": 1583,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q4220917",
+     "support": 0.3,
+     "label": "film award",
+     "description": "recognition for cinematic achievements",
+     "aliases": [
+      "movie award",
+      "filmmaking award",
+      "cinematic award",
+      "film awards",
+      "cinema award"
+     ]
+    },
+    {
+     "qid": "Q38033430",
+     "support": 0.25,
+     "label": "class of award",
+     "description": "class of award (order, medal, etc.)",
+     "aliases": [
+      "class of medal",
+      "award category",
+      "category of award"
+     ]
+    },
+    {
+     "qid": "Q107655869",
+     "support": 0.15,
+     "label": "group of awards",
+     "description": "award group or series",
+     "aliases": [
+      "award group",
+      "category of awards",
+      "award category",
+      "set of awards"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Country",
+   "count": 205,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q6256",
+     "support": 1.0,
+     "label": "country",
+     "description": "distinct territorial body or political entity",
+     "aliases": [
+      "countries"
+     ]
+    },
+    {
+     "qid": "Q3624078",
+     "support": 1.0,
+     "label": "sovereign state",
+     "description": "state that has the highest authority over a territory",
+     "aliases": [
+      "sovereign nation",
+      "sovereign country",
+      "Westphalian state",
+      "country",
+      "nation"
+     ]
+    },
+    {
+     "qid": "Q7270",
+     "support": 0.35,
+     "label": "republic",
+     "description": "form of government where the head of state is elected",
+     "aliases": [
+      "republican state",
+      "republican government"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "FilmSeries",
+   "count": 596,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q24856",
+     "support": 0.9,
+     "label": "film series",
+     "description": "collection of related films in succession",
+     "aliases": [
+      "series of films"
+     ]
+    },
+    {
+     "qid": "Q18956797",
+     "support": 0.1,
+     "label": "pornographic film series",
+     "description": "adult video series",
+     "aliases": [
+      "porn film series",
+      "porn video series",
+      "porn series",
+      "AV series"
+     ]
+    },
+    {
+     "qid": "Q431289",
+     "support": 0.05,
+     "label": "brand",
+     "description": "identification for a good or service",
+     "aliases": [
+      "brandmark"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Genre",
+   "count": 694,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q201658",
+     "support": 0.6,
+     "label": "film genre",
+     "description": "classification of films based on similarities in narrative elements",
+     "aliases": [
+      "movie genre",
+      "genre of a movie",
+      "video genre"
+     ]
+    },
+    {
+     "qid": "Q108465955",
+     "support": 0.1,
+     "label": "fiction genre",
+     "description": "metaclass of genres of fiction as narrative form in any media (literature, film, television, radio, audio) or in oral form",
+     "aliases": [
+      "main class of fiction",
+      "fiction metaclass",
+      "genre of fiction",
+      "art genre of fiction",
+      "genre of narrative fiction"
+     ]
+    },
+    {
+     "qid": "Q59825918",
+     "support": 0.1,
+     "label": "film theme",
+     "description": "film property indicating to either the film's subject matter, location, characters in the film or other qualities that may exist normally within different film genres",
+     "aliases": [
+      "cinema theme",
+      "movie theme",
+      "film about topic"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Movie",
+   "count": 218828,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "filming_location": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 5553
+    },
+    "global_box_office_usd": {
+     "types": [
+      "Double"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "original_language": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 546
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "runtime_minute": {
+     "types": [
+      "Double"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q11424",
+     "support": 0.95,
+     "label": "film",
+     "description": "visual art work that simulates experiences and communicates ideas, stories, or emotions through moving images, generally synchronized with sound since the 1930s",
+     "aliases": [
+      "movie",
+      "motion picture",
+      "cinematic work",
+      "moving picture"
+     ]
+    },
+    {
+     "qid": "Q127402430",
+     "support": 0.05,
+     "label": "film in two parts",
+     "description": "film divided into two parts, mainly because of its length",
+     "aliases": [
+      "two-parts film",
+      "two-part film",
+      "two parts film"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Person",
+   "count": 234309,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "country_of_citizenship": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 516
+    },
+    "date_of_birth": {
+     "types": [
+      "Date"
+     ]
+    },
+    "date_of_death": {
+     "types": [
+      "Date"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "gender": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 20,
+     "vocab": [
+      "male",
+      "female",
+      "trans woman",
+      "non-binary",
+      "trans man",
+      "intersex",
+      "genderfluid",
+      "travesti",
+      "genderqueer",
+      "bigender",
+      "cisgender woman",
+      "intersex woman",
+      "two-spirit",
+      "agender",
+      "gender not disclosed in work",
+      "intersex man",
+      "kathoey",
+      "neutral sex",
+      "transfeminine",
+      "transgender"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "place_of_birth": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 26530
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q5",
+     "support": 1.0,
+     "label": "human",
+     "description": "any single member of Homo sapiens, unique extant species of the genus Homo",
+     "aliases": [
+      "human being",
+      "people",
+      "nonfictional human",
+      "non-fictional human",
+      "individual Homo sapiens",
+      "modern human",
+      "person"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "ProductionCompany",
+   "count": 3178,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "country": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 91
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q1762059",
+     "support": 0.95,
+     "label": "film production company",
+     "description": "company that produces films",
+     "aliases": [
+      "movie production company",
+      "film company",
+      "movie company",
+      "motion picture production company"
+     ]
+    },
+    {
+     "qid": "Q30941437",
+     "support": 0.05,
+     "label": "pornographic film studio",
+     "description": "major entertainment company or motion picture company that has its own privately owned studio facility or facilities that are used to make pornographic films, which is handled by the production company",
+     "aliases": [
+      "adult video maker",
+      "pornographic film production company",
+      "pornographic studio",
+      "porn studio",
+      "AV maker"
+     ]
+    },
+    {
+     "qid": "Q6881511",
+     "support": 0.05,
+     "label": "enterprise",
+     "description": "organizational unit producing goods or services, which benefits from a certain degree of autonomy in decision-making, especially for the allocation of its current resources",
+     "aliases": [
+      "company",
+      "firm",
+      "undertaking",
+      "business enterprise",
+      "enterprises",
+      "companies",
+      "firms",
+      "undertakings"
+     ]
+    }
+   ]
+  }
+ ],
+ "relations": [
+  {
+   "label": "directedBy",
+   "subj_label": "Movie",
+   "obj_label": "Person",
+   "n_edges": 200966,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.8653,
+    "obj_participation": 0.2532,
+    "objs_per_subj": {
+     "avg": 1.061,
+     "max": 39,
+     "frac_one": 0.9519
+    },
+    "subjs_per_obj": {
+     "avg": 3.388,
+     "max": 194,
+     "frac_one": 0.547
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P57",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "director",
+      "description": "director(s) of film, TV-series, stageplay, video game or similar",
+      "aliases": [
+       "directed by",
+       "film director",
+       "movie director",
+       "game director"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P58",
+      "direction": "forward",
+      "support": 0.333,
+      "label": "screenwriter",
+      "description": "person(s) who wrote the script for subject item",
+      "aliases": [
+       "scriptwriter",
+       "screenplay by",
+       "teleplay by",
+       "writer (of screenplays)",
+       "film script by",
+       "written by",
+       "writing credits",
+       "scenarist"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P344",
+      "direction": "forward",
+      "support": 0.083,
+      "label": "director of photography",
+      "description": "person responsible for the framing, lighting, and filtration of the subject work",
+      "aliases": [
+       "cinematographer",
+       "DOP"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P162",
+      "direction": "forward",
+      "support": 0.083,
+      "label": null,
+      "description": null,
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P1040",
+      "direction": "forward",
+      "support": 0.083,
+      "label": null,
+      "description": null,
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P57",
+    "wikidata_direction": "forward",
+    "meaning": "director(s) of film, TV-series, stageplay, video game or similar",
+    "reading": "director",
+    "aliases": [
+     "directed by",
+     "film director",
+     "movie director",
+     "game director"
+    ]
+   }
+  },
+  {
+   "label": "writtenBy",
+   "subj_label": "Movie",
+   "obj_label": "Person",
+   "n_edges": 126050,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.4342,
+    "obj_participation": 0.1775,
+    "objs_per_subj": {
+     "avg": 1.327,
+     "max": 15,
+     "frac_one": 0.7668
+    },
+    "subjs_per_obj": {
+     "avg": 3.03,
+     "max": 141,
+     "frac_one": 0.5586
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P58",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "screenwriter",
+      "description": "person(s) who wrote the script for subject item",
+      "aliases": [
+       "scriptwriter",
+       "screenplay by",
+       "teleplay by",
+       "writer (of screenplays)",
+       "film script by",
+       "written by",
+       "writing credits",
+       "scenarist"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P57",
+      "direction": "forward",
+      "support": 0.25,
+      "label": "director",
+      "description": "director(s) of film, TV-series, stageplay, video game or similar",
+      "aliases": [
+       "directed by",
+       "film director",
+       "movie director",
+       "game director"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P58",
+    "wikidata_direction": "forward",
+    "meaning": "person(s) who wrote the script for subject item",
+    "reading": "screenwriter",
+    "aliases": [
+     "scriptwriter",
+     "screenplay by",
+     "teleplay by",
+     "writer (of screenplays)",
+     "film script by",
+     "written by",
+     "writing credits",
+     "scenarist"
+    ]
+   }
+  },
+  {
+   "label": "hasCastMember",
+   "subj_label": "Movie",
+   "obj_label": "Person",
+   "n_edges": 981423,
+   "properties": {
+    "character_role": [
+     "String"
+    ]
+   },
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.6495,
+    "obj_participation": 0.6646,
+    "objs_per_subj": {
+     "avg": 6.906,
+     "max": 267,
+     "frac_one": 0.2456
+    },
+    "subjs_per_obj": {
+     "avg": 6.302,
+     "max": 516,
+     "frac_one": 0.4286
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P161",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "cast member",
+      "description": "actor in the subject production [use \"character role\" (P453) and/or \"name of the character role\" (P4633) as qualifiers] [use \"voice actor\" (P725) for voice-only role] - [use \"recorded participant\" (P11108) for non-fiction productions]",
+      "aliases": [
+       "starring",
+       "film starring",
+       "actor",
+       "actress",
+       "contestant of a play",
+       "starring (film/play)",
+       "feat."
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P161",
+    "wikidata_direction": "forward",
+    "meaning": "actor in the subject production [use \"character role\" (P453) and/or \"name of the character role\" (P4633) as qualifiers] [use \"voice actor\" (P725) for voice-only role] - [use \"recorded participant\" (P11108) for non-fiction productions]",
+    "reading": "cast member",
+    "aliases": [
+     "starring",
+     "film starring",
+     "actor",
+     "actress",
+     "contestant of a play",
+     "starring (film/play)",
+     "feat."
+    ]
+   }
+  },
+  {
+   "label": "partOfSeries",
+   "subj_label": "Movie",
+   "obj_label": "FilmSeries",
+   "n_edges": 2476,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0105,
+    "obj_participation": 0.9933,
+    "objs_per_subj": {
+     "avg": 1.078,
+     "max": 5,
+     "frac_one": 0.9478
+    },
+    "subjs_per_obj": {
+     "avg": 4.182,
+     "max": 48,
+     "frac_one": 0.1199
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P179",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "part of the series",
+      "description": "series which contains the subject",
+      "aliases": [
+       "part of series",
+       "listed in",
+       "collection",
+       "issue of",
+       "episode of",
+       "subseries",
+       "video game series",
+       "in series"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P527",
+      "direction": "inverse",
+      "support": 0.917,
+      "label": "has part(s)",
+      "description": "part of this subject; inverse property of \"part of\" (P361). See also \"has parts of the class\" (P2670).",
+      "aliases": [
+       "formed from",
+       "formed out of",
+       "assembled from",
+       "assembled out of",
+       "created from",
+       "created out of",
+       "amalgamation of",
+       "set of"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": true,
+      "inverse_property": "P361"
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P179",
+    "wikidata_direction": "forward",
+    "meaning": "series which contains the subject",
+    "reading": "part of the series",
+    "aliases": [
+     "part of series",
+     "listed in",
+     "collection",
+     "issue of",
+     "episode of",
+     "subseries",
+     "video game series",
+     "in series"
+    ]
+   }
+  },
+  {
+   "label": "receivesAward",
+   "subj_label": "Movie",
+   "obj_label": "Award",
+   "n_edges": 10765,
+   "properties": {
+    "winners": [
+     "StringArray"
+    ],
+    "year": [
+     "Long"
+    ]
+   },
+   "temporal_properties": {
+    "year": [
+     "Long"
+    ]
+   },
+   "stats": {
+    "subj_participation": 0.0268,
+    "obj_participation": 0.9924,
+    "objs_per_subj": {
+     "avg": 1.835,
+     "max": 44,
+     "frac_one": 0.6947
+    },
+    "subjs_per_obj": {
+     "avg": 6.851,
+     "max": 871,
+     "frac_one": 0.4258
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P166",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "award received",
+      "description": "award or recognition received by a person, organization or creative work",
+      "aliases": [
+       "prize received",
+       "awards",
+       "honorary title",
+       "recognition title",
+       "award",
+       "honours",
+       "honors",
+       "medals"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [
+     "year"
+    ],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P166",
+    "wikidata_direction": "forward",
+    "meaning": "award or recognition received by a person, organization or creative work",
+    "reading": "award received",
+    "aliases": [
+     "prize received",
+     "awards",
+     "honorary title",
+     "recognition title",
+     "award",
+     "honours",
+     "honors",
+     "medals"
+    ]
+   }
+  },
+  {
+   "label": "producedBy",
+   "subj_label": "Movie",
+   "obj_label": "ProductionCompany",
+   "n_edges": 33350,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.131,
+    "obj_participation": 0.9802,
+    "objs_per_subj": {
+     "avg": 1.163,
+     "max": 10,
+     "frac_one": 0.8834
+    },
+    "subjs_per_obj": {
+     "avg": 10.706,
+     "max": 1282,
+     "frac_one": 0.436
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P272",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "production company",
+      "description": "company that produced this film, audio or performing arts work",
+      "aliases": [
+       "film studio",
+       "studio",
+       "motion picture studio",
+       "movie studio",
+       "production house",
+       "theatre company",
+       "theater company",
+       "theatrical troupe"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P272",
+    "wikidata_direction": "forward",
+    "meaning": "company that produced this film, audio or performing arts work",
+    "reading": "production company",
+    "aliases": [
+     "film studio",
+     "studio",
+     "motion picture studio",
+     "movie studio",
+     "production house",
+     "theatre company",
+     "theater company",
+     "theatrical troupe"
+    ]
+   }
+  },
+  {
+   "label": "originatesFrom",
+   "subj_label": "Movie",
+   "obj_label": "Country",
+   "n_edges": 231287,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.9556,
+    "obj_participation": 0.9707,
+    "objs_per_subj": {
+     "avg": 1.106,
+     "max": 13,
+     "frac_one": 0.9223
+    },
+    "subjs_per_obj": {
+     "avg": 1162.246,
+     "max": 61643,
+     "frac_one": 0.0503
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P495",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "country of origin",
+      "description": "country of origin of this item (creative work, food, phrase, product, etc.)",
+      "aliases": [
+       "place of origin",
+       "comes from",
+       "CoO",
+       "originates from",
+       "origin country",
+       "country",
+       "homeland"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P840",
+      "direction": "forward",
+      "support": 0.167,
+      "label": "narrative location",
+      "description": "the narrative of the work is set in this location",
+      "aliases": [
+       "setting location",
+       "narrative set in",
+       "location of narrative",
+       "set in location",
+       "takes place in",
+       "playing in",
+       "setting of work",
+       "work set in"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": true,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P495",
+    "wikidata_direction": "forward",
+    "meaning": "country of origin of this item (creative work, food, phrase, product, etc.)",
+    "reading": "country of origin",
+    "aliases": [
+     "place of origin",
+     "comes from",
+     "CoO",
+     "originates from",
+     "origin country",
+     "country",
+     "homeland"
+    ]
+   }
+  },
+  {
+   "label": "releasedIn",
+   "subj_label": "Movie",
+   "obj_label": "Country",
+   "n_edges": 54218,
+   "properties": {
+    "date": [
+     "Date"
+    ]
+   },
+   "temporal_properties": {
+    "date": [
+     "Date"
+    ]
+   },
+   "stats": {
+    "subj_participation": 0.1101,
+    "obj_participation": 0.7366,
+    "objs_per_subj": {
+     "avg": 2.23,
+     "max": 88,
+     "frac_one": 0.6494
+    },
+    "subjs_per_obj": {
+     "avg": 355.974,
+     "max": 16892,
+     "frac_one": 0.1523
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P495",
+      "direction": "forward",
+      "support": 0.083,
+      "label": "country of origin",
+      "description": "country of origin of this item (creative work, food, phrase, product, etc.)",
+      "aliases": [
+       "place of origin",
+       "comes from",
+       "CoO",
+       "originates from",
+       "origin country",
+       "country",
+       "homeland"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [
+     "date"
+    ],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": null,
+    "wikidata_direction": null,
+    "meaning": null,
+    "reading": null,
+    "aliases": []
+   }
+  },
+  {
+   "label": "hasGenre",
+   "subj_label": "Movie",
+   "obj_label": "Genre",
+   "n_edges": 251667,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.7731,
+    "obj_participation": 0.9726,
+    "objs_per_subj": {
+     "avg": 1.488,
+     "max": 15,
+     "frac_one": 0.6809
+    },
+    "subjs_per_obj": {
+     "avg": 372.84,
+     "max": 61273,
+     "frac_one": 0.2652
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P136",
+      "direction": "forward",
+      "support": 0.667,
+      "label": "genre",
+      "description": "creative work's genre or an artist's field of work (P101). Use main subject (P921) to relate creative works to their topic",
+      "aliases": [
+       "music genre",
+       "film genre",
+       "artistic genre",
+       "literary genre",
+       "kind of music",
+       "type of film",
+       "genre of music",
+       "type of music"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P136",
+    "wikidata_direction": "forward",
+    "meaning": "creative work's genre or an artist's field of work (P101). Use main subject (P921) to relate creative works to their topic",
+    "reading": "genre",
+    "aliases": [
+     "music genre",
+     "film genre",
+     "artistic genre",
+     "literary genre",
+     "kind of music",
+     "type of film",
+     "genre of music",
+     "type of music"
+    ]
+   }
+  }
+ ],
+ "qid_key": "eid",
+ "build_seconds": 4.9
+}

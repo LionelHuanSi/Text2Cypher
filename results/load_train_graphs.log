@@ -1,0 +1,19 @@
+== terrorist_attack
+ Container cypherbench-terrorist-attack Creating 
+ Container cypherbench-terrorist-attack Created 
+ Container cypherbench-terrorist-attack Starting 
+ Container cypherbench-terrorist-attack Started 
+Loaded 1556 entities and 1525 relations
+== soccer
+ Container cypherbench-soccer Creating 
+ Container cypherbench-soccer Created 
+ Container cypherbench-soccer Starting 
+ Container cypherbench-soccer Started 
+Loaded 275185 entities and 1119766 relations
+== art
+ Container cypherbench-art Creating 
+ Container cypherbench-art Created 
+ Container cypherbench-art Starting 
+ Container cypherbench-art Started 
+Loaded 1116471 entities and 1339479 relations
+LOAD_DONE

@@ -1,0 +1,271 @@
+{
+ "n": 2348,
+ "categories": {
+  "schema_valid_wrong": {
+   "n": 656,
+   "pct_of_all": 27.94
+  },
+  "not_executable": {
+   "n": 516,
+   "pct_of_all": 21.98
+  },
+  "correct": {
+   "n": 507,
+   "pct_of_all": 21.59
+  },
+  "reversed_direction": {
+   "n": 448,
+   "pct_of_all": 19.08
+  },
+  "wrong_endpoint": {
+   "n": 171,
+   "pct_of_all": 7.28
+  },
+  "unknown_element": {
+   "n": 50,
+   "pct_of_all": 2.13
+  }
+ },
+ "wrong_with_any_schema_violation": 815,
+ "gold_false_positive": {
+  "n": 0,
+  "qids": []
+ },
+ "by_graph": {
+  "company": {
+   "reversed_direction": 84,
+   "schema_valid_wrong": 115,
+   "not_executable": 69,
+   "correct": 58,
+   "unknown_element": 5,
+   "wrong_endpoint": 16
+  },
+  "fictional_character": {
+   "correct": 87,
+   "not_executable": 89,
+   "schema_valid_wrong": 165,
+   "unknown_element": 17,
+   "reversed_direction": 12,
+   "wrong_endpoint": 15
+  },
+  "flight_accident": {
+   "correct": 83,
+   "schema_valid_wrong": 39,
+   "wrong_endpoint": 9,
+   "reversed_direction": 36,
+   "unknown_element": 5,
+   "not_executable": 17
+  },
+  "geography": {
+   "reversed_direction": 94,
+   "correct": 86,
+   "not_executable": 66,
+   "schema_valid_wrong": 88,
+   "wrong_endpoint": 31,
+   "unknown_element": 1
+  },
+  "movie": {
+   "not_executable": 107,
+   "schema_valid_wrong": 67,
+   "reversed_direction": 97,
+   "unknown_element": 13,
+   "correct": 80,
+   "wrong_endpoint": 37
+  },
+  "nba": {
+   "not_executable": 60,
+   "wrong_endpoint": 30,
+   "schema_valid_wrong": 90,
+   "correct": 62,
+   "reversed_direction": 24,
+   "unknown_element": 4
+  },
+  "politics": {
+   "schema_valid_wrong": 92,
+   "reversed_direction": 101,
+   "not_executable": 108,
+   "wrong_endpoint": 33,
+   "correct": 51,
+   "unknown_element": 5
+  }
+ },
+ "examples": {
+  "reversed_direction": [
+   {
+    "qid": "ec629349-03ee-4273-8a1a-8e63e7d5416c",
+    "question": "Provide the names of individuals who have served as board members for companies based in Russia, along with the count of such companies for each person.",
+    "pred": "MATCH (p:Person)-[r:hasBoardMember]->(c:Company)-[b:basedIn]->(country:Country {name: 'Russia'})\nRETURN p.name AS board_member, COUNT(DISTINCT c) AS company_count",
+    "gold": "MATCH (n:Person)<-[r0:hasBoardMember]-(m0:Company)-[r1:basedIn]->(m1:Country {name: 'Russia'}) WITH n, count(DISTINCT m0) AS num RETURN n.name, num",
+    "violations": [
+     [
+      "reversed_direction",
+      "Person-[hasBoardMember]->Company"
+     ]
+    ]
+   },
+   {
+    "qid": "fb1c2211-aaf4-478a-b662-7c7f145843e0",
+    "question": "What are the names of individuals who have both founded a company and served on its board, but are not citizens of Austria?",
+    "pred": "MATCH (p:Person)-[:foundedBy]->(c:Company)-[h:hasBoardMember]->(c)\nWHERE NOT 'Austria' IN p.country_of_citizenship\nRETURN DISTINCT p.name",
+    "gold": "MATCH (n:Person)<-[r0:foundedBy]-(m0:Company),(n:Person)<-[r1:hasBoardMember]-(m0:Company) WITH DISTINCT n WHERE NOT 'Austria' IN n.country_of_citizenship RETURN n.name",
+    "violations": [
+     [
+      "reversed_direction",
+      "Person-[foundedBy]->Company"
+     ],
+     [
+      "wrong_endpoint",
+      "Company-[hasBoardMember]->Company"
+     ]
+    ]
+   },
+   {
+    "qid": "1b64800c-e1b6-4227-8319-d80288b85362",
+    "question": "Who are the individuals who both founded Global Market Insite and have served as its CEO, and what are their countries of citizenship?",
+    "pred": "MATCH (c:Company {name: 'Global Market Insite'})<-[:foundedBy]-(p1:Person)-[:hasCEO {start_year: 2000, end_year: 2020}]-(c)\nRETURN p1.name AS CEO, p1.country_of_citizenship AS citizenship",
+    "gold": "MATCH (n:Person)<-[r0:foundedBy]-(m0:Company {name: 'Global Market Insite'}),(n:Person)<-[r1:hasCEO]-(m1:Company {name: 'Global Market Insite'}) WITH DISTINCT n RETURN n.name, n.country_of_citizenship",
+    "violations": [
+     [
+      "reversed_direction",
+      "Person-[foundedBy]->Company"
+     ]
+    ]
+   }
+  ],
+  "schema_valid_wrong": [
+   {
+    "qid": "de8db4ea-7c7b-438e-81f1-50625f6ed2ad",
+    "question": "What are the names of individuals who passed away after May 5th, 1940, and who both founded and served on the board of a company?",
+    "pred": "MATCH (p:Person {date_of_death: {gt: date(\"1940-05-05\")}})-[:foundedBy]->(c:Company)-[:hasBoardMember]->(p)\nRETURN DISTINCT p.name",
+    "gold": "MATCH (n:Person)<-[r0:foundedBy]-(m0:Company),(n:Person)<-[r1:hasBoardMember]-(m0:Company) WITH DISTINCT n WHERE n.date_of_death > date('1940-05-05') RETURN n.name",
+    "violations": []
+   },
+   {
+    "qid": "b4dc9707-9e05-4a21-b9bf-ca104b12ed8e",
+    "question": "Identify the individuals who have served as CEOs of companies that, at some point, had Norman Welsh as their CEO, and specify the number of such companies for each individual.",
+    "pred": "MATCH (c:Company)-[h:hasCEO {start_year: 1990, end_year: 2000}]->(p:Person {name: 'Norman Welsh'}), (c2:Company)-[h2:hasCEO]->(p2:Person)\nWHERE h2.start_year <= 2000 AND h2.end_year >= 2000\nRETURN p2.name AS CEO, COUNT(DISTINCT c2) AS company_count",
+    "gold": "MATCH (n:Person)<-[r0:hasCEO]-(m0:Company)-[r1:hasCEO]->(m1:Person {name: 'Norman Welsh'}) WITH n, count(DISTINCT m0) AS num RETURN n.name, num",
+    "violations": []
+   },
+   {
+    "qid": "cce3e0f6-aeaf-4a24-bc34-24bc0327af26",
+    "question": "Which companies have had John Alexander Thain as a board member at any time, past or present?",
+    "pred": "MATCH (c:Company)-[r:hasBoardMember {end_year: null}]->(p:Person {name: 'John Alexander Thain'})\nRETURN c.name",
+    "gold": "MATCH (n:Company)-[r0:hasBoardMember]->(m0:Person {name: 'John Alexander Thain'}) WITH DISTINCT n RETURN n.name",
+    "violations": []
+   }
+  ],
+  "not_executable": [
+   {
+    "qid": "f321016e-9987-41d7-bc22-408e09ec7377",
+    "question": "Identify the companies that have had CEOs who were also board members of Agrofert at some point, and specify how many such individuals have been CEOs for each company.",
+    "pred": "MATCH (c:Company {name: 'Agrofert'})<-[:subsidiaryOf*]-(s:Company)-[h:hasCEO]->(ceo:Person), (c)-[hb:hasBoardMember]->(bm:Person)\nWHERE ceo IN (bm)\nRETURN s.name AS CompanyName, COUNT(DISTINCT ceo) AS CEOCount",
+    "gold": "MATCH (n:Company)-[r0:hasCEO]->(m0:Person)<-[r1:hasBoardMember]-(m1:Company {name: 'Agrofert'}) WITH n, count(DISTINCT m0) AS num RETURN n.name, num",
+    "violations": []
+   },
+   {
+    "qid": "87e3ee59-713e-4680-b3aa-2602cfbd3c0f",
+    "question": "Provide the names of all individuals who were founders of Viacom, along with the number of companies where each has served as CEO, either currently or in the past.",
+    "pred": "MATCH (c:Company {name: 'Viacom'})<-[:foundedBy]-(p:Person)\nWITH p, size([(c2:Company)-[:hasCEO {start_year: *, end_year: *}]-(p)]) AS ceo_count\nRETURN p.name, ceo_count",
+    "gold": "MATCH (n:Person)<-[r1:foundedBy]-(m1:Company {name: 'Viacom'}) OPTIONAL MATCH (n:Person)<-[r0:hasCEO]-(m0:Company) WITH n, count(DISTINCT m0) AS num RETURN n.name, num",
+    "violations": [
+     [
+      "reversed_direction",
+      "Person-[foundedBy]->Company"
+     ]
+    ]
+   },
+   {
+    "qid": "497b2c40-c7f8-4c01-a277-e6e2ce8b6459",
+    "question": "How many companies either operate in the publishing industry or have had Nancy McKinstry as their CEO at some point?",
+    "pred": "MATCH (c:Company)-[:operatesIn]->(i:Industry {name: 'publishing'}) OR (c:Company)-[:hasCEO {name: 'Nancy McKinstry'}] RETURN count(DISTINCT c)",
+    "gold": "CALL { MATCH (n:Company)-[r0:operatesIn]->(m0:Industry {name: 'publishing'}) RETURN n, m0 as m UNION MATCH (n:Company)-[r1:hasCEO]->(m1:Person {name: 'Nancy McKinstry'}) RETURN n, m1 as m } WITH DISTINCT n RETURN count(n)",
+    "violations": []
+   }
+  ],
+  "unknown_element": [
+   {
+    "qid": "45f852bc-4ee8-4233-b36e-d3584f6b63a2",
+    "question": "What are the names of industries in which Canadian companies operate, and how many Canadian companies are there in each industry?",
+    "pred": "MATCH (c:Company)-[o:operatesIn]->(i:Industry)\nWHERE 'Canada' IN c.foundedBy.country_of_citizenship\nRETURN i.name AS IndustryName, COUNT(DISTINCT c) AS CompanyCount",
+    "gold": "MATCH (n:Industry)<-[r0:operatesIn]-(m0:Company)-[r1:basedIn]->(m1:Country {name: 'Canada'}) WITH n, count(DISTINCT m0) AS num RETURN n.name, num",
+    "violations": [
+     [
+      "unknown_element",
+      "prop Company.foundedBy"
+     ]
+    ]
+   },
+   {
+    "qid": "1c41eb5f-64cb-4aec-92dc-91fdd544a81f",
+    "question": "What are the names of individuals who founded Twinkl and were born in Huntingdon?",
+    "pred": "MATCH (p:Person {name: 'Huntingdon'})<-[:place_of_birth]-(p2:Person)-[:foundedBy]->(c:Company {name: 'Twinkl'})\nRETURN p2.name",
+    "gold": "MATCH (n:Person)<-[r0:foundedBy]-(m0:Company {name: 'Twinkl'}) WITH DISTINCT n WHERE n.place_of_birth = 'Huntingdon' RETURN n.name",
+    "violations": [
+     [
+      "unknown_element",
+      "rel place_of_birth"
+     ],
+     [
+      "reversed_direction",
+      "Person-[foundedBy]->Company"
+     ]
+    ]
+   },
+   {
+    "qid": "f5214fcc-a9ca-4731-bcd3-77b835fcdd73",
+    "question": "What is the name of the company, founded and once led by the same individual, that was launched the earliest?",
+    "pred": "MATCH (c:Company)-[f:foundedBy]->(p:Person), (c)-[h:hasCEO]->(p)\nWHERE f.start_year = h.start_year AND f.end_year = h.end_year\nRETURN c.name ORDER BY c.launch_year ASC LIMIT 1",
+    "gold": "MATCH (n:Company)-[r0:hasCEO]->(m0:Person),(n:Company)-[r1:foundedBy]->(m0:Person) WITH DISTINCT n RETURN n.name ORDER BY n.launch_year ASC LIMIT 1",
+    "violations": [
+     [
+      "unknown_element",
+      "relprop foundedBy.start_year"
+     ],
+     [
+      "unknown_element",
+      "relprop foundedBy.end_year"
+     ]
+    ]
+   }
+  ],
+  "wrong_endpoint": [
+   {
+    "qid": "0bd58550-5faf-4377-9165-6f43930b1cfd",
+    "question": "What are the names of countries where companies based in the United Kingdom are also based, and how many such companies are there in each country?",
+    "pred": "MATCH (c:Company)-[:basedIn]->(uk:Country {name: 'United Kingdom'})-[:basedIn]->(other:Country)\nRETURN other.name AS country, COUNT(c) AS company_count",
+    "gold": "MATCH (n:Country)<-[r0:basedIn]-(m0:Company)-[r1:basedIn]->(m1:Country {name: 'United Kingdom'}) WITH n, count(DISTINCT m0) AS num RETURN n.name, num",
+    "violations": [
+     [
+      "wrong_endpoint",
+      "Country-[basedIn]->Country"
+     ]
+    ]
+   },
+   {
+    "qid": "4fd4c383-5ff8-4f06-ae87-f0feca39e032",
+    "question": "What are the names of Mexican companies that operate in the banking industry?",
+    "pred": "MATCH (c:Company)-[:basedIn]->(co:Country {name: 'Mexico'})-[:operatesIn]->(i:Industry {name: 'Banking'})\nRETURN c.name",
+    "gold": "MATCH (n:Company)-[r0:operatesIn]->(m0:Industry {name: 'banking industry'}),(n:Company)-[r1:basedIn]->(m1:Country {name: 'Mexico'}) WITH DISTINCT n RETURN n.name",
+    "violations": [
+     [
+      "wrong_endpoint",
+      "Country-[operatesIn]->Industry"
+     ]
+    ]
+   },
+   {
+    "qid": "ba410a3f-b7e3-477d-b1d8-fd4873d15358",
+    "question": "What are the names of countries where companies with Irene Dorner as a board member are based?",
+    "pred": "MATCH (c:Company)-[hb:hasBoardMember {start_year: 2000, end_year: 2020}]->(p:Person {name: 'Irene Dorner'})-[:basedIn]->(co:Country) RETURN co.name",
+    "gold": "MATCH (n:Country)<-[r0:basedIn]-(m0:Company)-[r1:hasBoardMember]->(m1:Person {name: 'Irene Dorner'}) WITH DISTINCT n RETURN n.name",
+    "violations": [
+     [
+      "wrong_endpoint",
+      "Person-[basedIn]->Country"
+     ]
+    ]
+   }
+  ]
+ }
+}

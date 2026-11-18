@@ -1,0 +1,198 @@
+{
+ "source": {
+  "huggingface": "megagonlabs/cypherbench",
+  "revision": "fd80c26a9f5447e4c9ba952cc70575544117306c",
+  "github": "megagonlabs/cypherbench",
+  "github_commit": "4cc727d29acc78f8cea7c4daa4e2705ddf293b8b",
+  "license": "apache-2.0"
+ },
+ "downloaded": "2026-11-18",
+ "not_downloaded": "graphs/simplekg/biology_simplekg.json (2,4 GB)",
+ "files": [
+  {
+   "path": "README.md",
+   "bytes": 3660,
+   "sha256": "2e604cbb9fe0212011b7e8f336579787e49b9fbe0a07044b02eada0d51c8d411"
+  },
+  {
+   "path": "github/graph_info.json",
+   "bytes": 26116,
+   "sha256": "586366737fb29071aa0f202821879dfb0d2219ef45b352882206798a161fb7b2"
+  },
+  {
+   "path": "github/nba_mini.json",
+   "bytes": 654,
+   "sha256": "413c6ad998dcfbe525629544a57dcab27f1b989386b25c3b68224481abb16fd9"
+  },
+  {
+   "path": "github/neo4j_info.json",
+   "bytes": 3197,
+   "sha256": "24acaa175fe0fa51d5ed8dfa9d398687eb97ffebed3d57acee7d41ae6d3f7fea"
+  },
+  {
+   "path": "github/nl2cypher_generator_config.json",
+   "bytes": 13840,
+   "sha256": "8aa0c4593c2d9cf864d7785ed49dcb71e39e48514df061ac1556fa6e4563c47c"
+  },
+  {
+   "path": "graphs/schemas/art_schema.json",
+   "bytes": 1961,
+   "sha256": "b5cb65cab3be12138ed34bc1822ee528d953c12b78cffc8c54b05b2023f55255"
+  },
+  {
+   "path": "graphs/schemas/biology_schema.json",
+   "bytes": 1215,
+   "sha256": "b1b3ee5bdc8513d259575b9832c3a88a241138a48e788693b202d1af955033ec"
+  },
+  {
+   "path": "graphs/schemas/company_schema.json",
+   "bytes": 1509,
+   "sha256": "8e2c3e5666cb368156732f73caed5f3707aee93610a3c70d485405f33b5ca2a0"
+  },
+  {
+   "path": "graphs/schemas/fictional_character_schema.json",
+   "bytes": 2156,
+   "sha256": "834ac5887391e7b0c024d376462dc61e44e1205525ea157a3cdaa0186e6b8329"
+  },
+  {
+   "path": "graphs/schemas/flight_accident_schema.json",
+   "bytes": 1871,
+   "sha256": "1ac047e1c7d6b6fed654741af16f3d6561baa3c3870e445f3bd85ac5f28b7190"
+  },
+  {
+   "path": "graphs/schemas/geography_schema.json",
+   "bytes": 2688,
+   "sha256": "68521a12d52fc353d8810072f8a862fac6d5b80fde168c1cff5b05f64dd091ff"
+  },
+  {
+   "path": "graphs/schemas/movie_schema.json",
+   "bytes": 2327,
+   "sha256": "43148479ba924eae8fb22395db62a7fc46f802329dfdf75f61a9b577bb6e697c"
+  },
+  {
+   "path": "graphs/schemas/nba_schema.json",
+   "bytes": 2214,
+   "sha256": "72bad1fc35110161334cc4d0b047f9f12fdca241e7930ae050e916656dc2d4d6"
+  },
+  {
+   "path": "graphs/schemas/politics_schema.json",
+   "bytes": 2800,
+   "sha256": "fdd50746e80ecdb745560766fc34555202fa460434a76de465dd5e1ffb0d8b44"
+  },
+  {
+   "path": "graphs/schemas/soccer_schema.json",
+   "bytes": 1859,
+   "sha256": "e8651bd6d867f73e7d77b140a13d7a37c7503cf3556d79214cbfb55b9d8ae642"
+  },
+  {
+   "path": "graphs/schemas/terrorist_attack_schema.json",
+   "bytes": 1337,
+   "sha256": "920522634bcf491092da1d244da2e4b931061ad8a478e05038787768d2d2b9f3"
+  },
+  {
+   "path": "graphs/simplekg_sampled/art_sampled_simplekg.json",
+   "bytes": 5727910,
+   "sha256": "72438c9593886e10693f2c00d85d02dea150268640203a425bf28e9e630b04b0"
+  },
+  {
+   "path": "graphs/simplekg_sampled/biology_sampled_simplekg.json",
+   "bytes": 4175754,
+   "sha256": "2ff384c16f25b746761637c1118fd1b44f7bc7540794d33053b5978a8102f6d9"
+  },
+  {
+   "path": "graphs/simplekg_sampled/company_sampled_simplekg.json",
+   "bytes": 7409944,
+   "sha256": "9b430dbb73d9f3aba5480032029a1d6297f7106bd16bd83be86e9cb734c90160"
+  },
+  {
+   "path": "graphs/simplekg_sampled/fictional_character_sampled_simplekg.json",
+   "bytes": 3749228,
+   "sha256": "a843e7a45b728ee60ed8f96690f8f857c1ea3c88d4b613467a9b2d6b7a8bafe4"
+  },
+  {
+   "path": "graphs/simplekg_sampled/flight_accident_sampled_simplekg.json",
+   "bytes": 1288145,
+   "sha256": "27ee0f9bd34c5d6c7afa9a05e1fbb1c7263b1f450a91876a945f96f6d0d490df"
+  },
+  {
+   "path": "graphs/simplekg_sampled/geography_sampled_simplekg.json",
+   "bytes": 3742864,
+   "sha256": "7148b183630e1ac792a813c13122d84d3c08a40de157dc8abcb33c77f3d2f4a0"
+  },
+  {
+   "path": "graphs/simplekg_sampled/movie_sampled_simplekg.json",
+   "bytes": 7537756,
+   "sha256": "91088aa2f1906399c9a9cce811eeb9dc1034cca2a611849a39e3c86d6d302903"
+  },
+  {
+   "path": "graphs/simplekg_sampled/nba_sampled_simplekg.json",
+   "bytes": 6470164,
+   "sha256": "9175f9383492cf4f59283a1cc5ba5ac66e5cd035637ab7096ec1f07dee450671"
+  },
+  {
+   "path": "graphs/simplekg_sampled/politics_sampled_simplekg.json",
+   "bytes": 4177152,
+   "sha256": "b5432209be0d395e2b64aba53497fb8c9ebe2a57100b9bb8b107c42e2606697a"
+  },
+  {
+   "path": "graphs/simplekg_sampled/soccer_sampled_simplekg.json",
+   "bytes": 11122055,
+   "sha256": "39eb7eb1283bfbc12493a1f3688487d5a682a8734183a3bb352a5c9a9fa5641c"
+  },
+  {
+   "path": "graphs/simplekg_sampled/terrorist_attack_sampled_simplekg.json",
+   "bytes": 1009181,
+   "sha256": "65735a4ffcebe56c18bbcee02e967f6f95aa8e09e573845a67d3849fefdd304d"
+  },
+  {
+   "path": "test.json",
+   "bytes": 10473395,
+   "sha256": "e55cb853bde5ad893a5dcfa2ba38118051c7d8faa9a0d91b3d77a097c13f72f4"
+  },
+  {
+   "path": "train.json",
+   "bytes": 45593037,
+   "sha256": "b90e6cd20f7d7ee3e09138e9abfb05f059952b659dd90e117583270de88ecba4"
+  },
+  {
+   "path": "graphs/simplekg/company_simplekg.json",
+   "bytes": 219030657,
+   "sha256": "54d15b5db4c30b9d7d0e31cbc30ca7c144d3e2cad30bddf8d92390a095f0b82b"
+  },
+  {
+   "path": "graphs/simplekg/fictional_character_simplekg.json",
+   "bytes": 18398199,
+   "sha256": "18bdb76ec87206990c2bb898e7aafbd7aea2c61a7759812cb404a9d6f3473942"
+  },
+  {
+   "path": "graphs/simplekg/geography_simplekg.json",
+   "bytes": 349088086,
+   "sha256": "09f92de6ee227543f8b4a8c0757bd2621257b14054eb21de9fac6ebb794e2533"
+  },
+  {
+   "path": "graphs/simplekg/movie_simplekg.json",
+   "bytes": 530693276,
+   "sha256": "007fa1f32e650298ccfa8fadc4cfaa9fa453af8d567c51cc083dbd038cb0c318"
+  },
+  {
+   "path": "graphs/simplekg/politics_simplekg.json",
+   "bytes": 694817352,
+   "sha256": "a32b032759ae207c4ddb216492ae84d3559cfc7e1e5945474c3b815227e6ae3e"
+  },
+  {
+   "path": "graphs/simplekg/terrorist_attack_simplekg.json",
+   "bytes": 1009181,
+   "sha256": "65735a4ffcebe56c18bbcee02e967f6f95aa8e09e573845a67d3849fefdd304d"
+  },
+  {
+   "path": "graphs/simplekg/soccer_simplekg.json",
+   "bytes": 372625975,
+   "sha256": "0772b1f13ad5f817313efd2ce8dffe669213c9136a67b9ced50aaa0cf7ba32fe"
+  },
+  {
+   "path": "graphs/simplekg/art_simplekg.json",
+   "bytes": 570911494,
+   "sha256": "385c7444501581570e3b9057fee48efdc574c21cd64788816c0eef4a830f5021"
+  }
+ ]
+}

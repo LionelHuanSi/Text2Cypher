@@ -1,0 +1,132 @@
+{
+ "n": 210,
+ "overall": {
+  "execution_accuracy": 0.2286,
+  "psjs": 0.3438,
+  "executable": 0.9238
+ },
+ "EX_ci95": [
+  0.1762,
+  0.2857
+ ],
+ "by_graph": {
+  "company": {
+   "n": 30,
+   "execution_accuracy": 0.2,
+   "psjs": 0.2548,
+   "executable": 0.9333
+  },
+  "fictional_character": {
+   "n": 30,
+   "execution_accuracy": 0.2667,
+   "psjs": 0.4536,
+   "executable": 0.9
+  },
+  "flight_accident": {
+   "n": 30,
+   "execution_accuracy": 0.2667,
+   "psjs": 0.3389,
+   "executable": 0.9333
+  },
+  "geography": {
+   "n": 30,
+   "execution_accuracy": 0.1667,
+   "psjs": 0.2958,
+   "executable": 0.9667
+  },
+  "movie": {
+   "n": 30,
+   "execution_accuracy": 0.1333,
+   "psjs": 0.3429,
+   "executable": 0.9333
+  },
+  "nba": {
+   "n": 30,
+   "execution_accuracy": 0.3,
+   "psjs": 0.4095,
+   "executable": 0.9333
+  },
+  "politics": {
+   "n": 30,
+   "execution_accuracy": 0.2667,
+   "psjs": 0.3111,
+   "executable": 0.8667
+  }
+ },
+ "by_match": {
+  "basic_(n)": {
+   "n": 4,
+   "EX": 1.0
+  },
+  "basic_(n)-(m0)": {
+   "n": 5,
+   "EX": 0.2
+  },
+  "basic_(n)-(m0)-(m1*)": {
+   "n": 19,
+   "EX": 0.2105
+  },
+  "basic_(n)-(m0*)": {
+   "n": 28,
+   "EX": 0.5357
+  },
+  "basic_(n)-(m0*),(n)-(m1*)": {
+   "n": 32,
+   "EX": 0.1562
+  },
+  "basic_(n)=(m0)": {
+   "n": 9,
+   "EX": 0.0
+  },
+  "basic_(n*)": {
+   "n": 10,
+   "EX": 0.7
+  },
+  "special_comparison": {
+   "n": 19,
+   "EX": 0.2632
+  },
+  "special_optional-match": {
+   "n": 26,
+   "EX": 0.0385
+  },
+  "special_three-node-groupby": {
+   "n": 21,
+   "EX": 0.0
+  },
+  "special_time-sensitive": {
+   "n": 5,
+   "EX": 0.2
+  },
+  "special_union": {
+   "n": 32,
+   "EX": 0.1562
+  }
+ },
+ "by_return": {
+  "n_agg": {
+   "n": 11,
+   "EX": 0.5455
+  },
+  "n_argmax": {
+   "n": 5,
+   "EX": 0.0
+  },
+  "n_name": {
+   "n": 35,
+   "EX": 0.2286
+  },
+  "n_order_by": {
+   "n": 7,
+   "EX": 0.1429
+  },
+  "n_prop_combined": {
+   "n": 48,
+   "EX": 0.4375
+  },
+  "n_where": {
+   "n": 1,
+   "EX": 0.0
+  }
+ }
+}

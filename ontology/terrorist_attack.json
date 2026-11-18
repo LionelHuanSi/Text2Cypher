@@ -1,0 +1,712 @@
+{
+ "graph": "terrorist_attack",
+ "source": "bolt://localhost:15070",
+ "builder_version": "0.1",
+ "entities": [
+  {
+   "label": "Country",
+   "count": 100,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q3624078",
+     "support": 1.0,
+     "label": "sovereign state",
+     "description": "state that has the highest authority over a territory",
+     "aliases": [
+      "sovereign nation",
+      "sovereign country",
+      "Westphalian state",
+      "country",
+      "nation"
+     ]
+    },
+    {
+     "qid": "Q6256",
+     "support": 1.0,
+     "label": "country",
+     "description": "distinct territorial body or political entity",
+     "aliases": [
+      "countries"
+     ]
+    },
+    {
+     "qid": "Q7270",
+     "support": 0.4,
+     "label": "republic",
+     "description": "form of government where the head of state is elected",
+     "aliases": [
+      "republican state",
+      "republican government"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Target",
+   "count": 98,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q1054782",
+     "support": 0.05,
+     "label": "Renfe Cercanías",
+     "description": "Spanish commuter rail system",
+     "aliases": [
+      "Cercanias"
+     ]
+    },
+    {
+     "qid": "Q124130081",
+     "support": 0.05,
+     "label": "commuter rail network",
+     "description": "railroad network used for commuter rail service",
+     "aliases": [
+      "commuter railway"
+     ]
+    },
+    {
+     "qid": "Q256905",
+     "support": 0.05,
+     "label": "airlift",
+     "description": "military aviation activity conducted to transport cargo and personnel",
+     "aliases": [
+      "military airlift",
+      "military air transport"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Terrorist",
+   "count": 119,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "country_of_citizenship": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 36
+    },
+    "date_of_birth": {
+     "types": [
+      "Date"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "gender": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 2,
+     "vocab": [
+      "male",
+      "female"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "place_of_birth": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 78
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q5",
+     "support": 1.0,
+     "label": "human",
+     "description": "any single member of Homo sapiens, unique extant species of the genus Homo",
+     "aliases": [
+      "human being",
+      "people",
+      "nonfictional human",
+      "non-fictional human",
+      "individual Homo sapiens",
+      "modern human",
+      "person"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "TerroristAttack",
+   "count": 1195,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "date": {
+     "types": [
+      "Date"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "locations": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 889
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "number_of_deaths": {
+     "types": [
+      "Long"
+     ]
+    },
+    "number_of_injuries": {
+     "types": [
+      "Long"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q2223653",
+     "support": 0.55,
+     "label": "terrorist attack",
+     "description": "offensive action",
+     "aliases": [
+      "terrorist act",
+      "act of terrorism",
+      "terrorist incident",
+      "terrorist attacks",
+      "terror attack",
+      "violent attack"
+     ]
+    },
+    {
+     "qid": "Q891854",
+     "support": 0.25,
+     "label": "bomb attack",
+     "description": "action whereby a bomb is used to kill one or more people or to damage or destroy objects",
+     "aliases": [
+      "bombing"
+     ]
+    },
+    {
+     "qid": "Q6813020",
+     "support": 0.15,
+     "label": "stabbing attack",
+     "description": "form of terrorist attack",
+     "aliases": [
+      "stabbing as a terrorist tactic",
+      "knife attack",
+      "machete attack"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Weapon",
+   "count": 44,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q124078422",
+     "support": 1.0,
+     "label": "weapon type",
+     "description": "type or kind of weapon. General metaclass of weapon/s",
+     "aliases": [
+      "weapon functional class",
+      "type of weapon",
+      "class of weapon/s"
+     ]
+    },
+    {
+     "qid": "Q122853628",
+     "support": 0.05,
+     "label": "type of physical object by shape",
+     "description": "type of physical objects with the same shape",
+     "aliases": [
+      "shape of physical object",
+      "shape of object",
+      "type of object by shape",
+      "shape of a physical object",
+      "object shape class",
+      "class of physical object by shape"
+     ]
+    },
+    {
+     "qid": "Q123035442",
+     "support": 0.05,
+     "label": "type of physical object by use",
+     "description": "type of physical objects with the same purpose",
+     "aliases": [
+      "object use class",
+      "use of physical object",
+      "use of object",
+      "type of object by use",
+      "physical object use class"
+     ]
+    }
+   ]
+  }
+ ],
+ "relations": [
+  {
+   "label": "perpetratedBy",
+   "subj_label": "TerroristAttack",
+   "obj_label": "Terrorist",
+   "n_edges": 120,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0611,
+    "obj_participation": 0.9916,
+    "objs_per_subj": {
+     "avg": 1.644,
+     "max": 10,
+     "frac_one": 0.8082
+    },
+    "subjs_per_obj": {
+     "avg": 1.017,
+     "max": 3,
+     "frac_one": 0.9915
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P8031",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "perpetrator",
+      "description": "person or organization who carried out this harmful, illegal, or immoral act",
+      "aliases": [
+       "criminal",
+       "murderer",
+       "terrorist",
+       "assassin",
+       "attacker",
+       "torturer",
+       "lead by",
+       "agressor"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P793",
+      "direction": "inverse",
+      "support": 0.833,
+      "label": "significant event",
+      "description": "significant or notable events associated with the subject",
+      "aliases": [
+       "key event",
+       "key incident",
+       "significant incident",
+       "notable event",
+       "notable incident",
+       "major event",
+       "big event",
+       "main events"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "one",
+    "mandatory_subj": false,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P8031",
+    "wikidata_direction": "forward",
+    "meaning": "person or organization who carried out this harmful, illegal, or immoral act",
+    "reading": "perpetrator",
+    "aliases": [
+     "criminal",
+     "murderer",
+     "terrorist",
+     "assassin",
+     "attacker",
+     "torturer",
+     "lead by",
+     "agressor"
+    ]
+   }
+  },
+  {
+   "label": "occursIn",
+   "subj_label": "TerroristAttack",
+   "obj_label": "Country",
+   "n_edges": 1151,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.9623,
+    "obj_participation": 0.91,
+    "objs_per_subj": {
+     "avg": 1.001,
+     "max": 2,
+     "frac_one": 0.9991
+    },
+    "subjs_per_obj": {
+     "avg": 12.648,
+     "max": 175,
+     "frac_one": 0.2527
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P17",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "country",
+      "description": "sovereign state that this subject item is in (not to be used for human beings)",
+      "aliases": [
+       "sovereign state",
+       "state",
+       "land",
+       "host country"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": true,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P17",
+    "wikidata_direction": "forward",
+    "meaning": "sovereign state that this subject item is in (not to be used for human beings)",
+    "reading": "country",
+    "aliases": [
+     "sovereign state",
+     "state",
+     "land",
+     "host country"
+    ]
+   }
+  },
+  {
+   "label": "employs",
+   "subj_label": "TerroristAttack",
+   "obj_label": "Weapon",
+   "n_edges": 159,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.1096,
+    "obj_participation": 0.9091,
+    "objs_per_subj": {
+     "avg": 1.214,
+     "max": 4,
+     "frac_one": 0.8397
+    },
+    "subjs_per_obj": {
+     "avg": 3.975,
+     "max": 23,
+     "frac_one": 0.55
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P520",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "armament",
+      "description": "equippable weapon item for the subject",
+      "aliases": [
+       "armed with",
+       "weapon",
+       "ship armament",
+       "wields"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P520",
+    "wikidata_direction": "forward",
+    "meaning": "equippable weapon item for the subject",
+    "reading": "armament",
+    "aliases": [
+     "armed with",
+     "weapon",
+     "ship armament",
+     "wields"
+    ]
+   }
+  },
+  {
+   "label": "targets",
+   "subj_label": "TerroristAttack",
+   "obj_label": "Target",
+   "n_edges": 95,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.0586,
+    "obj_participation": 0.898,
+    "objs_per_subj": {
+     "avg": 1.357,
+     "max": 7,
+     "frac_one": 0.8571
+    },
+    "subjs_per_obj": {
+     "avg": 1.08,
+     "max": 2,
+     "frac_one": 0.9205
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P533",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "target",
+      "description": "target of an attack or military operation",
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P793",
+      "direction": "inverse",
+      "support": 0.333,
+      "label": "significant event",
+      "description": "significant or notable events associated with the subject",
+      "aliases": [
+       "key event",
+       "key incident",
+       "significant incident",
+       "notable event",
+       "notable incident",
+       "major event",
+       "big event",
+       "main events"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P276",
+      "direction": "forward",
+      "support": 0.25,
+      "label": "location",
+      "description": "location of the object, structure or event; use P131 to indicate the containing administrative entity, P8138 for statistical entities, or P706 for geographic entities; use P7153 for locations associated with the object",
+      "aliases": [
+       "whereabouts",
+       "located in",
+       "venue",
+       "is in",
+       "place held",
+       "based in",
+       "neighborhood",
+       "region"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": true,
+      "inverse_property": null
+     },
+     {
+      "pid": "P770",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": null,
+      "description": null,
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P533",
+    "wikidata_direction": "forward",
+    "meaning": "target of an attack or military operation",
+    "reading": "target",
+    "aliases": []
+   }
+  }
+ ],
+ "qid_key": "eid",
+ "build_seconds": 1.0
+}

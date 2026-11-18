@@ -1,28 +1,11 @@
-# Python Virtual Environment
-venv/
-.venv/
-env/
-ENV/
-
-# Python Cache
-__pycache__/
-*.py[cod]
-*$py.class
-.pytest_cache/
-
-# Project Data & Models (Do not push raw downloads & heavy model adapters/json to Git)
-data/raw/
-data/processed/*.json
-outputs/
-unsloth_compiled_cache/
-scratch/
-
-# Environment Variables & Logs
-.env
-*.log
-*.tmp
-
-# IDE Caches
-.vscode/
-.idea/
+.venv*/
+**/__pycache__/
+**/.env
 .DS_Store
+
+# CypherBench tải về (xem data/cypherbench/manifest.json để tải lại đúng bản)
+data/cypherbench/raw/
+
+# Repo tác giả CypherBench: clone lại từ https://github.com/megagonlabs/cypherbench.git @ 4cc727d29acc78f8cea7c4daa4e2705ddf293b8b
+references/cypherbench/
+references/neo4j_loader/

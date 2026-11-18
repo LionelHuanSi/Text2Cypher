@@ -1,0 +1,149 @@
+{
+ "train": {
+  "is_symmetric": {
+   "agree_pct": 100.0,
+   "n": 13
+  },
+  "is_time_sensitive": {
+   "agree_pct": 100.0,
+   "n": 13
+  },
+  "subj_cardinality": {
+   "agree_pct": 92.3,
+   "n": 13
+  },
+  "obj_cardinality": {
+   "agree_pct": 84.6,
+   "n": 13
+  },
+  "is_mandatory_subj": {
+   "agree_pct": 30.8,
+   "n": 13
+  },
+  "is_mandatory_obj": {
+   "agree_pct": 53.8,
+   "n": 13
+  },
+  "wikidata_pid_coverage": {
+   "agree_pct": 100.0,
+   "n": 13
+  }
+ },
+ "test": {
+  "is_symmetric": {
+   "agree_pct": 100.0,
+   "n": 51
+  },
+  "is_time_sensitive": {
+   "agree_pct": 100.0,
+   "n": 51
+  },
+  "subj_cardinality": {
+   "agree_pct": 96.1,
+   "n": 51
+  },
+  "obj_cardinality": {
+   "agree_pct": 84.3,
+   "n": 51
+  },
+  "is_mandatory_subj": {
+   "agree_pct": 49.0,
+   "n": 51
+  },
+  "is_mandatory_obj": {
+   "agree_pct": 78.4,
+   "n": 51
+  },
+  "wikidata_pid_coverage": {
+   "agree_pct": 98.0,
+   "n": 51
+  }
+ },
+ "per_graph_agree_pct": {
+  "art": 79.2,
+  "company": 83.3,
+  "fictional_character": 93.3,
+  "flight_accident": 76.7,
+  "geography": 83.3,
+  "movie": 79.6,
+  "nba": 97.6,
+  "politics": 76.7,
+  "soccer": 76.7,
+  "terrorist_attack": 75.0
+ },
+ "disagreements": {
+  "is_mandatory_subj": [
+   "art.displayedAt: tay=True tự xây=False",
+   "art.createdBy: tay=True tự xây=False",
+   "art.hasGenre: tay=True tự xây=False",
+   "company.basedIn: tay=True tự xây=False",
+   "company.foundedBy: tay=True tự xây=False",
+   "company.operatesIn: tay=True tự xây=False",
+   "company.hasCEO: tay=True tự xây=False",
+   "fictional_character.bornIn: tay=True tự xây=False",
+   "fictional_character.basedIn: tay=True tự xây=False",
+   "flight_accident.destinedFor: tay=True tự xây=False",
+   "flight_accident.operatedBy: tay=True tự xây=False",
+   "flight_accident.involves: tay=True tự xây=False",
+   "flight_accident.departsFrom: tay=True tự xây=False",
+   "flight_accident.manufacturedBy: tay=True tự xây=False",
+   "geography.partOf: tay=True tự xây=False",
+   "geography.locatedIn: tay=True tự xây=False",
+   "movie.hasGenre: tay=True tự xây=False",
+   "movie.directedBy: tay=True tự xây=False",
+   "movie.writtenBy: tay=True tự xây=False",
+   "movie.hasCastMember: tay=True tự xây=False",
+   "movie.producedBy: tay=True tự xây=False",
+   "movie.releasedIn: tay=True tự xây=False",
+   "politics.hasDiplomaticRelationWith: tay=True tự xây=False",
+   "politics.hasHeadOfState: tay=True tự xây=False",
+   "politics.hasHeadOfGovernment: tay=True tự xây=False",
+   "politics.operatesIn: tay=True tự xây=False",
+   "politics.foundedBy: tay=True tự xây=False",
+   "politics.headedBy: tay=True tự xây=False",
+   "politics.belongsTo: tay=True tự xây=False",
+   "soccer.playsPosition: tay=True tự xây=False",
+   "soccer.partOfLeague: tay=True tự xây=False",
+   "soccer.hasHomeVenue: tay=True tự xây=False",
+   "terrorist_attack.perpetratedBy: tay=True tự xây=False",
+   "terrorist_attack.employs: tay=True tự xây=False",
+   "terrorist_attack.targets: tay=True tự xây=False"
+  ],
+  "is_mandatory_obj": [
+   "art.displayedAt: tay=True tự xây=False",
+   "art.hasGenre: tay=True tự xây=False",
+   "company.basedIn: tay=True tự xây=False",
+   "fictional_character.fromUniverse: tay=True tự xây=False",
+   "fictional_character.memberOf: tay=True tự xây=False",
+   "flight_accident.manufacturedBy: tay=True tự xây=False",
+   "geography.partOf: tay=True tự xây=False",
+   "movie.releasedIn: tay=True tự xây=False",
+   "politics.memberOf: tay=True tự xây=False",
+   "politics.hasDiplomaticRelationWith: tay=True tự xây=False",
+   "politics.operatesIn: tay=True tự xây=False",
+   "politics.leads: tay=True tự xây=False",
+   "politics.belongsTo: tay=True tự xây=False",
+   "soccer.playsFor: tay=True tự xây=False",
+   "terrorist_attack.occursIn: tay=True tự xây=False",
+   "terrorist_attack.employs: tay=True tự xây=False",
+   "terrorist_attack.targets: tay=True tự xây=False"
+  ],
+  "obj_cardinality": [
+   "company.basedIn: tay=many tự xây=one",
+   "flight_accident.manufacturedBy: tay=one tự xây=many",
+   "geography.flowsThrough: tay=many tự xây=one",
+   "movie.directedBy: tay=many tự xây=one",
+   "movie.producedBy: tay=one tự xây=many",
+   "movie.originatesFrom: tay=one tự xây=many",
+   "movie.partOfSeries: tay=one tự xây=many",
+   "politics.memberOf: tay=one tự xây=many",
+   "soccer.playsPosition: tay=many tự xây=one",
+   "soccer.hasHomeVenue: tay=many tự xây=one"
+  ],
+  "subj_cardinality": [
+   "nba.hasHomeVenue: tay=one tự xây=many",
+   "politics.foundedBy: tay=one tự xây=many",
+   "soccer.hasHomeVenue: tay=one tự xây=many"
+  ]
+ }
+}

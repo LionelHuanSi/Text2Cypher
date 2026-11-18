@@ -1,0 +1,132 @@
+{
+ "n": 210,
+ "overall": {
+  "execution_accuracy": 0.1619,
+  "psjs": 0.2597,
+  "executable": 0.8667
+ },
+ "EX_ci95": [
+  0.1143,
+  0.2095
+ ],
+ "by_graph": {
+  "company": {
+   "n": 30,
+   "execution_accuracy": 0.1333,
+   "psjs": 0.2315,
+   "executable": 0.9
+  },
+  "fictional_character": {
+   "n": 30,
+   "execution_accuracy": 0.1333,
+   "psjs": 0.3289,
+   "executable": 0.7
+  },
+  "flight_accident": {
+   "n": 30,
+   "execution_accuracy": 0.2333,
+   "psjs": 0.2326,
+   "executable": 0.8333
+  },
+  "geography": {
+   "n": 30,
+   "execution_accuracy": 0.1667,
+   "psjs": 0.3476,
+   "executable": 0.9333
+  },
+  "movie": {
+   "n": 30,
+   "execution_accuracy": 0.1,
+   "psjs": 0.1756,
+   "executable": 0.9333
+  },
+  "nba": {
+   "n": 30,
+   "execution_accuracy": 0.2333,
+   "psjs": 0.2883,
+   "executable": 0.9
+  },
+  "politics": {
+   "n": 30,
+   "execution_accuracy": 0.1333,
+   "psjs": 0.2135,
+   "executable": 0.8667
+  }
+ },
+ "by_match": {
+  "basic_(n)": {
+   "n": 4,
+   "EX": 1.0
+  },
+  "basic_(n)-(m0)": {
+   "n": 5,
+   "EX": 0.0
+  },
+  "basic_(n)-(m0)-(m1*)": {
+   "n": 19,
+   "EX": 0.1579
+  },
+  "basic_(n)-(m0*)": {
+   "n": 28,
+   "EX": 0.5357
+  },
+  "basic_(n)-(m0*),(n)-(m1*)": {
+   "n": 32,
+   "EX": 0.0
+  },
+  "basic_(n)=(m0)": {
+   "n": 9,
+   "EX": 0.0
+  },
+  "basic_(n*)": {
+   "n": 10,
+   "EX": 0.5
+  },
+  "special_comparison": {
+   "n": 19,
+   "EX": 0.1053
+  },
+  "special_optional-match": {
+   "n": 26,
+   "EX": 0.0
+  },
+  "special_three-node-groupby": {
+   "n": 21,
+   "EX": 0.0
+  },
+  "special_time-sensitive": {
+   "n": 5,
+   "EX": 0.0
+  },
+  "special_union": {
+   "n": 32,
+   "EX": 0.1562
+  }
+ },
+ "by_return": {
+  "n_agg": {
+   "n": 11,
+   "EX": 0.4545
+  },
+  "n_argmax": {
+   "n": 5,
+   "EX": 0.0
+  },
+  "n_name": {
+   "n": 35,
+   "EX": 0.1714
+  },
+  "n_order_by": {
+   "n": 7,
+   "EX": 0.0
+  },
+  "n_prop_combined": {
+   "n": 48,
+   "EX": 0.3333
+  },
+  "n_where": {
+   "n": 1,
+   "EX": 0.0
+  }
+ }
+}

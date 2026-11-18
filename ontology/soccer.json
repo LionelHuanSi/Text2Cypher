@@ -1,0 +1,936 @@
+{
+ "graph": "soccer",
+ "source": "bolt://localhost:15069",
+ "builder_version": "0.1",
+ "entities": [
+  {
+   "label": "Award",
+   "count": 137,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q15229207",
+     "support": 0.8,
+     "label": "sports award",
+     "description": "type of award; object (cup, medal...) awarded to a sports winner",
+     "aliases": [
+      "sports cup",
+      "sports trophy",
+      "sport medal",
+      "sport award",
+      "sports medal"
+     ]
+    },
+    {
+     "qid": "Q107655869",
+     "support": 0.1,
+     "label": "group of awards",
+     "description": "award group or series",
+     "aliases": [
+      "award group",
+      "category of awards",
+      "award category",
+      "set of awards"
+     ]
+    },
+    {
+     "qid": "Q4121104",
+     "support": 0.1,
+     "label": "sports title",
+     "description": "title in sports",
+     "aliases": [
+      "sport title",
+      "titles"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Club",
+   "count": 31160,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "country": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 229
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "head_coach": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 2808
+    },
+    "inception_year": {
+     "types": [
+      "Long"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "owners": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 728
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q476028",
+     "support": 0.9,
+     "label": "association football club",
+     "description": "sports club devoted to association football (soccer)",
+     "aliases": [
+      "football club",
+      "soccer club",
+      "association soccer club",
+      "FC",
+      "F.C."
+     ]
+    },
+    {
+     "qid": "Q51481377",
+     "support": 0.05,
+     "label": "women's association football club",
+     "description": "association football club with women's team",
+     "aliases": [
+      "women's soccer club",
+      "women's association soccer club"
+     ]
+    },
+    {
+     "qid": "Q94579592",
+     "support": 0.05,
+     "label": "defunct association football club",
+     "description": "football club that no longer exists",
+     "aliases": [
+      "former association football club",
+      "defunct soccer club"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "League",
+   "count": 914,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q15991303",
+     "support": 0.95,
+     "label": "association football league",
+     "description": "league of association football that take place across a country or to a local area of a country",
+     "aliases": [
+      "soccer league",
+      "football league",
+      "association football series",
+      "soccer series",
+      "football series",
+      "association soccer series",
+      "association soccer league"
+     ]
+    },
+    {
+     "qid": "Q18608583",
+     "support": 0.1,
+     "label": "recurring sporting event",
+     "description": "sports event scheduled to recur within a decided interval",
+     "aliases": [
+      "recurring sport event",
+      "recurring sport competition",
+      "recurring sports competition",
+      "sporting event",
+      "sporting event series",
+      "recurring sports event"
+     ]
+    },
+    {
+     "qid": "Q135641755",
+     "support": 0.05,
+     "label": "women's association football league",
+     "description": "association football league for women's teams",
+     "aliases": [
+      "women's soccer league",
+      "women's football league"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Player",
+   "count": 237143,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "country_of_citizenship": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 326
+    },
+    "date_of_birth": {
+     "types": [
+      "Date"
+     ]
+    },
+    "date_of_death": {
+     "types": [
+      "Date"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "footedness": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 3,
+     "vocab": [
+      "right-footedness",
+      "left-footedness",
+      "ambidexterity"
+     ]
+    },
+    "gender": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 5,
+     "vocab": [
+      "male",
+      "female",
+      "trans woman",
+      "non-binary",
+      "trans man"
+     ]
+    },
+    "height_cm": {
+     "types": [
+      "Double"
+     ]
+    },
+    "mass_kg": {
+     "types": [
+      "Double"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "nicknames": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 1351
+    },
+    "place_of_birth": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 29417
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "schools_attended": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 5403
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q5",
+     "support": 1.0,
+     "label": "human",
+     "description": "any single member of Homo sapiens, unique extant species of the genus Homo",
+     "aliases": [
+      "human being",
+      "people",
+      "nonfictional human",
+      "non-fictional human",
+      "individual Homo sapiens",
+      "modern human",
+      "person"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Position",
+   "count": 29,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q4611891",
+     "support": 1.0,
+     "label": "association football position",
+     "description": "overview about the association football positions",
+     "aliases": [
+      "soccer position",
+      "football position",
+      "Association football positions"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Venue",
+   "count": 5802,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q483110",
+     "support": 0.75,
+     "label": "stadium",
+     "description": "place or venue for (mostly) outdoor sports, concerts, or other events",
+     "aliases": [
+      "sports stadium",
+      "sport stadium",
+      "sports arena",
+      "stadiums",
+      "🏟️",
+      "stadium facility"
+     ]
+    },
+    {
+     "qid": "Q1154710",
+     "support": 0.35,
+     "label": "association football venue",
+     "description": "sports venue for association football",
+     "aliases": [
+      "soccer stadium",
+      "soccer-specific stadium",
+      "football stadium",
+      "association football stadium",
+      "association soccer venue",
+      "association soccer stadium",
+      "soccer venue",
+      "football venue"
+     ]
+    },
+    {
+     "qid": "Q641226",
+     "support": 0.05,
+     "label": "arena",
+     "description": "enclosed area designed to host sporting events, theater, and musical performances",
+     "aliases": [
+      "events centre",
+      "indoor sports facility",
+      "indoor sports venue"
+     ]
+    }
+   ]
+  }
+ ],
+ "relations": [
+  {
+   "label": "playsFor",
+   "subj_label": "Player",
+   "obj_label": "Club",
+   "n_edges": 886005,
+   "properties": {
+    "end_year": [
+     "Long"
+    ],
+    "start_year": [
+     "Long"
+    ],
+    "sport_number": [
+     "Long"
+    ]
+   },
+   "temporal_properties": {
+    "end_year": [
+     "Long"
+    ],
+    "start_year": [
+     "Long"
+    ]
+   },
+   "stats": {
+    "subj_participation": 0.9978,
+    "obj_participation": 0.569,
+    "objs_per_subj": {
+     "avg": 3.422,
+     "max": 31,
+     "frac_one": 0.4022
+    },
+    "subjs_per_obj": {
+     "avg": 45.673,
+     "max": 1432,
+     "frac_one": 0.184
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P54",
+      "direction": "forward",
+      "support": 0.917,
+      "label": "member of sports team",
+      "description": "sports teams or clubs that the subject represents or represented",
+      "aliases": [
+       "member of team",
+       "team",
+       "played for",
+       "teams played for",
+       "of team",
+       "club played for",
+       "player of",
+       "part of team"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": true,
+    "interval_properties": [
+     "end_year",
+     "start_year"
+    ],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": true,
+    "mandatory_obj": false,
+    "transitive": false,
+    "wikidata_pid": "P54",
+    "wikidata_direction": "forward",
+    "meaning": "sports teams or clubs that the subject represents or represented",
+    "reading": "member of sports team",
+    "aliases": [
+     "member of team",
+     "team",
+     "played for",
+     "teams played for",
+     "of team",
+     "club played for",
+     "player of",
+     "part of team"
+    ]
+   }
+  },
+  {
+   "label": "playsPosition",
+   "subj_label": "Player",
+   "obj_label": "Position",
+   "n_edges": 207589,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.8574,
+    "obj_participation": 1.0,
+    "objs_per_subj": {
+     "avg": 1.021,
+     "max": 5,
+     "frac_one": 0.9798
+    },
+    "subjs_per_obj": {
+     "avg": 7158.241,
+     "max": 67008,
+     "frac_one": 0.069
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P413",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "position played on team / speciality",
+      "description": "position or specialism of a player on a team",
+      "aliases": [
+       "fielding position",
+       "specialism",
+       "position (on team)",
+       "speciality",
+       "player position",
+       "position"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P413",
+    "wikidata_direction": "forward",
+    "meaning": "position or specialism of a player on a team",
+    "reading": "position played on team / speciality",
+    "aliases": [
+     "fielding position",
+     "specialism",
+     "position (on team)",
+     "speciality",
+     "player position",
+     "position"
+    ]
+   }
+  },
+  {
+   "label": "receivesAward",
+   "subj_label": "Player",
+   "obj_label": "Award",
+   "n_edges": 2190,
+   "properties": {
+    "year": [
+     "Long"
+    ]
+   },
+   "temporal_properties": {
+    "year": [
+     "Long"
+    ]
+   },
+   "stats": {
+    "subj_participation": 0.0072,
+    "obj_participation": 1.0,
+    "objs_per_subj": {
+     "avg": 1.214,
+     "max": 22,
+     "frac_one": 0.8518
+    },
+    "subjs_per_obj": {
+     "avg": 15.124,
+     "max": 796,
+     "frac_one": 0.4015
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P166",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "award received",
+      "description": "award or recognition received by a person, organization or creative work",
+      "aliases": [
+       "prize received",
+       "awards",
+       "honorary title",
+       "recognition title",
+       "award",
+       "honours",
+       "honors",
+       "medals"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [
+     "year"
+    ],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P166",
+    "wikidata_direction": "forward",
+    "meaning": "award or recognition received by a person, organization or creative work",
+    "reading": "award received",
+    "aliases": [
+     "prize received",
+     "awards",
+     "honorary title",
+     "recognition title",
+     "award",
+     "honours",
+     "honors",
+     "medals"
+    ]
+   }
+  },
+  {
+   "label": "hasHomeVenue",
+   "subj_label": "Club",
+   "obj_label": "Venue",
+   "n_edges": 9248,
+   "properties": {
+    "end_year": [
+     "Long"
+    ],
+    "start_year": [
+     "Long"
+    ]
+   },
+   "temporal_properties": {
+    "end_year": [
+     "Long"
+    ],
+    "start_year": [
+     "Long"
+    ]
+   },
+   "stats": {
+    "subj_participation": 0.2862,
+    "obj_participation": 0.9885,
+    "objs_per_subj": {
+     "avg": 1.03,
+     "max": 8,
+     "frac_one": 0.9773
+    },
+    "subjs_per_obj": {
+     "avg": 1.602,
+     "max": 29,
+     "frac_one": 0.6895
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P115",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "home venue",
+      "description": "home stadium or venue of a sports team or performing arts organization",
+      "aliases": [
+       "ground",
+       "home field",
+       "arena",
+       "home ground",
+       "stadium",
+       "ballpark",
+       "home water",
+       "venue"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P466",
+      "direction": "inverse",
+      "support": 0.75,
+      "label": "occupant",
+      "description": "person or organization occupying property",
+      "aliases": [
+       "tenant",
+       "inhabitant",
+       "renter",
+       "lessee",
+       "houses",
+       "location of",
+       "resident",
+       "home team"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P1830",
+      "direction": "forward",
+      "support": 0.083,
+      "label": "owner of",
+      "description": "entities owned by the subject",
+      "aliases": [
+       "owns",
+       "shareholder of",
+       "owns property",
+       "item owned"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": false,
+      "inverse_property": "P127"
+     },
+     {
+      "pid": "P127",
+      "direction": "inverse",
+      "support": 0.083,
+      "label": null,
+      "description": null,
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": true,
+    "interval_properties": [
+     "end_year",
+     "start_year"
+    ],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P115",
+    "wikidata_direction": "forward",
+    "meaning": "home stadium or venue of a sports team or performing arts organization",
+    "reading": "home venue",
+    "aliases": [
+     "ground",
+     "home field",
+     "arena",
+     "home ground",
+     "stadium",
+     "ballpark",
+     "home water",
+     "venue"
+    ]
+   }
+  },
+  {
+   "label": "partOfLeague",
+   "subj_label": "Club",
+   "obj_label": "League",
+   "n_edges": 14734,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.4646,
+    "obj_participation": 0.9814,
+    "objs_per_subj": {
+     "avg": 1.018,
+     "max": 4,
+     "frac_one": 0.9858
+    },
+    "subjs_per_obj": {
+     "avg": 16.426,
+     "max": 392,
+     "frac_one": 0.1271
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P118",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "league or competition",
+      "description": "league or competition in which team or player has played, or in which an event occurs",
+      "aliases": [
+       "division",
+       "sports league",
+       "cup",
+       "tournament",
+       "competition"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P118",
+    "wikidata_direction": "forward",
+    "meaning": "league or competition in which team or player has played, or in which an event occurs",
+    "reading": "league or competition",
+    "aliases": [
+     "division",
+     "sports league",
+     "cup",
+     "tournament",
+     "competition"
+    ]
+   }
+  }
+ ],
+ "qid_key": "eid",
+ "build_seconds": 3.3
+}

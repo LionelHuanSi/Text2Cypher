@@ -1,0 +1,1124 @@
+{
+ "graph": "nba",
+ "source": "bolt://localhost:15067",
+ "builder_version": "0.1",
+ "entities": [
+  {
+   "label": "Award",
+   "count": 28,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q15229207",
+     "support": 0.7,
+     "label": "sports award",
+     "description": "type of award; object (cup, medal...) awarded to a sports winner",
+     "aliases": [
+      "sports cup",
+      "sports trophy",
+      "sport medal",
+      "sport award",
+      "sports medal"
+     ]
+    },
+    {
+     "qid": "Q652965",
+     "support": 0.25,
+     "label": "most valuable player award",
+     "description": "award in sports",
+     "aliases": [
+      "MVP",
+      "MVP award",
+      "most valuable player"
+     ]
+    },
+    {
+     "qid": "Q107655869",
+     "support": 0.05,
+     "label": "group of awards",
+     "description": "award group or series",
+     "aliases": [
+      "award group",
+      "category of awards",
+      "award category",
+      "set of awards"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Conference",
+   "count": 2,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q2992826",
+     "support": 1.0,
+     "label": "athletic conference",
+     "description": "collection of sports teams, playing competitively against each other, sometimes subdivided into divisions",
+     "aliases": [
+      "conference",
+      "association",
+      "sports conference"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Division",
+   "count": 6,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q3032333",
+     "support": 1.0,
+     "label": "sports division",
+     "description": "group of sports teams who compete against each other for a championship",
+     "aliases": [
+      "division",
+      "tournament division"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Player",
+   "count": 4148,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "country_of_citizenship": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 96
+    },
+    "date_of_birth": {
+     "types": [
+      "Date"
+     ]
+    },
+    "date_of_death": {
+     "types": [
+      "Date"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "gender": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 2,
+     "vocab": [
+      "male",
+      "female"
+     ]
+    },
+    "handedness": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 2,
+     "vocab": [
+      "right-handedness",
+      "left-handedness"
+     ]
+    },
+    "height_cm": {
+     "types": [
+      "Double"
+     ]
+    },
+    "mass_kg": {
+     "types": [
+      "Double"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "nicknames": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 391
+    },
+    "place_of_birth": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 1437
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "schools_attended": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 2513
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q5",
+     "support": 1.0,
+     "label": "human",
+     "description": "any single member of Homo sapiens, unique extant species of the genus Homo",
+     "aliases": [
+      "human being",
+      "people",
+      "nonfictional human",
+      "non-fictional human",
+      "individual Homo sapiens",
+      "modern human",
+      "person"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Position",
+   "count": 8,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q1148974",
+     "support": 1.0,
+     "label": "basketball position",
+     "description": "positions played in basketball",
+     "aliases": []
+    }
+   ]
+  },
+  {
+   "label": "Team",
+   "count": 30,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "head_coach": {
+     "types": [
+      "String"
+     ],
+     "n_distinct": 28
+    },
+    "inception_year": {
+     "types": [
+      "Long"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "owners": {
+     "types": [
+      "StringArray"
+     ],
+     "n_distinct": 28
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q13393265",
+     "support": 1.0,
+     "label": "basketball team",
+     "description": "collective name of a constituted group of players of basketball",
+     "aliases": [
+      "basket club"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "Venue",
+   "count": 105,
+   "properties": {
+    "aliases": {
+     "types": [
+      "StringArray"
+     ]
+    },
+    "description": {
+     "types": [
+      "String"
+     ]
+    },
+    "eid": {
+     "types": [
+      "String"
+     ]
+    },
+    "name": {
+     "types": [
+      "String"
+     ]
+    },
+    "provenance": {
+     "types": [
+      "StringArray"
+     ]
+    }
+   },
+   "wikidata_classes": [
+    {
+     "qid": "Q641226",
+     "support": 0.7,
+     "label": "arena",
+     "description": "enclosed area designed to host sporting events, theater, and musical performances",
+     "aliases": [
+      "events centre",
+      "indoor sports facility",
+      "indoor sports venue"
+     ]
+    },
+    {
+     "qid": "Q27951514",
+     "support": 0.15,
+     "label": "indoor arena",
+     "description": "arena covered by roof and walls",
+     "aliases": [
+      "covered arena"
+     ]
+    },
+    {
+     "qid": "Q1763828",
+     "support": 0.15,
+     "label": "multi-purpose hall",
+     "description": "building usable for various events (sports, culture, etc.)",
+     "aliases": [
+      "indoor multi-purpose arena",
+      "multi-purpose arena",
+      "multi-purpose indoor arena",
+      "multipurpose hall",
+      "multifunctional hall",
+      "multifunctional arena",
+      "multi-purpose auditorium",
+      "multi-purpose venue"
+     ]
+    }
+   ]
+  }
+ ],
+ "relations": [
+  {
+   "label": "playsFor",
+   "subj_label": "Player",
+   "obj_label": "Team",
+   "n_edges": 10223,
+   "properties": {
+    "sport_number": [
+     "Long"
+    ],
+    "start_year": [
+     "Long"
+    ],
+    "end_year": [
+     "Long"
+    ]
+   },
+   "temporal_properties": {
+    "start_year": [
+     "Long"
+    ],
+    "end_year": [
+     "Long"
+    ]
+   },
+   "stats": {
+    "subj_participation": 1.0,
+    "obj_participation": 1.0,
+    "objs_per_subj": {
+     "avg": 2.45,
+     "max": 13,
+     "frac_one": 0.4421
+    },
+    "subjs_per_obj": {
+     "avg": 338.767,
+     "max": 508,
+     "frac_one": 0.0
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P54",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "member of sports team",
+      "description": "sports teams or clubs that the subject represents or represented",
+      "aliases": [
+       "member of team",
+       "team",
+       "played for",
+       "teams played for",
+       "of team",
+       "club played for",
+       "player of",
+       "part of team"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P647",
+      "direction": "forward",
+      "support": 0.583,
+      "label": "drafted by",
+      "description": "which team the player was drafted by",
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": true,
+    "interval_properties": [
+     "end_year",
+     "start_year"
+    ],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": true,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P54",
+    "wikidata_direction": "forward",
+    "meaning": "sports teams or clubs that the subject represents or represented",
+    "reading": "member of sports team",
+    "aliases": [
+     "member of team",
+     "team",
+     "played for",
+     "teams played for",
+     "of team",
+     "club played for",
+     "player of",
+     "part of team"
+    ]
+   }
+  },
+  {
+   "label": "draftedBy",
+   "subj_label": "Player",
+   "obj_label": "Team",
+   "n_edges": 2889,
+   "properties": {
+    "year": [
+     "Long"
+    ]
+   },
+   "temporal_properties": {
+    "year": [
+     "Long"
+    ]
+   },
+   "stats": {
+    "subj_participation": 0.6962,
+    "obj_participation": 1.0,
+    "objs_per_subj": {
+     "avg": 1.0,
+     "max": 2,
+     "frac_one": 0.9997
+    },
+    "subjs_per_obj": {
+     "avg": 96.3,
+     "max": 169,
+     "frac_one": 0.0
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P647",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "drafted by",
+      "description": "which team the player was drafted by",
+      "aliases": [],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P54",
+      "direction": "forward",
+      "support": 0.5,
+      "label": "member of sports team",
+      "description": "sports teams or clubs that the subject represents or represented",
+      "aliases": [
+       "member of team",
+       "team",
+       "played for",
+       "teams played for",
+       "of team",
+       "club played for",
+       "player of",
+       "part of team"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [
+     "year"
+    ],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P647",
+    "wikidata_direction": "forward",
+    "meaning": "which team the player was drafted by",
+    "reading": "drafted by",
+    "aliases": []
+   }
+  },
+  {
+   "label": "playsPosition",
+   "subj_label": "Player",
+   "obj_label": "Position",
+   "n_edges": 5127,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 0.9764,
+    "obj_participation": 1.0,
+    "objs_per_subj": {
+     "avg": 1.266,
+     "max": 5,
+     "frac_one": 0.7442
+    },
+    "subjs_per_obj": {
+     "avg": 640.875,
+     "max": 1096,
+     "frac_one": 0.125
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P413",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "position played on team / speciality",
+      "description": "position or specialism of a player on a team",
+      "aliases": [
+       "fielding position",
+       "specialism",
+       "position (on team)",
+       "speciality",
+       "player position",
+       "position"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": true,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P413",
+    "wikidata_direction": "forward",
+    "meaning": "position or specialism of a player on a team",
+    "reading": "position played on team / speciality",
+    "aliases": [
+     "fielding position",
+     "specialism",
+     "position (on team)",
+     "speciality",
+     "player position",
+     "position"
+    ]
+   }
+  },
+  {
+   "label": "receivesAward",
+   "subj_label": "Player",
+   "obj_label": "Award",
+   "n_edges": 598,
+   "properties": {
+    "year": [
+     "Long"
+    ]
+   },
+   "temporal_properties": {
+    "year": [
+     "Long"
+    ]
+   },
+   "stats": {
+    "subj_participation": 0.0364,
+    "obj_participation": 1.0,
+    "objs_per_subj": {
+     "avg": 1.781,
+     "max": 8,
+     "frac_one": 0.5762
+    },
+    "subjs_per_obj": {
+     "avg": 9.607,
+     "max": 66,
+     "frac_one": 0.4643
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P166",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "award received",
+      "description": "award or recognition received by a person, organization or creative work",
+      "aliases": [
+       "prize received",
+       "awards",
+       "honorary title",
+       "recognition title",
+       "award",
+       "honours",
+       "honors",
+       "medals"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [
+     "year"
+    ],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": false,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P166",
+    "wikidata_direction": "forward",
+    "meaning": "award or recognition received by a person, organization or creative work",
+    "reading": "award received",
+    "aliases": [
+     "prize received",
+     "awards",
+     "honorary title",
+     "recognition title",
+     "award",
+     "honours",
+     "honors",
+     "medals"
+    ]
+   }
+  },
+  {
+   "label": "hasHomeVenue",
+   "subj_label": "Team",
+   "obj_label": "Venue",
+   "n_edges": 118,
+   "properties": {
+    "start_year": [
+     "Long"
+    ],
+    "end_year": [
+     "Long"
+    ]
+   },
+   "temporal_properties": {
+    "start_year": [
+     "Long"
+    ],
+    "end_year": [
+     "Long"
+    ]
+   },
+   "stats": {
+    "subj_participation": 1.0,
+    "obj_participation": 1.0,
+    "objs_per_subj": {
+     "avg": 3.733,
+     "max": 8,
+     "frac_one": 0.1333
+    },
+    "subjs_per_obj": {
+     "avg": 1.067,
+     "max": 2,
+     "frac_one": 0.9333
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P115",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "home venue",
+      "description": "home stadium or venue of a sports team or performing arts organization",
+      "aliases": [
+       "ground",
+       "home field",
+       "arena",
+       "home ground",
+       "stadium",
+       "ballpark",
+       "home water",
+       "venue"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     },
+     {
+      "pid": "P466",
+      "direction": "inverse",
+      "support": 0.75,
+      "label": "occupant",
+      "description": "person or organization occupying property",
+      "aliases": [
+       "tenant",
+       "inhabitant",
+       "renter",
+       "lessee",
+       "houses",
+       "location of",
+       "resident",
+       "home team"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": true,
+    "interval_properties": [
+     "end_year",
+     "start_year"
+    ],
+    "event_time_properties": [],
+    "obj_cardinality": "many",
+    "subj_cardinality": "many",
+    "mandatory_subj": true,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P115",
+    "wikidata_direction": "forward",
+    "meaning": "home stadium or venue of a sports team or performing arts organization",
+    "reading": "home venue",
+    "aliases": [
+     "ground",
+     "home field",
+     "arena",
+     "home ground",
+     "stadium",
+     "ballpark",
+     "home water",
+     "venue"
+    ]
+   }
+  },
+  {
+   "label": "partOfDivision",
+   "subj_label": "Team",
+   "obj_label": "Division",
+   "n_edges": 30,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 1.0,
+    "obj_participation": 1.0,
+    "objs_per_subj": {
+     "avg": 1.0,
+     "max": 1,
+     "frac_one": 1.0
+    },
+    "subjs_per_obj": {
+     "avg": 5.0,
+     "max": 5,
+     "frac_one": 0.0
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 12,
+    "candidates": [
+     {
+      "pid": "P527",
+      "direction": "inverse",
+      "support": 1.0,
+      "label": "has part(s)",
+      "description": "part of this subject; inverse property of \"part of\" (P361). See also \"has parts of the class\" (P2670).",
+      "aliases": [
+       "formed from",
+       "formed out of",
+       "assembled from",
+       "assembled out of",
+       "created from",
+       "created out of",
+       "amalgamation of",
+       "set of"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": true,
+      "inverse_property": "P361"
+     },
+     {
+      "pid": "P361",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "part of",
+      "description": "object of which the subject is a part (as directly as possible); inverse property of \"has part\" (P527, see also \"has parts of the class\" (P2670))",
+      "aliases": [
+       "meronym of",
+       "section of",
+       "system of",
+       "subsystem of",
+       "subassembly of",
+       "contained within",
+       "assembly of",
+       "part of-property"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": true,
+      "inverse_property": "P527"
+     },
+     {
+      "pid": "P1346",
+      "direction": "inverse",
+      "support": 0.167,
+      "label": "winner",
+      "description": "winner of a competition or similar event, not to be used from the awardees record (instead use \"award received\" (P166), possibly qualified with \"for work\" (P1686)) nor for wars or battles",
+      "aliases": [
+       "won by",
+       "victor",
+       "champion",
+       "winners",
+       "champ",
+       "top dog",
+       "leader",
+       "titleholder"
+      ],
+      "symmetric": false,
+      "single_value": true,
+      "transitive": false,
+      "inverse_property": null
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": true,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P361",
+    "wikidata_direction": "forward",
+    "meaning": "object of which the subject is a part (as directly as possible); inverse property of \"has part\" (P527, see also \"has parts of the class\" (P2670))",
+    "reading": "part of",
+    "aliases": [
+     "meronym of",
+     "section of",
+     "system of",
+     "subsystem of",
+     "subassembly of",
+     "contained within",
+     "assembly of",
+     "part of-property"
+    ]
+   }
+  },
+  {
+   "label": "partOfConference",
+   "subj_label": "Division",
+   "obj_label": "Conference",
+   "n_edges": 6,
+   "properties": {},
+   "temporal_properties": {},
+   "stats": {
+    "subj_participation": 1.0,
+    "obj_participation": 1.0,
+    "objs_per_subj": {
+     "avg": 1.0,
+     "max": 1,
+     "frac_one": 1.0
+    },
+    "subjs_per_obj": {
+     "avg": 3.0,
+     "max": 3,
+     "frac_one": 0.0
+    },
+    "reciprocity": null
+   },
+   "wikidata": {
+    "n_sample_edges": 6,
+    "candidates": [
+     {
+      "pid": "P527",
+      "direction": "inverse",
+      "support": 1.0,
+      "label": "has part(s)",
+      "description": "part of this subject; inverse property of \"part of\" (P361). See also \"has parts of the class\" (P2670).",
+      "aliases": [
+       "formed from",
+       "formed out of",
+       "assembled from",
+       "assembled out of",
+       "created from",
+       "created out of",
+       "amalgamation of",
+       "set of"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": true,
+      "inverse_property": "P361"
+     },
+     {
+      "pid": "P361",
+      "direction": "forward",
+      "support": 1.0,
+      "label": "part of",
+      "description": "object of which the subject is a part (as directly as possible); inverse property of \"has part\" (P527, see also \"has parts of the class\" (P2670))",
+      "aliases": [
+       "meronym of",
+       "section of",
+       "system of",
+       "subsystem of",
+       "subassembly of",
+       "contained within",
+       "assembly of",
+       "part of-property"
+      ],
+      "symmetric": false,
+      "single_value": false,
+      "transitive": true,
+      "inverse_property": "P527"
+     }
+    ]
+   },
+   "inferred": {
+    "symmetric": false,
+    "symmetric_evidence": [],
+    "time_sensitive": false,
+    "interval_properties": [],
+    "event_time_properties": [],
+    "obj_cardinality": "one",
+    "subj_cardinality": "many",
+    "mandatory_subj": true,
+    "mandatory_obj": true,
+    "transitive": false,
+    "wikidata_pid": "P361",
+    "wikidata_direction": "forward",
+    "meaning": "object of which the subject is a part (as directly as possible); inverse property of \"has part\" (P527, see also \"has parts of the class\" (P2670))",
+    "reading": "part of",
+    "aliases": [
+     "meronym of",
+     "section of",
+     "system of",
+     "subsystem of",
+     "subassembly of",
+     "contained within",
+     "assembly of",
+     "part of-property"
+    ]
+   }
+  }
+ ],
+ "qid_key": "eid",
+ "build_seconds": 1.3
+}

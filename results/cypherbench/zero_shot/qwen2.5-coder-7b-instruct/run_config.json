@@ -1,0 +1,21 @@
+{
+ "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+ "backend": "mlx_lm",
+ "dtype": "bf16 (weights as published)",
+ "split": "test",
+ "graphs": [
+  "company",
+  "fictional_character",
+  "flight_accident",
+  "geography",
+  "movie",
+  "nba",
+  "politics"
+ ],
+ "n": 2348,
+ "decoding": "greedy",
+ "max_tokens": 512,
+ "stop": "\n```",
+ "prompt": "NL2CYPHER_PROMPT_DEFAULT as single user message",
+ "machine": "macOS-26.4.1-arm64-arm-64bit"
+}

@@ -1,0 +1,84 @@
+# CypherBench test graphs (image chính thức của tác giả, giống references/cypherbench/docker/docker-compose-test.yml)
+# Chỉ mở cổng trên 127.0.0.1. Mật khẩu "cypherbench" là mặc định công khai của benchmark.
+# Khác bản gốc: container CHỈ chạy Neo4j. Loader của image giữ cả JSON trong RAM nên bị OOM với
+# movie/politics trong VM Docker ~7,6 GB, và báo lỗi làm container tắt nếu DB đã có dữ liệu.
+# Dữ liệu được nạp từ host bằng đúng loader.py của image: scripts/cb_load_graph.sh <graph>.
+x-neo4j: &neo4j
+  image: megagonlabs/neo4j-with-loader:2.4
+  entrypoint: ["tini", "-g", "--", "/startup/docker-entrypoint.sh"]
+  command: ["neo4j"]
+  environment:
+    NEO4J_AUTH: neo4j/cypherbench
+    NEO4J_server_http__enabled__modules: "TRANSACTIONAL_ENDPOINTS,UNMANAGED_EXTENSIONS,ENTERPRISE_MANAGEMENT_ENDPOINTS"
+    NEO4J_PLUGINS: '["apoc", "graph-data-science"]'
+services:
+  flight-accident:
+    <<: *neo4j
+    container_name: cypherbench-flight-accident
+    volumes:
+      - ../../data/cypherbench/raw/graphs/simplekg/flight_accident_simplekg.json:/init/graph.json:ro
+    ports:
+      - "127.0.0.1:15064:7687"
+  nba:
+    <<: *neo4j
+    container_name: cypherbench-nba
+    volumes:
+      - ../../data/cypherbench/raw/graphs/simplekg/nba_simplekg.json:/init/graph.json:ro
+    ports:
+      - "127.0.0.1:15067:7687"
+  company:
+    <<: *neo4j
+    container_name: cypherbench-company
+    volumes:
+      - ../../data/cypherbench/raw/graphs/simplekg/company_simplekg.json:/init/graph.json:ro
+    ports:
+      - "127.0.0.1:15062:7687"
+  fictional-character:
+    <<: *neo4j
+    container_name: cypherbench-fictional-character
+    volumes:
+      - ../../data/cypherbench/raw/graphs/simplekg/fictional_character_simplekg.json:/init/graph.json:ro
+    ports:
+      - "127.0.0.1:15063:7687"
+  geography:
+    <<: *neo4j
+    container_name: cypherbench-geography
+    volumes:
+      - ../../data/cypherbench/raw/graphs/simplekg/geography_simplekg.json:/init/graph.json:ro
+    ports:
+      - "127.0.0.1:15065:7687"
+  movie:
+    <<: *neo4j
+    container_name: cypherbench-movie
+    volumes:
+      - ../../data/cypherbench/raw/graphs/simplekg/movie_simplekg.json:/init/graph.json:ro
+    ports:
+      - "127.0.0.1:15066:7687"
+  politics:
+    <<: *neo4j
+    container_name: cypherbench-politics
+    volumes:
+      - ../../data/cypherbench/raw/graphs/simplekg/politics_simplekg.json:/init/graph.json:ro
+    ports:
+      - "127.0.0.1:15068:7687"
+  art:
+    <<: *neo4j
+    container_name: cypherbench-art
+    volumes:
+      - ../../data/cypherbench/raw/graphs/simplekg/art_simplekg.json:/init/graph.json:ro
+    ports:
+      - "127.0.0.1:15060:7687"
+  soccer:
+    <<: *neo4j
+    container_name: cypherbench-soccer
+    volumes:
+      - ../../data/cypherbench/raw/graphs/simplekg/soccer_simplekg.json:/init/graph.json:ro
+    ports:
+      - "127.0.0.1:15069:7687"
+  terrorist-attack:
+    <<: *neo4j
+    container_name: cypherbench-terrorist-attack
+    volumes:
+      - ../../data/cypherbench/raw/graphs/simplekg/terrorist_attack_simplekg.json:/init/graph.json:ro
+    ports:
+      - "127.0.0.1:15070:7687"

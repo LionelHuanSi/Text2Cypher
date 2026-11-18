@@ -1,0 +1,148 @@
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 3542.76it/s]
+826/2348 16s
+851/2348 158s
+876/2348 303s
+901/2348 432s
+926/2348 548s
+951/2348 655s
+976/2348 812s
+1001/2348 959s
+1026/2348 1102s
+1051/2348 1266s
+1076/2348 1405s
+1101/2348 1536s
+1151/2348 1800s
+1176/2348 1942s
+1201/2348 2097s
+1226/2348 2223s
+1251/2348 2361s
+1301/2348 2663s
+1326/2348 2788s
+1401/2348 3189s
+1426/2348 3321s
+1451/2348 3448s
+1476/2348 3594s
+1501/2348 3710s
+1551/2348 3974s
+1576/2348 4122s
+1626/2348 4391s
+1651/2348 4512s
+1676/2348 4654s
+1701/2348 4796s
+1726/2348 4913s
+1751/2348 5067s
+1776/2348 5191s
+1801/2348 5333s
+1826/2348 5481s
+1851/2348 5623s
+1876/2348 5787s
+1901/2348 5945s
+1926/2348 6070s
+1976/2348 6349s
+2001/2348 6492s
+2101/2348 8963s
+2151/2348 9275s
+2176/2348 9418s
+2226/2348 9665s
+2251/2348 9784s
+2276/2348 9943s
+2301/2348 10101s
+2326/2348 10248s
+done 10347.57512331009
+gen done:     2348
+== load movie
+ Container cypherbench-movie Recreate 
+ Container cypherbench-movie Recreated 
+ Container cypherbench-movie Starting 
+ Container cypherbench-movie Started 
+    raise Neo4jError.hydrate(**metadata)
+neo4j.exceptions.TransientError: {code: Neo.TransientError.General.MemoryPoolOutOfMemoryError} {message: The allocation of an extra 2.0 MiB would use more than the limit 1.3 GiB. Currently using 1.3 GiB. dbms.memory.transaction.total.max threshold reached}
+== load politics
+ Container cypherbench-politics Creating 
+ Container cypherbench-politics Created 
+ Container cypherbench-politics Starting 
+ Container cypherbench-politics Started 
+Loading 4452 relations with schema memberOf#Country#InternationalOrganization
+Loaded 885188 entities and 1548416 relations
+== company
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: foundedBy)} {position: line: 2, column: 21, offset: 67} for query: "MATCH (c:Company)-[o:operatesIn]->(i:Industry)\nWHERE 'Canada' IN c.foundedBy.country_of_citizenship\nRETURN i.name AS IndustryName, COUNT(DISTINCT c) AS CompanyCount"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: foundedBy)} {position: line: 1, column: 68, offset: 67} for query: "MATCH (c:Company)-[o:operatesIn]->(i:Industry) WHERE 'Canada' IN c.foundedBy.country_of_citizenship WITH collect(distinct elementId(c)) + collect(distinct elementId(i)) AS elemIds UNWIND elemIds AS elemId RETURN elemId AS elemId2"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: foundedBy)} {position: line: 2, column: 21, offset: 67} for query: "MATCH (c:Company)-[o:operatesIn]->(i:Industry)\nWHERE 'Canada' IN c.foundedBy.country_of_citizenship\nRETURN i.name AS IndustryName, COUNT(DISTINCT c) AS CompanyCount"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: country)} {position: line: 1, column: 57, offset: 56} for query: "MATCH (c1:Company {name: 'Fresenius Kabi'})<-[:basedIn {country: 'United States'}]-(co:Country), (c2:Company {name: 'Plaza & Janés'})<-[:basedIn {country: 'United States'}]-(co:Country) RETURN abs(c1.launch_year - c2.launch_year) AS year_difference"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: country)} {position: line: 1, column: 147, offset: 146} for query: "MATCH (c1:Company {name: 'Fresenius Kabi'})<-[:basedIn {country: 'United States'}]-(co:Country), (c2:Company {name: 'Plaza & Janés'})<-[:basedIn {country: 'United States'}]-(co:Country) RETURN abs(c1.launch_year - c2.launch_year) AS year_difference"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: country)} {position: line: 1, column: 62, offset: 61} for query: "MATCH (c1:Company {name: 'Fresenius Kabi'})<-[rtmp0:basedIn {country: 'United States'}]-(co:Country), (c2:Company {name: 'Plaza & Janés'})<-[rtmp1:basedIn {country: 'United States'}]-(co:Country) WITH collect(distinct elementId(c1)) + collect(distinct elementId(c2)) + collect(distinct elementId(co)) AS elemIds UNWIND elemIds AS elemId RETURN elemId AS elemId2"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: country)} {position: line: 1, column: 157, offset: 156} for query: "MATCH (c1:Company {name: 'Fresenius Kabi'})<-[rtmp0:basedIn {country: 'United States'}]-(co:Country), (c2:Company {name: 'Plaza & Janés'})<-[rtmp1:basedIn {country: 'United States'}]-(co:Country) WITH collect(distinct elementId(c1)) + collect(distinct elementId(c2)) + collect(distinct elementId(co)) AS elemIds UNWIND elemIds AS elemId RETURN elemId AS elemId2"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: country)} {position: line: 1, column: 57, offset: 56} for query: "MATCH (c1:Company {name: 'Fresenius Kabi'})<-[:basedIn {country: 'United States'}]-(co:Country), (c2:Company {name: 'Plaza & Janés'})<-[:basedIn {country: 'United States'}]-(co:Country) RETURN abs(c1.launch_year - c2.launch_year) AS year_difference"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownPropertyKeyWarning} {category: UNRECOGNIZED} {title: The provided property key is not in the database} {description: One of the property names in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing property name is: country)} {position: line: 1, column: 147, offset: 146} for query: "MATCH (c1:Company {name: 'Fresenius Kabi'})<-[:basedIn {country: 'United States'}]-(co:Country), (c2:Company {name: 'Plaza & Janés'})<-[:basedIn {country: 'United States'}]-(co:Country) RETURN abs(c1.launch_year - c2.launch_year) AS year_difference"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning} {category: UNRECOGNIZED} {title: The provided relationship type is not in the database.} {description: One of the relationship types in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing relationship type is: place_of_birth)} {position: line: 1, column: 42, offset: 41} for query: "MATCH (p:Person {name: 'Huntingdon'})<-[:place_of_birth]-(p2:Person)-[:foundedBy]->(c:Company {name: 'Twinkl'})\nRETURN p2.name"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning} {category: UNRECOGNIZED} {title: The provided relationship type is not in the database.} {description: One of the relationship types in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing relationship type is: place_of_birth)} {position: line: 1, column: 47, offset: 46} for query: "MATCH (p:Person {name: 'Huntingdon'})<-[rtmp0:place_of_birth]-(p2:Person)-[rtmp1:foundedBy]->(c:Company {name: 'Twinkl'}) WITH collect(distinct elementId(c)) + collect(distinct elementId(p)) + collect(distinct elementId(p2)) AS elemIds UNWIND elemIds AS elemId RETURN elemId AS elemId2"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning} {category: UNRECOGNIZED} {title: The provided relationship type is not in the database.} {description: One of the relationship types in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing relationship type is: place_of_birth)} {position: line: 1, column: 42, offset: 41} for query: "MATCH (p:Person {name: 'Huntingdon'})<-[:place_of_birth]-(p2:Person)-[:foundedBy]->(c:Company {name: 'Twinkl'})\nRETURN p2.name"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning} {category: UNRECOGNIZED} {title: The provided relationship type is not in the database.} {description: One of the relationship types in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing relationship type is: bornIn)} {position: line: 1, column: 52, offset: 51} for query: "MATCH (p:Person {name: 'Henry VIII of England'})-[:bornIn]->(c:Country {name: 'England'})\nRETURN c.name"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning} {category: UNRECOGNIZED} {title: The provided relationship type is not in the database.} {description: One of the relationship types in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing relationship type is: bornIn)} {position: line: 1, column: 57, offset: 56} for query: "MATCH (p:Person {name: 'Henry VIII of England'})-[rtmp0:bornIn]->(c:Country {name: 'England'}) WITH collect(distinct elementId(c)) + collect(distinct elementId(p)) AS elemIds UNWIND elemIds AS elemId RETURN elemId AS elemId2"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning} {category: UNRECOGNIZED} {title: The provided relationship type is not in the database.} {description: One of the relationship types in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing relationship type is: bornIn)} {position: line: 1, column: 52, offset: 51} for query: "MATCH (p:Person {name: 'Henry VIII of England'})-[:bornIn]->(c:Country {name: 'England'})\nRETURN c.name"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning} {category: UNRECOGNIZED} {title: The provided relationship type is not in the database.} {description: One of the relationship types in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing relationship type is: headquarteredAt)} {position: line: 1, column: 80, offset: 79} for query: "MATCH (c:Company)-[b:basedIn]->(country:Country {name: 'Switzerland'}), (c)-[h:headquarteredAt]->(headquarterCountry:Country) RETURN DISTINCT headquarterCountry.name"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning} {category: UNRECOGNIZED} {title: The provided relationship type is not in the database.} {description: One of the relationship types in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing relationship type is: headquarteredAt)} {position: line: 1, column: 80, offset: 79} for query: "MATCH (c:Company)-[b:basedIn]->(country:Country {name: 'Switzerland'}), (c)-[h:headquarteredAt]->(headquarterCountry:Country) WITH collect(distinct elementId(c)) + collect(distinct elementId(country)) + collect(distinct elementId(headquarterCountry)) AS elemIds UNWIND elemIds AS elemId RETURN elemId AS elemId2"
+Received notification from DBMS server: {severity: WARNING} {code: Neo.ClientNotification.Statement.UnknownRelationshipTypeWarning} {category: UNRECOGNIZED} {title: The provided relationship type is not in the database.} {description: One of the relationship types in your query is not available in the database, make sure you didn't misspell it or that the label is available when you run this statement in your application (the missing relationship type is: headquarteredAt)} {position: line: 1, column: 80, offset: 79} for query: "MATCH (c:Company)-[b:basedIn]->(country:Country {name: 'Switzerland'}), (c)-[h:headquarteredAt]->(headquarterCountry:Country) RETURN DISTINCT headquarterCountry.name"
+== fictional_character
+Traceback (most recent call last):
+  File "/Users/nguyen.van.huan/Text2Cypher/.venv-cb/lib/python3.11/site-packages/neo4j/_async_compat/network/_bolt_socket.py", line 528, in _connect
+    s.connect(resolved_address)
+ConnectionRefusedError: [Errno 61] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/nguyen.van.huan/Text2Cypher/.venv-cb/lib/python3.11/site-packages/neo4j/_async_compat/network/_bolt_socket.py", line 690, in connect
+    s = BoltSocket._connect(resolved_address, tcp_timeout,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nguyen.van.huan/Text2Cypher/.venv-cb/lib/python3.11/site-packages/neo4j/_async_compat/network/_bolt_socket.py", line 546, in _connect
+    raise ServiceUnavailable(
+neo4j.exceptions.ServiceUnavailable: Failed to establish connection to ResolvedIPv6Address(('::1', 15063, 0, 0)) (reason [Errno 61] Connection refused)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/nguyen.van.huan/Text2Cypher/src/cb_evaluate.py", line 97, in <module>
+    main()
+  File "/Users/nguyen.van.huan/Text2Cypher/src/cb_evaluate.py", line 52, in main
+    conns = {g: connector(g) for g in graphs}
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nguyen.van.huan/Text2Cypher/src/cb_evaluate.py", line 52, in <dictcomp>
+    conns = {g: connector(g) for g in graphs}
+                ^^^^^^^^^^^^
+  File "/Users/nguyen.van.huan/Text2Cypher/src/cb_common.py", line 49, in connector
+    return Neo4jConnector(name=graph, **NEO4J_INFO["full"][graph])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nguyen.van.huan/Text2Cypher/references/cypherbench/cypherbench/neo4j_connector.py", line 66, in __init__
+    self.driver.verify_connectivity()
+  File "/Users/nguyen.van.huan/Text2Cypher/.venv-cb/lib/python3.11/site-packages/neo4j/_sync/driver.py", line 1067, in verify_connectivity
+    self._get_server_info(session_config)
+  File "/Users/nguyen.van.huan/Text2Cypher/.venv-cb/lib/python3.11/site-packages/neo4j/_sync/driver.py", line 1281, in _get_server_info
+    return session._get_server_info()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nguyen.van.huan/Text2Cypher/.venv-cb/lib/python3.11/site-packages/neo4j/_sync/work/session.py", line 172, in _get_server_info
+    self._connect(READ_ACCESS, liveness_check_timeout=0)
+  File "/Users/nguyen.van.huan/Text2Cypher/.venv-cb/lib/python3.11/site-packages/neo4j/_sync/work/session.py", line 130, in _connect
+    super()._connect(
+  File "/Users/nguyen.van.huan/Text2Cypher/.venv-cb/lib/python3.11/site-packages/neo4j/_sync/work/workspace.py", line 182, in _connect
+    self._connection = self._pool.acquire(**acquire_kwargs_)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nguyen.van.huan/Text2Cypher/.venv-cb/lib/python3.11/site-packages/neo4j/_sync/io/_pool.py", line 526, in acquire
+    return self._acquire(
+           ^^^^^^^^^^^^^^
+  File "/Users/nguyen.van.huan/Text2Cypher/.venv-cb/lib/python3.11/site-packages/neo4j/_sync/io/_pool.py", line 313, in _acquire
+    return connection_creator()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/nguyen.van.huan/Text2Cypher/.venv-cb/lib/python3.11/site-packages/neo4j/_sync/io/_pool.py", line 163, in connection_creator
+    connection = self.opener(
+                 ^^^^^^^^^^^^
+  File "/Users/nguyen.van.huan/Text2Cypher/.venv-cb/lib/python3.11/site-packages/neo4j/_sync/io/_pool.py", line 500, in opener
+    return Bolt.open(
+           ^^^^^^^^^^
+  File "/Users/nguyen.van.huan/Text2Cypher/.venv-cb/lib/python3.11/site-packages/neo4j/_sync/io/_bolt.py", line 405, in open
+    BoltSocket.connect(
+  File "/Users/nguyen.van.huan/Text2Cypher/.venv-cb/lib/python3.11/site-packages/neo4j/_async_compat/network/_bolt_socket.py", line 718, in connect
+    raise ServiceUnavailable(
+neo4j.exceptions.ServiceUnavailable: Couldn't connect to localhost:15063 (resolved to ()):
+Failed to establish connection to ResolvedIPv6Address(('::1', 15063, 0, 0)) (reason [Errno 61] Connection refused)
+Connection to 127.0.0.1:15063 closed without handshake response
