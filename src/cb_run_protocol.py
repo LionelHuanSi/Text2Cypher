@@ -25,11 +25,11 @@ from ontology.card import render_card
 TEST_GRAPHS = ["company", "fictional_character", "flight_accident", "geography", "movie", "nba", "politics"]
 
 
-def subset(items, per_graph, seed=0):
+def subset(items, per_graph, graphs=TEST_GRAPHS, seed=0):
     if not per_graph:
         return items
     out = []
-    for g in TEST_GRAPHS:
+    for g in graphs:
         xs = sorted([x for x in items if x.graph == g], key=lambda x: x.qid)
         out += random.Random(f"{seed}-{g}").sample(xs, min(per_graph, len(xs)))
     return out
@@ -43,14 +43,17 @@ def main():
     ap.add_argument("--card", choices=["auto", "graphinfo", "placebo"], default=None,
                     help="nguồn thẻ ontology cho giao thức cb_chat_card")
     ap.add_argument("--out", required=True)
+    ap.add_argument("--split", default="test", help="test | train (train dùng làm tập dev)")
+    ap.add_argument("--graphs", nargs="+", default=None, help="mặc định: 7 đồ thị test")
     args = ap.parse_args()
+    graphs = args.graphs or TEST_GRAPHS
 
     out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
     pred_path = out / "predictions.jsonl"
     done = {json.loads(l)["qid"] for l in pred_path.read_text().splitlines() if l.strip()} if pred_path.exists() else set()
-    items = subset(load_split("test", set(TEST_GRAPHS)), args.per_graph)
-    schemas = {g: load_schema(g) for g in TEST_GRAPHS}
-    cards = {g: render_card(g, args.card) for g in TEST_GRAPHS} if args.protocol == "cb_chat_card" else {}
+    items = subset(load_split(args.split, set(graphs)), args.per_graph, graphs)
+    schemas = {g: load_schema(g) for g in graphs}
+    cards = {g: render_card(g, args.card) for g in graphs} if args.protocol == "cb_chat_card" else {}
     if cards:
         (out / "cards.json").write_text(json.dumps(cards, indent=1, ensure_ascii=False))
     model, tok = load(args.model)

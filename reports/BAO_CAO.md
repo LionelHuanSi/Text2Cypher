@@ -450,6 +450,37 @@ Tra cứu nhanh (arXiv, ACL Anthology, web), tập trung vào Text-to-Cypher và
 
 *Giới hạn của phần tra cứu:* tra nhanh, không phải tổng quan hệ thống; các bài 2026 phần lớn là preprint chưa bình duyệt; số liệu của MAC-SQL/CHESS/CHASE-SQL và nhóm model nhỏ lấy từ nguồn thứ cấp. Phần tra cứu có sự hỗ trợ của công cụ AI.
 
+### 2.6 Thử nghiệm nhỏ: Teacher + ontology ở tầng kiểm/sửa (20/11/2026)
+
+Mục đích: trước khi cài đặt đầy đủ, kiểm tra trên vài câu thật xem ontology có sửa được lỗi mà schema không sửa được không. Đồ thị company, dự đoán zero-shot của Teacher (Qwen2.5-Coder-7B-Instruct).
+
+**Câu hỏi thời gian (3 câu, Teacher sai cả 3).** Lỗi chung: model viết `[:hasCEO {start_year: 1999, end_year: 1999}]` (đòi nhiệm kỳ bắt đầu và kết thúc đúng năm 1999) thay vì lọc khoảng `start <= 1999 AND (end >= 1999 OR end IS NULL)`.
+
+| Cách sửa | Đúng |
+|---|---:|
+| Chỉ sửa theo ontology (viết lại điều kiện khoảng thời gian, tự động) | 1/3 |
+| Chỉ sửa theo schema (lật hướng quan hệ) | 0/3 |
+| **Schema (lật hướng) rồi ontology (khoảng thời gian)** | **3/3** |
+
+Hai câu còn sai cả hướng quan hệ; mỗi tầng sửa một lỗi khác nhau, phải ghép mới đúng.
+
+**Câu hỏi OPTIONAL MATCH (3 câu, Teacher sai cả 3).** Lỗi chung: đếm qua quan hệ không bắt buộc trong MATCH bắt buộc nên mất các thực thể có số đếm 0. Bộ phát hiện dùng ontology (quan hệ không bắt buộc, tỷ lệ tham gia thật trong dữ liệu) sinh thông báo lỗi; Teacher sửa lại một lần.
+
+| Thông báo đưa cho Teacher | Đúng |
+|---|---:|
+| Chung chung ("câu có thể sai, kiểm tra lại") | 0/3 |
+| **Từ ontology** ("chỉ 0,2% Company có hasBoardMember ... dùng OPTIONAL MATCH") | **2/3** |
+
+Câu còn sai do đảo **nghĩa** của `subsidiaryOf` giữa hai Company: schema không bắt được (hai đầu cùng kiểu), cần tầng ngữ nghĩa (nghĩa Wikidata) của ontology.
+
+**Nhận xét:**
+- Tín hiệu ban đầu tốt nhưng mẫu rất nhỏ (6 câu), chưa kết luận.
+- Khác với thẻ ở mục 2.4: ở đây ontology **chỉ ra lỗi cụ thể của câu đang xét** và sửa tự động khi được, thay vì mô tả chung cho model tự đọc.
+- Bộ phát hiện bản thử còn báo thừa (đánh dấu cả quan hệ neo có tên riêng); sửa trong bản chính thức.
+- Phát hiện thêm loại kiểm tra cần có: hướng **theo nghĩa** cho quan hệ nối cùng kiểu (`subsidiaryOf`, `parentOf`, ...).
+
+**Bước tiếp theo:** cài đặt bộ kiểm/sửa đầy đủ (`src/ontology/verifier.py`), chạy trên toàn bộ 2.348 câu với các nhánh đối chứng: chỉ schema / schema + ontology / schema + ontology placebo / thông báo chung chung.
+
 ## 3. Chưng cất xuống Student 1,5B (RQ4; chưa thực hiện)
 
 ```
