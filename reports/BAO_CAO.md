@@ -9,7 +9,7 @@
 | Câu hỏi nghiên cứu | Cách chứng minh | Trạng thái |
 |---|---|---|
 | **RQ0.** Baseline và điểm yếu là gì? | Tái lập trên CypherBench, phân loại lỗi | Xong (mục 1) |
-| **RQ1.** Ontology tự xây có giúp **vượt hơn schema** không? | So 4 nhánh cùng model, cùng ngân sách: schema-only / schema + `graph_info` (chú thích tay của tác giả) / **ontology tự xây** / placebo | Builder v0.1 xong (mục 2.1b); nhánh A có sẵn (21,59), nhánh C (Qwen2.5-Coder-7B + thẻ ontology tự xây) đang chạy trên 2.348 câu; B, D chưa chạy |
+| **RQ1.** Ontology tự xây có giúp **vượt hơn schema** không? | So 4 nhánh cùng model, cùng ngân sách: schema-only / schema + `graph_info` (chú thích tay của tác giả) / **ontology tự xây** / placebo | Nhánh C xong trên 2.348 câu: EX 21,59 lên **25,51** (+3,92; CI 95% [2,60; 5,24]; McNemar p = 1,2e-8), vi phạm schema giảm 4,47 điểm (mục 2.3). B, D chưa chạy |
 | **RQ2.** Có giúp **model nào cũng lợi** không? | Lặp RQ1 trên ≥ 3 họ model (Qwen, Llama, Gemma/Phi), nhiều cỡ (1,5B → 7B) | Chưa bắt đầu |
 | **RQ3.** Có **tổng quát cho KG bất kỳ** không? | Builder chỉ được nhìn đồ thị train khi thiết kế, rồi chạy nguyên trạng trên 7 đồ thị test chưa thấy; báo kết quả theo từng đồ thị | Chưa bắt đầu |
 | **RQ4.** Có **chưng cất** xuống 1,5B mà giữ được lợi ích không? | Teacher + ontology sinh dữ liệu → lọc/DPO theo ontology → Student 1,5B; so EX và tỷ lệ vi phạm với Teacher | Chưa bắt đầu (mục 3) |
@@ -24,6 +24,7 @@
   - OPTIONAL MATCH: 4,5%.
 
   Đây là chỗ ontology phải chứng minh giá trị riêng.
+- **Thẻ ontology tự xây (nhánh C), cùng model, không huấn luyện:** EX **25,51** so với 21,59 (+3,92 điểm, CI 95% [2,60; 5,24]); cả 7 đồ thị đều tăng, 3 đồ thị có ý nghĩa thống kê; vi phạm schema 34,9% xuống 30,4%. Điểm yếu mới: thẻ làm model nối thừa quan hệ ở câu hỏi một thực thể (mục 2.3). Chưa loại trừ được hiệu ứng "prompt dài hơn" cho tới khi chạy nhánh D.
 
 *Đối chiếu với đề cương của thầy:*
 - Giai đoạn 1 (chọn baseline, tái hiện, phân tích điểm yếu) tương ứng mục 1.
@@ -294,6 +295,77 @@ Mọi nhánh dùng cùng model, cùng prompt gốc, cùng số token ngữ cản
 
 Đủ để trả lời RQ2.
 
+**Thực hiện thực tế (lần chạy đầu):**
+- Nhánh A = kết quả zero-shot ở mục 1.5: prompt chính thức của CypherBench với schema rút gọn, chưa có bộ kiểm.
+- Nhánh C = cùng prompt đó, thêm thẻ ontology tự xây ngay sau schema (`--protocol cb_chat_card --card auto`).
+- Cả hai: Qwen2.5-Coder-7B-Instruct (MLX), giải mã tham lam, 1 ứng viên/câu, không bộ kiểm, không chọn lọc. Như vậy khác biệt duy nhất là thẻ ontology.
+
+### 2.3 Kết quả nhánh C so với nhánh A (19/11/2026)
+
+Qwen2.5-Coder-7B-Instruct, 2.348 câu test, so ghép cặp theo từng câu. CI 95% là bootstrap ghép cặp (10.000 lần lấy mẫu lại câu hỏi); p là McNemar chính xác.
+
+| | A. schema-only | C. + ontology tự xây | Chênh (C − A) | CI 95% | p |
+|---|---:|---:|---:|---|---:|
+| **EX** | 21,59 | **25,51** | **+3,92** | [2,60; 5,24] | 1,2e-8 |
+| PSJS | 31,65 | 36,66 | +5,01 | | |
+| Exec. | 78,02 | 81,26 | +3,24 | | |
+| Câu có ít nhất một vi phạm schema | 34,88% | 30,41% | −4,47 | [−6,09; −2,81] | |
+| Câu sai do vi phạm schema (loại 2–4) | 28,49% | 25,26% | −3,24 | [−4,86; −1,62] | |
+
+Số câu chỉ A đúng: 84; chỉ C đúng: 176.
+
+**Theo đồ thị (EX):**
+
+| Đồ thị | A | C | Chênh | CI 95% |
+|---|---:|---:|---:|---|
+| company | 16,71 | 19,31 | +2,59 | [−0,29; 5,76] |
+| fictional_character | 22,60 | 28,31 | +5,71 | [2,86; 8,58] |
+| flight_accident | 43,92 | 45,50 | +1,59 | [−4,23; 7,41] |
+| geography | 23,50 | 25,68 | +2,19 | [−1,09; 5,74] |
+| movie | 19,95 | 25,19 | +5,24 | [1,75; 8,73] |
+| nba | 22,96 | 30,74 | +7,78 | [3,70; 11,85] |
+| politics | 13,08 | 15,13 | +2,05 | [−1,03; 4,87] |
+
+Cả 7 đồ thị đều tăng; 3 đồ thị tăng có ý nghĩa. Đây là bằng chứng ban đầu cho RQ3: Builder không được chỉnh trên các đồ thị này.
+
+**Phân loại lỗi (số câu / 2.348):**
+
+| Loại | A | C |
+|---|---:|---:|
+| Đúng | 507 | 599 |
+| Không chạy được | 516 | 440 |
+| Đảo hướng quan hệ | 448 | 373 |
+| Sai kiểu đầu cạnh | 171 | 156 |
+| Phần tử không tồn tại | 50 | 64 |
+| Hợp lệ schema nhưng sai | 656 | 716 |
+
+**Theo loại câu hỏi (EX), các nhóm thay đổi rõ:**
+
+| Nhóm | n | A | C | Chênh | CI 95% |
+|---|---:|---:|---:|---:|---|
+| `(n)-(m0*)` | 356 | 38,20 | 49,44 | +11,24 | [7,30; 15,73] |
+| `(n)-(m0*),(n)-(m1*)` | 333 | 16,82 | 28,83 | +12,01 | [7,21; 16,82] |
+| three-node-groupby | 260 | 20,38 | 25,38 | +5,00 | [1,15; 8,85] |
+| time-sensitive | 60 | 1,67 | 8,33 | +6,67 | [1,67; 13,33] |
+| `(n)=(m0)` (hai quan hệ cùng nối một cặp) | 94 | 8,51 | 11,70 | +3,19 | [0,00; 7,45] |
+| OPTIONAL MATCH | 268 | 4,48 | 6,34 | +1,87 | [−0,75; 4,48] |
+| UNION | 310 | 2,90 | 3,23 | +0,32 | [−1,61; 2,58] |
+| `(n*)` (chỉ một thực thể) | 59 | 76,27 | 59,32 | **−16,95** | [−27,12; −8,47] |
+| comparison | 147 | 40,82 | 34,01 | **−6,80** | [−11,56; −2,72] |
+
+**Diễn giải:**
+1. Thẻ ontology giúp rõ nhất ở câu hỏi đi qua quan hệ (các mẫu `(n)-(m)`): model chọn đúng hướng và đúng quan hệ hơn (đảo hướng giảm từ 448 xuống 373 câu).
+2. Nhóm thời gian tăng từ 1,7% lên 8,3% nhưng vẫn thấp. Nhóm OPTIONAL MATCH và UNION gần như không đổi: chỉ đưa thông tin "không phải thực thể nào cũng có quan hệ này" vào prompt là chưa đủ để model tự dùng OPTIONAL MATCH.
+3. **Tác dụng phụ: nối thừa.** Với câu hỏi chỉ về thuộc tính của một hoặc hai thực thể, model có thẻ hay chèn thêm quan hệ không cần thiết, khiến kết quả rỗng hoặc sai. Ví dụ: "Ukraine International Airlines đặt ở nước nào?" thì C sinh thêm `-[:operatedBy]->(:FlightAccident)`. Số câu có nhiều quan hệ hơn gold: A 148, C 234; riêng nhóm `(n*)` và comparison: 46 lên 76.
+4. **Chưa kết luận được "vượt hơn schema" một cách chặt chẽ.** Mức tăng có thể một phần do prompt dài hơn hoặc do nhắc lại schema dưới dạng khác. Cần nhánh D (placebo, cùng độ dài) và nhánh B (`graph_info`).
+
+**Việc tiếp theo cho RQ1:**
+- Chạy nhánh D (placebo) và nhánh B (`graph_info`) với cùng model.
+- Thẻ v0.2: chỉ đưa các dòng ontology liên quan đến câu hỏi (chọn theo thực thể/quan hệ được nhắc tới), để giảm nối thừa. Thêm gợi ý tường minh cho OPTIONAL MATCH và quan hệ thời gian.
+- Thêm bộ kiểm hướng/kiểu sau khi sinh (sửa đảo hướng tự động), áp cho cả A và C.
+
+Kết quả gốc: `results/cypherbench/rq1/qwen7b_instruct_C_auto/` (metrics.json, error_analysis.json), so sánh ghép cặp `results/cypherbench/rq1/compare_A_vs_C.json`.
+
 ## 3. Chưng cất xuống Student 1,5B (RQ4; chưa thực hiện)
 
 ```
@@ -331,6 +403,7 @@ Teacher 7B + ontology (nhánh C) sinh K Cypher/câu trên tập train (4 đồ t
 | 18/11/2026 | `graph_info.json` = tri thức có sẵn, **không** tính là đóng góp | Tránh bị phản biện "ontology chỉ là chép lại chú thích tay của tác giả" |
 | 18/11/2026 | **Ưu tiên chứng minh ontology (mục 2) trước distillation** | Đóng góp chính của đề tài là ontology; thí nghiệm suy luận rẻ, cho bằng chứng sớm trên nhiều model |
 | 19/11/2026 | Ontology báo **bản số/tính bắt buộc theo dữ liệu thật**, không chỉnh theo chú thích tay | Truy vấn đúng phụ thuộc dữ liệu thật (vd. có cần OPTIONAL MATCH không) |
+| 19/11/2026 | So nhánh bằng **bootstrap ghép cặp + McNemar** trên cùng câu hỏi | Hai nhánh chạy trên cùng 2.348 câu; ghép cặp nhạy hơn so hai CI riêng |
 | 19/11/2026 | Builder chỉ dùng Neo4j + Wikidata (qua QID), **không dùng câu hỏi benchmark hay graph_info**; ngưỡng chỉnh trên đồ thị train | Đảm bảo tổng quát cho KG bất kỳ (RQ3) và tránh rò rỉ từ test |
 
 ## 5. Tái lập kết quả
@@ -344,6 +417,12 @@ nohup scripts/cb_run_zero_shot_all7.sh > results/cypherbench/zero_shot_all7_pipe
 scripts/cb_eval_sequential.sh results/cypherbench/protocol_probe/base_cypherri
 # Phân loại lỗi
 .venv-cb/bin/python src/cb_error_analysis.py --pred_dir results/cypherbench/zero_shot/qwen2.5-coder-7b-instruct
+# Nhánh C (thẻ ontology tự xây) + chấm + so ghép cặp với nhánh A
+.venv-cb/bin/python src/cb_run_protocol.py --model Qwen/Qwen2.5-Coder-7B-Instruct --protocol cb_chat_card --card auto \
+    --out results/cypherbench/rq1/qwen7b_instruct_C_auto
+scripts/cb_eval_sequential.sh results/cypherbench/rq1/qwen7b_instruct_C_auto
+cd src && ../.venv-cb/bin/python cb_compare.py --a ../results/cypherbench/zero_shot/qwen2.5-coder-7b-instruct \
+    --b ../results/cypherbench/rq1/qwen7b_instruct_C_auto --out ../results/cypherbench/rq1/compare_A_vs_C.json; cd ..
 # Ontology Builder cho 10 đồ thị + đối chiếu với graph_info.json
 scripts/build_ontologies.sh
 # Xem thẻ ontology của một đồ thị (auto | graphinfo | placebo)

@@ -11,6 +11,7 @@
 | `src/cb_protocols.py`, `src/cb_run_protocol.py` | các giao thức suy luận (CypherBench, Cypher-RI) |
 | `src/cb_evaluate.py` | chấm EX / PSJS / Exec. + CI 95%, theo từng đồ thị |
 | `src/cb_error_analysis.py` | phân loại lỗi + kiểm vi phạm schema/ontology |
+| `src/cb_compare.py` | so ghép cặp hai lần chạy: chênh EX, CI bootstrap, McNemar, vi phạm schema |
 | `src/ontology/builder.py` | **Ontology Builder** tự động (Neo4j + Wikidata) |
 | `src/ontology/card.py` | thẻ ontology cho prompt (auto / graphinfo / placebo) |
 | `src/ontology/eval_graphinfo.py` | đối chiếu ontology tự xây với chú thích tay |
