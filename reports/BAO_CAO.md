@@ -413,6 +413,43 @@ Vi phạm schema (câu có ít nhất một vi phạm): C − D = −0,26 điể
 
 Kết quả gốc: `results/cypherbench/rq1/` (MLX) và `results/cypherbench/rq1_kaggle/` (Kaggle), các file `compare_*.json`.
 
+### 2.5 Tham khảo tài liệu: các pipeline nhiều tầng (20/11/2026)
+
+Tra cứu nhanh (arXiv, ACL Anthology, web), tập trung vào Text-to-Cypher và Text-to-SQL chia nhiều bước. Mức kiểm chứng: (đọc) = đã đọc trang bài báo; (tóm tắt) = chỉ qua tóm tắt/nguồn thứ cấp.
+
+| Công trình | Các tầng | Kết quả báo cáo | Liên quan đến mình |
+|---|---|---|---|
+| **CypherGuard** (Chen, Wen, Zhang, Ozsoy; arXiv 2610.41755, 10/2026) (đọc) | Sinh nháp có thư viện luật + ví dụ truy xuất -> sửa tất định theo schema (sửa kiểu quan hệ, **lật hướng**, xử lý quan hệ hai chiều qua đo tỷ lệ cạnh đối ứng) -> chỉ khi lỗi/rỗng: lật toàn bộ hướng, **dò giá trị literal trong DB**, LLM sửa theo mã lỗi (tối đa 3 vòng) | **CypherBench test 2.348 câu**: gpt-5.4-mini 63,42 -> 88,50; claude-sonnet-4.6 71,76 -> 94,68. Bỏ vòng thực thi mất 10,8 điểm; bỏ few-shot 6,6; bỏ thư viện luật 4,4; bỏ dò literal 2,3 | Đối thủ trực tiếp, cùng benchmark. **Chỉ thử model API**, không thử model mở nhỏ; không báo theo loại câu hỏi; không dùng OPTIONAL MATCH/tính bắt buộc; thời gian chỉ là một luật (B3); không có đối chứng cùng lượng tính toán |
+| **LAST-CQ** (Prokopiou và cs.; arXiv 2609.12746, EMNLP 2026 workshop) (đọc) | 5 agent, không huấn luyện: sinh -> chạy -> phát hiện lỗi -> sinh lại kèm phản hồi | Tầng **sửa lỗi** là nguồn lợi chính; phản hồi chi tiết theo schema **không hơn** chuỗi lỗi thô của DB; sinh song song cùng ngân sách làm **giảm** 10–11% | Phần quan trọng là **phát hiện đúng câu sai**, không phải lời nhắc dài. Ontology nên dùng để **phát hiện** lỗi mà schema không bắt được |
+| **Multi-Agent GraphRAG** (Gusarov và cs.; arXiv 2511.08274) (đọc) | Sinh -> chạy -> trích thực thể/nhãn/giá trị -> **kiểm tồn tại trong DB**, đề xuất thay thế (Levenshtein + LLM xếp hạng) -> gộp phản hồi, tối đa 4 vòng | 5 đồ thị CypherBench, 150 câu/đồ thị: Qwen3-Coder 45,7 -> 53,4; GPT-4o 56,1 -> 62,9 (chấm bằng LLM, không ablation) | Schema viết dạng mẫu Cypher + giá trị mẫu giúp sinh tốt hơn, khớp với quan sát "khuôn thẻ" ở mục 2.4 |
+| **DIN-SQL** (Pourreza, Rafiei; arXiv 2304.11015) (tóm tắt) | Liên kết schema -> **phân loại độ khó/loại câu** -> sinh theo loại -> tự sửa | Mốc gốc của hướng chia nhỏ | Tầng phân loại loại câu: ứng với các nhóm yếu của mình (thời gian, OPTIONAL, UNION) |
+| **MAC-SQL, CHESS, CHASE-SQL** (tóm tắt, nguồn thứ cấp) | Chọn/tỉa schema -> tách câu hỏi -> sinh -> tinh chỉnh; CHASE-SQL sinh nhiều ứng viên + bộ xếp hạng | Độ phủ liên kết schema tương quan mạnh với câu đúng (DIN-SQL 69% khi đúng so với 39% khi sai) | Liên kết schema là tầng then chốt |
+| **SERL-SQL, LitE-SQL, MSc-SQL, SQuaD-SQL** (tóm tắt) | Model nhỏ: chỉ mục giá trị + truy xuất giá trị theo câu hỏi + liên kết lai; chưng cất từ teacher | Không kiểm chứng số liệu | Hướng cho Student 1,5B: chưng cất cả pipeline |
+| **cypher_validator** (PyPI), **CyVer** (Neo4j) (đọc tóm tắt) | Thư viện kiểm Cypher theo schema: nhãn, kiểu quan hệ, thuộc tính, **hướng**; vòng sửa bằng LLM | Công cụ, không có số liệu | Có thể dùng làm đối chứng cho bộ kiểm schema của mình |
+
+**Kết luận cho thiết kế:**
+1. Hướng "pipeline nhiều tầng + sửa lỗi theo schema" **đã có người làm mạnh trên đúng CypherBench** (CypherGuard 88,5 với model API). Đóng góp của mình không thể là "pipeline nhiều tầng" nói chung.
+2. Khoảng trống còn lại, khớp với đề tài:
+   - **Model mở nhỏ** (7B, rồi Student 1,5B chạy trên máy biên): chưa ai báo cáo pipeline kiểu này trên CypherBench.
+   - **Tri thức ontology ngoài schema** dùng để *phát hiện và sửa* lỗi: tính bắt buộc -> OPTIONAL MATCH, khoảng thời gian -> lọc thời gian, đối xứng, bản số -> DISTINCT/gộp nhóm, nghĩa Wikidata -> liên kết quan hệ. CypherGuard chỉ có một phần nhỏ dưới dạng luật rời.
+   - **Đối chứng chặt**: cùng pipeline chỉ dùng schema (tái hiện lớp sửa tất định kiểu CypherGuard) so với pipeline dùng ontology so với ontology placebo; báo theo loại câu hỏi. Các bài trên đều thiếu.
+3. Theo LAST-CQ, đầu tư vào **bộ phát hiện lỗi** quan trọng hơn lời nhắc dài; theo mục 2.4, ontology trong prompt không tác dụng. Vậy ontology nên nằm ở tầng **kiểm tra/sửa** và **chọn ngữ cảnh**, không ở dạng văn bản mô tả.
+
+**Pipeline đề xuất (mỗi tầng có bản schema-only và bản ontology để so):**
+
+| Tầng | Việc | Phần ontology thêm vào (so với schema-only) |
+|---|---|---|
+| T0 (ngoại tuyến) | Builder ontology; chỉ mục giá trị; thư viện luật mined từ 4 đồ thị train | Bản số, bắt buộc, thời gian, đối xứng, nghĩa Wikidata |
+| T1. Liên kết | Trích nhãn/quan hệ/thuộc tính/giá trị trong câu hỏi; dò giá trị trong Neo4j; cắt schema thành lát nhỏ dạng mẫu Cypher | Ghép từ trong câu với quan hệ qua nghĩa và tên Wikidata |
+| T2. Phân loại | Loại câu hỏi (cơ bản / so sánh / thời gian / OPTIONAL / UNION / gộp nhóm) | Quan hệ có khoảng thời gian + mốc thời gian -> loại thời gian; quan hệ không bắt buộc -> cân nhắc OPTIONAL |
+| T3. Sinh | 1 lần gọi, với lát schema + chỉ dẫn theo loại | |
+| T4. Kiểm tĩnh | Hướng, kiểu hai đầu, phần tử lạ, thuộc tính sai nhãn | Thiếu lọc thời gian; đếm không DISTINCT qua quan hệ nhiều-nhiều; quan hệ đối xứng ghi hướng; MATCH bắt buộc trên quan hệ không bắt buộc khi câu hỏi cần giữ cả thực thể không có quan hệ |
+| T5. Sửa | Sửa tất định (lật hướng, bỏ hướng) -> chạy -> lỗi/rỗng thì LLM sửa theo mã lỗi, tối đa 3 vòng | Mã lỗi ontology cụ thể |
+
+**Thứ tự thực hiện:** T4 + T5 phần tất định trước, chạy trên dự đoán nhánh A đã có (không cần sinh lại), so 3 bản: schema-only, ontology, ontology placebo. Sau đó T1–T2, rồi vòng sửa có LLM (cần sửa vLLM trên Kaggle).
+
+*Giới hạn của phần tra cứu:* tra nhanh, không phải tổng quan hệ thống; các bài 2026 phần lớn là preprint chưa bình duyệt; số liệu của MAC-SQL/CHESS/CHASE-SQL và nhóm model nhỏ lấy từ nguồn thứ cấp. Phần tra cứu có sự hỗ trợ của công cụ AI.
+
 ## 3. Chưng cất xuống Student 1,5B (RQ4; chưa thực hiện)
 
 ```
@@ -454,6 +491,7 @@ Teacher 7B + ontology (nhánh C) sinh K Cypher/câu trên tập train (4 đồ t
 | 19/11/2026 | Builder chỉ dùng Neo4j + Wikidata (qua QID), **không dùng câu hỏi benchmark hay graph_info**; ngưỡng chỉnh trên đồ thị train | Đảm bảo tổng quát cho KG bất kỳ (RQ3) và tránh rò rỉ từ test |
 | 20/11/2026 | Chạy sinh trên **Kaggle 2x T4** (dataset prompt dựng sẵn) | Máy cá nhân 5 giờ/nhánh và ngủ giữa chừng; chấm vẫn làm trên máy vì cần Neo4j |
 | 20/11/2026 | **Chỉ so trong cùng backend** (MLX bf16 riêng, Kaggle fp16 riêng) | Hai backend cho dự đoán khác nhau ở 82% câu |
+| 20/11/2026 | Đối thủ trực tiếp mới: **CypherGuard** (88,5 trên CypherBench, model API). Định vị lại: model mở nhỏ + tri thức ontology ngoài schema + đối chứng chặt | Pipeline nhiều tầng nói chung đã có người làm trên cùng benchmark |
 | 20/11/2026 | **Thẻ ontology trong prompt không phải đóng góp chính**; chuyển sang dùng ontology chủ động (kiểm/sửa, chọn ứng viên, huấn luyện) | C = placebo trên cả hai backend |
 
 ## 5. Tái lập kết quả
