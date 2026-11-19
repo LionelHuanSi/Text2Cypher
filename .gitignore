@@ -9,3 +9,10 @@ data/cypherbench/raw/
 # Repo tác giả CypherBench: clone lại từ https://github.com/megagonlabs/cypherbench.git @ 4cc727d29acc78f8cea7c4daa4e2705ddf293b8b
 references/cypherbench/
 references/neo4j_loader/
+
+# Kaggle: prompt dựng lại được, file sinh ra
+kaggle/dataset/prompts.jsonl
+kaggle/dataset/dataset-metadata.json
+kaggle/kernel/run.py
+kaggle/kernel/kernel-metadata.json
+results/cypherbench/rq1_kaggle/_download/

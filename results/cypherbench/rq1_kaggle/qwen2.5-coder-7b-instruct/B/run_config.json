@@ -1,0 +1,14 @@
+{
+ "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+ "arm": "B",
+ "backend": "transformers fp16 device_map=auto",
+ "decoding": "greedy",
+ "max_tokens": 512,
+ "stop": "\n```",
+ "gpus": [
+  "Tesla T4",
+  "Tesla T4"
+ ],
+ "seconds_all_arms": 20317,
+ "n_all_arms": 9392
+}

@@ -1,0 +1,11 @@
+{
+ "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+ "protocol": "cb_chat_card",
+ "per_graph": 0,
+ "card": "placebo",
+ "out": "results/cypherbench/rq1/qwen7b_instruct_D_placebo",
+ "n": 2348,
+ "decoding": "greedy",
+ "backend": "mlx_lm bf16",
+ "machine": "macOS-26.4.1-arm64-arm-64bit"
+}

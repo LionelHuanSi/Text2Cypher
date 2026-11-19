@@ -1,0 +1,132 @@
+{
+ "n": 2348,
+ "overall": {
+  "execution_accuracy": 0.1831,
+  "psjs": 0.2657,
+  "executable": 0.8139
+ },
+ "EX_ci95": [
+  0.1678,
+  0.1989
+ ],
+ "by_graph": {
+  "company": {
+   "n": 347,
+   "execution_accuracy": 0.1729,
+   "psjs": 0.2366,
+   "executable": 0.7752
+  },
+  "fictional_character": {
+   "n": 385,
+   "execution_accuracy": 0.1974,
+   "psjs": 0.3491,
+   "executable": 0.8649
+  },
+  "flight_accident": {
+   "n": 189,
+   "execution_accuracy": 0.3704,
+   "psjs": 0.4089,
+   "executable": 0.9048
+  },
+  "geography": {
+   "n": 366,
+   "execution_accuracy": 0.1885,
+   "psjs": 0.2844,
+   "executable": 0.8443
+  },
+  "movie": {
+   "n": 401,
+   "execution_accuracy": 0.1421,
+   "psjs": 0.1987,
+   "executable": 0.7855
+  },
+  "nba": {
+   "n": 270,
+   "execution_accuracy": 0.1889,
+   "psjs": 0.2519,
+   "executable": 0.8
+  },
+  "politics": {
+   "n": 390,
+   "execution_accuracy": 0.1205,
+   "psjs": 0.201,
+   "executable": 0.7641
+  }
+ },
+ "by_match": {
+  "basic_(n)": {
+   "n": 61,
+   "EX": 0.5738
+  },
+  "basic_(n)-(m0)": {
+   "n": 71,
+   "EX": 0.2254
+  },
+  "basic_(n)-(m0)-(m1*)": {
+   "n": 329,
+   "EX": 0.1733
+  },
+  "basic_(n)-(m0*)": {
+   "n": 356,
+   "EX": 0.2669
+  },
+  "basic_(n)-(m0*),(n)-(m1*)": {
+   "n": 333,
+   "EX": 0.1201
+  },
+  "basic_(n)=(m0)": {
+   "n": 94,
+   "EX": 0.1064
+  },
+  "basic_(n*)": {
+   "n": 59,
+   "EX": 0.7119
+  },
+  "special_comparison": {
+   "n": 147,
+   "EX": 0.4218
+  },
+  "special_optional-match": {
+   "n": 268,
+   "EX": 0.041
+  },
+  "special_three-node-groupby": {
+   "n": 260,
+   "EX": 0.2038
+  },
+  "special_time-sensitive": {
+   "n": 60,
+   "EX": 0.0333
+  },
+  "special_union": {
+   "n": 310,
+   "EX": 0.0226
+  }
+ },
+ "by_return": {
+  "n_agg": {
+   "n": 138,
+   "EX": 0.3043
+  },
+  "n_argmax": {
+   "n": 53,
+   "EX": 0.2075
+  },
+  "n_name": {
+   "n": 494,
+   "EX": 0.2429
+  },
+  "n_order_by": {
+   "n": 57,
+   "EX": 0.1228
+  },
+  "n_prop_combined": {
+   "n": 488,
+   "EX": 0.2213
+  },
+  "n_where": {
+   "n": 73,
+   "EX": 0.0959
+  }
+ }
+}

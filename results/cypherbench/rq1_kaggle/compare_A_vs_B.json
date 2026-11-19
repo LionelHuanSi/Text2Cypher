@@ -1,0 +1,517 @@
+{
+ "a": "../results/cypherbench/rq1_kaggle/qwen2.5-coder-7b-instruct/A",
+ "b": "../results/cypherbench/rq1_kaggle/qwen2.5-coder-7b-instruct/B",
+ "n_common": 2348,
+ "overall": {
+  "n": 2348,
+  "A": 20.87,
+  "B": 19.63,
+  "delta": -1.24,
+  "ci95": [
+   -2.51,
+   0.0
+  ],
+  "A_only_correct": 128,
+  "B_only_correct": 99,
+  "mcnemar_p": 0.0629
+ },
+ "by_graph": {
+  "company": {
+   "n": 347,
+   "A": 17.58,
+   "B": 17.87,
+   "delta": 0.29,
+   "ci95": [
+    -2.59,
+    3.46
+   ],
+   "A_only_correct": 13,
+   "B_only_correct": 14,
+   "mcnemar_p": 1.0
+  },
+  "fictional_character": {
+   "n": 385,
+   "A": 21.56,
+   "B": 21.56,
+   "delta": 0.0,
+   "ci95": [
+    -2.34,
+    2.34
+   ],
+   "A_only_correct": 11,
+   "B_only_correct": 11,
+   "mcnemar_p": 1.0
+  },
+  "flight_accident": {
+   "n": 189,
+   "A": 40.74,
+   "B": 37.57,
+   "delta": -3.17,
+   "ci95": [
+    -8.99,
+    3.17
+   ],
+   "A_only_correct": 19,
+   "B_only_correct": 13,
+   "mcnemar_p": 0.377
+  },
+  "geography": {
+   "n": 366,
+   "A": 22.4,
+   "B": 20.49,
+   "delta": -1.91,
+   "ci95": [
+    -4.92,
+    1.09
+   ],
+   "A_only_correct": 19,
+   "B_only_correct": 12,
+   "mcnemar_p": 0.281
+  },
+  "movie": {
+   "n": 401,
+   "A": 19.2,
+   "B": 17.21,
+   "delta": -2.0,
+   "ci95": [
+    -5.74,
+    1.5
+   ],
+   "A_only_correct": 32,
+   "B_only_correct": 24,
+   "mcnemar_p": 0.35
+  },
+  "nba": {
+   "n": 270,
+   "A": 22.22,
+   "B": 18.15,
+   "delta": -4.07,
+   "ci95": [
+    -8.16,
+    0.0
+   ],
+   "A_only_correct": 22,
+   "B_only_correct": 11,
+   "mcnemar_p": 0.0801
+  },
+  "politics": {
+   "n": 390,
+   "A": 12.82,
+   "B": 13.33,
+   "delta": 0.51,
+   "ci95": [
+    -2.05,
+    3.08
+   ],
+   "A_only_correct": 12,
+   "B_only_correct": 14,
+   "mcnemar_p": 0.845
+  }
+ },
+ "by_match": {
+  "basic_(n)": {
+   "n": 61,
+   "A": 67.21,
+   "B": 67.21,
+   "delta": 0.0,
+   "ci95": [
+    -9.84,
+    8.2
+   ],
+   "A_only_correct": 4,
+   "B_only_correct": 4,
+   "mcnemar_p": 1.0
+  },
+  "basic_(n)-(m0)": {
+   "n": 71,
+   "A": 21.13,
+   "B": 25.35,
+   "delta": 4.23,
+   "ci95": [
+    -4.23,
+    12.68
+   ],
+   "A_only_correct": 3,
+   "B_only_correct": 6,
+   "mcnemar_p": 0.508
+  },
+  "basic_(n)-(m0)-(m1*)": {
+   "n": 329,
+   "A": 16.11,
+   "B": 16.72,
+   "delta": 0.61,
+   "ci95": [
+    -3.34,
+    4.56
+   ],
+   "A_only_correct": 20,
+   "B_only_correct": 22,
+   "mcnemar_p": 0.878
+  },
+  "basic_(n)-(m0*)": {
+   "n": 356,
+   "A": 32.02,
+   "B": 29.21,
+   "delta": -2.81,
+   "ci95": [
+    -6.46,
+    0.56
+   ],
+   "A_only_correct": 27,
+   "B_only_correct": 17,
+   "mcnemar_p": 0.174
+  },
+  "basic_(n)-(m0*),(n)-(m1*)": {
+   "n": 333,
+   "A": 19.52,
+   "B": 14.41,
+   "delta": -5.11,
+   "ci95": [
+    -8.72,
+    -1.5
+   ],
+   "A_only_correct": 29,
+   "B_only_correct": 12,
+   "mcnemar_p": 0.0115
+  },
+  "basic_(n)=(m0)": {
+   "n": 94,
+   "A": 8.51,
+   "B": 11.7,
+   "delta": 3.19,
+   "ci95": [
+    -1.06,
+    8.51
+   ],
+   "A_only_correct": 1,
+   "B_only_correct": 4,
+   "mcnemar_p": 0.375
+  },
+  "basic_(n*)": {
+   "n": 59,
+   "A": 79.66,
+   "B": 72.88,
+   "delta": -6.78,
+   "ci95": [
+    -13.56,
+    -1.69
+   ],
+   "A_only_correct": 4,
+   "B_only_correct": 0,
+   "mcnemar_p": 0.125
+  },
+  "special_comparison": {
+   "n": 147,
+   "A": 54.42,
+   "B": 45.58,
+   "delta": -8.84,
+   "ci95": [
+    -14.29,
+    -4.08
+   ],
+   "A_only_correct": 15,
+   "B_only_correct": 2,
+   "mcnemar_p": 0.00235
+  },
+  "special_optional-match": {
+   "n": 268,
+   "A": 3.36,
+   "B": 3.36,
+   "delta": 0.0,
+   "ci95": [
+    -2.61,
+    2.61
+   ],
+   "A_only_correct": 6,
+   "B_only_correct": 6,
+   "mcnemar_p": 1.0
+  },
+  "special_three-node-groupby": {
+   "n": 260,
+   "A": 18.08,
+   "B": 21.92,
+   "delta": 3.85,
+   "ci95": [
+    -0.38,
+    8.46
+   ],
+   "A_only_correct": 11,
+   "B_only_correct": 21,
+   "mcnemar_p": 0.11
+  },
+  "special_time-sensitive": {
+   "n": 60,
+   "A": 6.67,
+   "B": 0.0,
+   "delta": -6.67,
+   "ci95": [
+    -13.33,
+    -1.67
+   ],
+   "A_only_correct": 4,
+   "B_only_correct": 0,
+   "mcnemar_p": 0.125
+  },
+  "special_union": {
+   "n": 310,
+   "A": 2.26,
+   "B": 2.58,
+   "delta": 0.32,
+   "ci95": [
+    -1.61,
+    2.26
+   ],
+   "A_only_correct": 4,
+   "B_only_correct": 5,
+   "mcnemar_p": 1.0
+  }
+ },
+ "by_return": {
+  "n_agg": {
+   "n": 138,
+   "A": 27.54,
+   "B": 32.61,
+   "delta": 5.07,
+   "ci95": [
+    -2.17,
+    11.59
+   ],
+   "A_only_correct": 8,
+   "B_only_correct": 15,
+   "mcnemar_p": 0.21
+  },
+  "n_argmax": {
+   "n": 53,
+   "A": 32.08,
+   "B": 20.75,
+   "delta": -11.32,
+   "ci95": [
+    -22.64,
+    -1.89
+   ],
+   "A_only_correct": 7,
+   "B_only_correct": 1,
+   "mcnemar_p": 0.0703
+  },
+  "n_m0_comparison_argmax": {
+   "n": 70,
+   "A": 30.0,
+   "B": 22.86,
+   "delta": -7.14,
+   "ci95": [
+    -12.86,
+    -1.43
+   ],
+   "A_only_correct": 5,
+   "B_only_correct": 0,
+   "mcnemar_p": 0.0625
+  },
+  "n_m0_comparison_arithmetic": {
+   "n": 48,
+   "A": 66.67,
+   "B": 58.33,
+   "delta": -8.33,
+   "ci95": [
+    -18.75,
+    0.0
+   ],
+   "A_only_correct": 5,
+   "B_only_correct": 1,
+   "mcnemar_p": 0.219
+  },
+  "n_m0_comparison_boolean": {
+   "n": 29,
+   "A": 93.1,
+   "B": 79.31,
+   "delta": -13.79,
+   "ci95": [
+    -31.03,
+    0.0
+   ],
+   "A_only_correct": 5,
+   "B_only_correct": 1,
+   "mcnemar_p": 0.219
+  },
+  "n_m0_group_by_count": {
+   "n": 528,
+   "A": 10.61,
+   "B": 12.5,
+   "delta": 1.89,
+   "ci95": [
+    -0.57,
+    4.36
+   ],
+   "A_only_correct": 17,
+   "B_only_correct": 27,
+   "mcnemar_p": 0.174
+  },
+  "n_name": {
+   "n": 494,
+   "A": 25.3,
+   "B": 25.3,
+   "delta": 0.0,
+   "ci95": [
+    -3.04,
+    3.04
+   ],
+   "A_only_correct": 29,
+   "B_only_correct": 29,
+   "mcnemar_p": 1.0
+  },
+  "n_name_prop": {
+   "n": 359,
+   "A": 23.12,
+   "B": 18.94,
+   "delta": -4.18,
+   "ci95": [
+    -7.52,
+    -0.56
+   ],
+   "A_only_correct": 29,
+   "B_only_correct": 14,
+   "mcnemar_p": 0.0315
+  },
+  "n_name_special": {
+   "n": 60,
+   "A": 6.67,
+   "B": 0.0,
+   "delta": -6.67,
+   "ci95": [
+    -13.33,
+    -1.67
+   ],
+   "A_only_correct": 4,
+   "B_only_correct": 0,
+   "mcnemar_p": 0.125
+  },
+  "n_order_by": {
+   "n": 57,
+   "A": 22.81,
+   "B": 15.79,
+   "delta": -7.02,
+   "ci95": [
+    -15.79,
+    0.0
+   ],
+   "A_only_correct": 5,
+   "B_only_correct": 1,
+   "mcnemar_p": 0.219
+  },
+  "n_prop": {
+   "n": 59,
+   "A": 79.66,
+   "B": 72.88,
+   "delta": -6.78,
+   "ci95": [
+    -13.56,
+    -1.69
+   ],
+   "A_only_correct": 4,
+   "B_only_correct": 0,
+   "mcnemar_p": 0.125
+  },
+  "n_prop_array_distinct": {
+   "n": 37,
+   "A": 0.0,
+   "B": 0.0,
+   "delta": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "A_only_correct": 0,
+   "B_only_correct": 0,
+   "mcnemar_p": 1.0
+  },
+  "n_prop_distinct": {
+   "n": 33,
+   "A": 39.39,
+   "B": 39.39,
+   "delta": 0.0,
+   "ci95": [
+    -12.12,
+    12.12
+   ],
+   "A_only_correct": 2,
+   "B_only_correct": 2,
+   "mcnemar_p": 1.0
+  },
+  "n_union_count": {
+   "n": 181,
+   "A": 1.1,
+   "B": 1.1,
+   "delta": 0.0,
+   "ci95": [
+    -1.66,
+    1.66
+   ],
+   "A_only_correct": 1,
+   "B_only_correct": 1,
+   "mcnemar_p": 1.0
+  },
+  "n_union_name": {
+   "n": 129,
+   "A": 3.88,
+   "B": 4.65,
+   "delta": 0.78,
+   "ci95": [
+    -3.1,
+    4.65
+   ],
+   "A_only_correct": 3,
+   "B_only_correct": 4,
+   "mcnemar_p": 1.0
+  },
+  "n_where": {
+   "n": 73,
+   "A": 9.59,
+   "B": 8.22,
+   "delta": -1.37,
+   "ci95": [
+    -8.22,
+    5.48
+   ],
+   "A_only_correct": 4,
+   "B_only_correct": 3,
+   "mcnemar_p": 1.0
+  }
+ },
+ "schema_violation": {
+  "any_violation": {
+   "A": 39.78,
+   "B": 37.48,
+   "delta": -2.3,
+   "ci95": [
+    -4.0,
+    -0.6
+   ]
+  },
+  "violation_class": {
+   "A": 30.62,
+   "B": 28.45,
+   "delta": -2.17,
+   "ci95": [
+    -3.88,
+    -0.51
+   ]
+  }
+ },
+ "error_classes": {
+  "A": {
+   "schema_valid_wrong": 575,
+   "not_executable": 564,
+   "reversed_direction": 525,
+   "wrong_endpoint": 97,
+   "correct": 490,
+   "unknown_element": 97
+  },
+  "B": {
+   "schema_valid_wrong": 709,
+   "not_executable": 510,
+   "reversed_direction": 506,
+   "correct": 461,
+   "wrong_endpoint": 66,
+   "unknown_element": 96
+  }
+ }
+}

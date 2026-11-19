@@ -1,6 +1,6 @@
 # Báo cáo tiến độ: Ontology-Constrained Knowledge Distillation cho Text-to-Cypher
 
-*Cập nhật lần cuối: 19/11/2026. File này được cập nhật sau mỗi bước; mọi số liệu đều có đường dẫn tới kết quả gốc.*
+*Cập nhật lần cuối: 20/11/2026. File này được cập nhật sau mỗi bước; mọi số liệu đều có đường dẫn tới kết quả gốc.*
 
 ## 0. Mục tiêu, câu hỏi nghiên cứu, tiến độ
 
@@ -9,7 +9,7 @@
 | Câu hỏi nghiên cứu | Cách chứng minh | Trạng thái |
 |---|---|---|
 | **RQ0.** Baseline và điểm yếu là gì? | Tái lập trên CypherBench, phân loại lỗi | Xong (mục 1) |
-| **RQ1.** Ontology tự xây có giúp **vượt hơn schema** không? | So 4 nhánh cùng model, cùng ngân sách: schema-only / schema + `graph_info` (chú thích tay của tác giả) / **ontology tự xây** / placebo | Nhánh C xong trên 2.348 câu: EX 21,59 lên **25,51** (+3,92; CI 95% [2,60; 5,24]; McNemar p = 1,2e-8), vi phạm schema giảm 4,47 điểm (mục 2.3). B, D chưa chạy |
+| **RQ1.** Ontology tự xây có giúp **vượt hơn schema** không? | So 4 nhánh cùng model, cùng ngân sách: schema-only / schema + `graph_info` (chú thích tay của tác giả) / **ontology tự xây** / placebo | **Chưa chứng minh được với thẻ v0.1.** Đủ 4 nhánh trên 2 backend: C (ontology) = D (placebo) trên cả hai (chênh 0,04 và 0,00 điểm). Mức tăng +3,9 trên MLX đến từ khuôn thẻ (liệt kê lại các mẫu quan hệ đúng hướng), không phải từ tri thức ontology (mục 2.4) |
 | **RQ2.** Có giúp **model nào cũng lợi** không? | Lặp RQ1 trên ≥ 3 họ model (Qwen, Llama, Gemma/Phi), nhiều cỡ (1,5B → 7B) | Chưa bắt đầu |
 | **RQ3.** Có **tổng quát cho KG bất kỳ** không? | Builder chỉ được nhìn đồ thị train khi thiết kế, rồi chạy nguyên trạng trên 7 đồ thị test chưa thấy; báo kết quả theo từng đồ thị | Chưa bắt đầu |
 | **RQ4.** Có **chưng cất** xuống 1,5B mà giữ được lợi ích không? | Teacher + ontology sinh dữ liệu → lọc/DPO theo ontology → Student 1,5B; so EX và tỷ lệ vi phạm với Teacher | Chưa bắt đầu (mục 3) |
@@ -24,7 +24,7 @@
   - OPTIONAL MATCH: 4,5%.
 
   Đây là chỗ ontology phải chứng minh giá trị riêng.
-- **Thẻ ontology tự xây (nhánh C), cùng model, không huấn luyện:** EX **25,51** so với 21,59 (+3,92 điểm, CI 95% [2,60; 5,24]); cả 7 đồ thị đều tăng, 3 đồ thị có ý nghĩa thống kê; vi phạm schema 34,9% xuống 30,4%. Điểm yếu mới: thẻ làm model nối thừa quan hệ ở câu hỏi một thực thể (mục 2.3). Chưa loại trừ được hiệu ứng "prompt dài hơn" cho tới khi chạy nhánh D.
+- **Thẻ ontology đưa vào prompt (v0.1) chưa cho lợi ích riêng.** Trên MLX, C đạt 25,51 so với A 21,59, nhưng placebo D (cùng khuôn, nội dung bị xáo) cũng đạt 25,47. Trên Kaggle (fp16), C = D = 18,31, cả hai thấp hơn A (20,87). Kết luận: phần lợi trên MLX là do khuôn thẻ (liệt kê lại `(:A)-[:R]->(:B)` đúng hướng), là thông tin schema; các tri thức ontology (nghĩa, bản số, bắt buộc, thời gian) đọc qua prompt **không** giúp model 7B. Hướng tiếp theo: dùng ontology **chủ động** (bộ kiểm/sửa, ràng buộc khi sinh, tín hiệu huấn luyện) thay vì chỉ đưa vào prompt (mục 2.4).
 
 *Đối chiếu với đề cương của thầy:*
 - Giai đoạn 1 (chọn baseline, tái hiện, phân tích điểm yếu) tương ứng mục 1.
@@ -302,6 +302,8 @@ Mọi nhánh dùng cùng model, cùng prompt gốc, cùng số token ngữ cản
 
 ### 2.3 Kết quả nhánh C so với nhánh A (19/11/2026)
 
+*Lưu ý: kết luận của mục này đã bị thay thế bởi mục 2.4. Nhánh placebo cho mức tăng như nhánh C, nên mức tăng dưới đây không phải do nội dung ontology.*
+
 Qwen2.5-Coder-7B-Instruct, 2.348 câu test, so ghép cặp theo từng câu. CI 95% là bootstrap ghép cặp (10.000 lần lấy mẫu lại câu hỏi); p là McNemar chính xác.
 
 | | A. schema-only | C. + ontology tự xây | Chênh (C − A) | CI 95% | p |
@@ -366,6 +368,51 @@ Cả 7 đồ thị đều tăng; 3 đồ thị tăng có ý nghĩa. Đây là b�
 
 Kết quả gốc: `results/cypherbench/rq1/qwen7b_instruct_C_auto/` (metrics.json, error_analysis.json), so sánh ghép cặp `results/cypherbench/rq1/compare_A_vs_C.json`.
 
+### 2.4 Kết quả đủ 4 nhánh, 2 backend (20/11/2026): nội dung thẻ không có tác dụng
+
+Hai môi trường chạy độc lập, cùng 9.392 prompt (dựng sẵn bởi `src/kaggle_build_prompts.py`; thẻ nhánh C giống hệt lần chạy MLX):
+- **MLX**: Apple M5, bf16, sinh từng câu (A, C, D).
+- **Kaggle**: 2x T4, transformers fp16, sinh theo lô có đệm trái (A, B, C, D). Dự kiến dùng vLLM nhưng vLLM 0.6.6 không cài được trên Python 3.13 của Kaggle nên chạy phương án dự phòng; mất 5,6 giờ GPU.
+
+Hai backend cho dự đoán khác nhau nhiều (chỉ 17,8% dự đoán nhánh A giống hệt nhau; bản fp16 hay bọc ```` ```cypher ```` dù prompt cấm), nên **chỉ so trong cùng backend**.
+
+**EX (2.348 câu):**
+
+| Nhánh | MLX bf16 | Kaggle fp16 |
+|---|---:|---:|
+| A. schema-only | 21,59 | 20,87 |
+| B. + `graph_info` (chú thích tay) | chưa chạy | 19,63 |
+| C. + ontology tự xây | 25,51 | 18,31 |
+| D. + placebo (cùng khuôn, nội dung xáo) | 25,47 | 18,31 |
+
+**So ghép cặp (EX, CI 95% bootstrap, McNemar):**
+
+| So sánh | MLX | Kaggle |
+|---|---|---|
+| C − A | +3,92 [2,60; 5,24], p = 1,2e-8 | −2,56 [−3,92; −1,24], p = 2e-4 |
+| D − A | +3,88 [2,60; 5,20], p = 5e-9 | −2,56 [−3,88; −1,28], p = 1e-4 |
+| **C − D** (tác dụng riêng của nội dung ontology) | **+0,04 [−0,77; 0,89]**, p = 1,0 | **0,00 [−0,81; 0,81]**, p = 1,0 |
+| C − B | | −1,32 [−2,43; −0,26] |
+| B − A | | −1,24 [−2,51; 0,00] |
+
+Vi phạm schema (câu có ít nhất một vi phạm): C − D = −0,26 điểm (MLX) và −0,43 (Kaggle), đều không có ý nghĩa. Theo từng loại câu hỏi (time-sensitive, OPTIONAL MATCH, UNION, `(n)=(m)`), C − D đều nằm trong khoảng ±4 điểm và CI chứa 0.
+
+**Diễn giải:**
+1. **Nội dung ontology đọc qua prompt không có tác dụng đo được.** Đây là so sánh quyết định (C − D) và ra 0 trên cả hai backend. Model 7B không tận dụng được nghĩa Wikidata, bản số, tính bắt buộc hay thông tin thời gian khi chúng chỉ là văn bản trong prompt.
+2. **Phần tăng +3,9 trên MLX là hiệu ứng khuôn thẻ.** Placebo chỉ xáo thuộc tính, vẫn giữ đúng các dòng `(:A)-[:R]->(:B)`. Việc liệt kê lại hướng quan hệ dưới dạng mẫu Cypher giúp giảm đảo hướng. Đó là thông tin **schema**, không phải ontology. Placebo này vì vậy kiểm soát được nội dung ontology, chưa kiểm soát độ dài thuần (văn bản ngẫu nhiên).
+3. **Hiệu ứng khuôn không ổn định:** +3,9 trên bf16, −2,6 trên fp16. Thay đổi prompt có kết quả phụ thuộc môi trường số học, nên một kết quả prompting đơn lẻ không đủ tin cậy cho bài báo.
+4. Chú thích tay của tác giả (B) cũng không giúp (−1,24 so với A trên Kaggle). Vậy vấn đề không riêng ở chất lượng ontology tự xây, mà ở **cách dùng**: đưa tri thức vào prompt.
+
+**Hệ quả cho kế hoạch (cần thầy cho ý kiến):**
+- Bỏ hướng "thẻ ontology trong prompt" làm đóng góp chính.
+- Dùng ontology **chủ động**, ở chỗ model không cần tự đọc hiểu:
+  1. *Bộ kiểm + sửa sau khi sinh*: phát hiện vi phạm (đảo hướng, sai đầu cạnh, sai bản số, thiếu OPTIONAL MATCH ở quan hệ không bắt buộc, thiếu điều kiện thời gian) rồi sửa tất định hoặc cho model sinh lại kèm thông báo lỗi cụ thể.
+  2. *Chọn ứng viên*: sinh K câu, xếp hạng theo số vi phạm ontology.
+  3. *Tín hiệu huấn luyện* (mục 3): lọc dữ liệu chưng cất và cặp DPO theo vi phạm ontology. Đây chính là hướng "Ontology Constraints qua Loss/DPO" trong đề cương; kết quả này là lập luận cho việc phải đưa ontology vào **huấn luyện** thay vì prompt.
+- Phép thử vẫn giữ nguyên: mọi cách dùng phải thắng placebo (ontology xáo) trên ít nhất 2 họ model.
+
+Kết quả gốc: `results/cypherbench/rq1/` (MLX) và `results/cypherbench/rq1_kaggle/` (Kaggle), các file `compare_*.json`.
+
 ## 3. Chưng cất xuống Student 1,5B (RQ4; chưa thực hiện)
 
 ```
@@ -405,6 +452,9 @@ Teacher 7B + ontology (nhánh C) sinh K Cypher/câu trên tập train (4 đồ t
 | 19/11/2026 | Ontology báo **bản số/tính bắt buộc theo dữ liệu thật**, không chỉnh theo chú thích tay | Truy vấn đúng phụ thuộc dữ liệu thật (vd. có cần OPTIONAL MATCH không) |
 | 19/11/2026 | So nhánh bằng **bootstrap ghép cặp + McNemar** trên cùng câu hỏi | Hai nhánh chạy trên cùng 2.348 câu; ghép cặp nhạy hơn so hai CI riêng |
 | 19/11/2026 | Builder chỉ dùng Neo4j + Wikidata (qua QID), **không dùng câu hỏi benchmark hay graph_info**; ngưỡng chỉnh trên đồ thị train | Đảm bảo tổng quát cho KG bất kỳ (RQ3) và tránh rò rỉ từ test |
+| 20/11/2026 | Chạy sinh trên **Kaggle 2x T4** (dataset prompt dựng sẵn) | Máy cá nhân 5 giờ/nhánh và ngủ giữa chừng; chấm vẫn làm trên máy vì cần Neo4j |
+| 20/11/2026 | **Chỉ so trong cùng backend** (MLX bf16 riêng, Kaggle fp16 riêng) | Hai backend cho dự đoán khác nhau ở 82% câu |
+| 20/11/2026 | **Thẻ ontology trong prompt không phải đóng góp chính**; chuyển sang dùng ontology chủ động (kiểm/sửa, chọn ứng viên, huấn luyện) | C = placebo trên cả hai backend |
 
 ## 5. Tái lập kết quả
 
@@ -423,6 +473,10 @@ scripts/cb_eval_sequential.sh results/cypherbench/protocol_probe/base_cypherri
 scripts/cb_eval_sequential.sh results/cypherbench/rq1/qwen7b_instruct_C_auto
 cd src && ../.venv-cb/bin/python cb_compare.py --a ../results/cypherbench/zero_shot/qwen2.5-coder-7b-instruct \
     --b ../results/cypherbench/rq1/qwen7b_instruct_C_auto --out ../results/cypherbench/rq1/compare_A_vs_C.json; cd ..
+# Sinh 4 nhánh trên Kaggle (2x T4) rồi chấm trên máy
+cd src && ../.venv-cb/bin/python kaggle_build_prompts.py && cd ..
+scripts/kaggle_rq1.sh push "Qwen/Qwen2.5-Coder-7B-Instruct" "A B C D"; scripts/kaggle_rq1.sh status; scripts/kaggle_rq1.sh pull
+K=results/cypherbench/rq1_kaggle/qwen2.5-coder-7b-instruct; scripts/cb_eval_multi.sh $K/A $K/B $K/C $K/D
 # Ontology Builder cho 10 đồ thị + đối chiếu với graph_info.json
 scripts/build_ontologies.sh
 # Xem thẻ ontology của một đồ thị (auto | graphinfo | placebo)
