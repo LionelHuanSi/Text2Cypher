@@ -73,10 +73,23 @@ class Ontology:
                 subj_part=st["subj_participation"], obj_part=st.get("obj_participation", 1.0),
                 reading=i.get("reading") or "", meaning=i.get("meaning") or "", wd_direction=i.get("wikidata_direction") or "")
         if placebo:
+            # Xáo dữ kiện ontology giữa các quan hệ; trong 2000 hoán vị ngẫu nhiên, chọn hoán vị làm ít quan hệ
+            # giữ lại ĐÚNG dữ kiện then chốt của mình nhất (có khoảng thời gian?, bắt buộc hai phía?, có nghĩa?).
             rng = random.Random(f"{seed}-{graph}")
-            pool = [{k: getattr(r, k) for k in ONTO_FIELDS} for r in self.rels.values()]
-            rng.shuffle(pool)
-            for r, p in zip(self.rels.values(), pool):
+            rels = list(self.rels.values())
+            pool = [{k: getattr(r, k) for k in ONTO_FIELDS} for r in rels]
+
+            def key(d):
+                return (bool(d["interval"]), d["mandatory_subj"], d["mandatory_obj"], d["reading"])
+            best, best_same = None, None
+            for _ in range(2000):
+                perm = pool[:]
+                rng.shuffle(perm)
+                same = sum(key(p) == key(q) for p, q in zip(perm, pool))
+                if best is None or same < best_same:
+                    best, best_same = perm, same
+            self.placebo_same = best_same
+            for r, p in zip(rels, best):
                 for k, v in p.items():
                     setattr(r, k, v)
         self.rel_names = {r.label for r in self.rels.values()}
@@ -103,6 +116,22 @@ NODE = re.compile(NODE_RE.format(p="n"))
 CLAUSE = re.compile(r"\b(OPTIONAL\s+MATCH|MATCH|WHERE|WITH|RETURN|UNWIND|CALL|UNION|ORDER\s+BY|SET|CREATE|MERGE)\b", re.I)
 AGG = re.compile(r"\b(count|collect|sum|avg|min|max)\s*\(\s*(?:DISTINCT\s+)?([A-Za-z_]\w*)", re.I)
 YEAR = re.compile(r"\b(1[5-9]\d\d|20\d\d)\b")
+# Tín hiệu thời gian trong câu hỏi (quy ước rút từ đáp án chuẩn của đồ thị TRAIN):
+#   "at any time", "either currently or in the past", "ever", "past and present" -> không lọc thời gian
+#   "currently" (đứng riêng)                                                       -> còn hiệu lực: end IS NULL
+ANY_TIME = re.compile(r"\b(at any time|in the past|ever|past (?:and|or) present|present (?:and|or) past|former)\b", re.I)
+CURRENT = re.compile(r"\b(currently|current|now|presently)\b", re.I)
+
+
+def time_intent(question):
+    """'year' | 'current' | 'any' | None."""
+    if YEAR.search(question):
+        return "year"
+    if ANY_TIME.search(question):
+        return "any"
+    if CURRENT.search(question):
+        return "current"
+    return None
 
 
 def mask_strings(q):
@@ -264,6 +293,7 @@ def ontology_issues(q, question, onto):
     out = []
     years = sorted(set(YEAR.findall(question)))
     agg_vars = {m.group(2) for m in AGG.finditer(m_q)}
+    group_keys = grouping_keys(m_q)
     for k, h in enumerate(hops):
         o = h.oriented()
         labs = o if o else (h.a_lab, h.b_lab)
@@ -291,13 +321,18 @@ def ontology_issues(q, question, onto):
                         new = f"[{var}{types}" + (f" {{{rest}}}" if rest else "") + "]"
                         qq = qq[:s] + new + qq[e:]
                         y_s, y_e = tv.get(start), tv.get(end)
-                        if y_e and y_e.lower() == "null":
+                        nums = [v for v in (y_s, y_e) if v and v.lower() != "null"]
+                        intent = time_intent(question)
+                        if nums and intent != "any":
+                            y_s = y_s if y_s and y_s.lower() != "null" else nums[0]
+                            y_e = y_e if y_e and y_e.lower() != "null" else y_s
+                            cond = f"{var}.{start} <= {y_s} AND ({var}.{end} >= {y_e} OR {var}.{end} IS NULL)"
+                        elif intent == "current":
                             # "end rỗng" = còn hiệu lực ở hiện tại (ngữ nghĩa khoảng của ontology)
                             cond = f"{var}.{start} IS NOT NULL AND {var}.{end} IS NULL"
                         else:
-                            y_s = y_s if y_s and y_s.lower() != "null" else y_e
-                            y_e = y_e or y_s
-                            cond = f"{var}.{start} <= {y_s} AND ({var}.{end} >= {y_e} OR {var}.{end} IS NULL)"
+                            # so bằng với null không bao giờ khớp; câu hỏi không giới hạn thời gian -> bỏ điều kiện
+                            return qq
                         return _insert_where(qq, s + len(new), cond)
                     out.append(Issue("O_TIME_EQ", "ontology", f"{t}: equality on {start}/{end}", fix=fx))
                     continue
@@ -326,6 +361,18 @@ def ontology_issues(q, question, onto):
                         cond = f"{var}.{start} <= {y} AND ({var}.{end} >= {y} OR {var}.{end} IS NULL)"
                         return _insert_where(qq, pos, cond)
                     out.append(Issue("O_TIME_MISSING", "ontology", f"{t}: year {y} not applied", fix=fx))
+            # --- O_TIME_CURRENT: câu hỏi "currently", quan hệ có khoảng, chưa lọc theo end
+            if start and end and time_intent(question) == "current":
+                used = h.rel_var and re.search(rf"\b{h.rel_var}\.({end})\b", m_q)
+                n_interval_hops = sum(1 for hh in hops for tt in hh.rel_types
+                                      if any(rr.label == tt and rr.interval for rr in onto.rels.values()))
+                if not used and n_interval_hops == 1 and h.clause in ("MATCH", "OPTIONAL MATCH"):
+                    def fx(qq, h=h, start=start, end=end, k=k):
+                        hh = parse(qq)[0]
+                        cur = next((x for x in hh if x.rel_span[0] == h.rel_span[0]), h)
+                        qq, var, pos = _ensure_rel_var(qq, cur, f"r_t{k}")
+                        return _insert_where(qq, pos, f"{var}.{start} IS NOT NULL AND {var}.{end} IS NULL")
+                    out.append(Issue("O_TIME_CURRENT", "ontology", f"{t}: 'currently' not applied", fix=fx))
             # --- O_OPTIONAL: đếm/gom qua quan hệ không bắt buộc trong MATCH bắt buộc
             if h.clause == "MATCH" and agg_vars:
                 for g_var, g_lab, x_var, g_is_subj in ((h.a_var, labs[0] if o else h.a_lab, h.b_var, True),
@@ -334,6 +381,8 @@ def ontology_issues(q, question, onto):
                     if o:
                         g_is_subj = (g_var == (h.a_var if (h.left, h.right) == ("-", "->") else h.b_var))
                     if not g_var or (x_var not in agg_vars and h.rel_var not in agg_vars) or g_var in agg_vars:
+                        continue
+                    if g_var not in group_keys:
                         continue
                     mand = r.mandatory_subj if g_is_subj else r.mandatory_obj
                     part = r.subj_part if g_is_subj else r.obj_part
@@ -366,6 +415,35 @@ def ontology_issues(q, question, onto):
             seen.add((i.code, i.detail))
             uniq.append(i)
     return uniq
+
+
+def grouping_keys(m_q):
+    """Biến xuất hiện NGOÀI hàm gộp trong các mệnh đề RETURN/WITH có hàm gộp (= khóa gom nhóm)."""
+    keys = set()
+    marks = [(m.start(), m.end(), m.group(1).upper()) for m in CLAUSE.finditer(m_q)]
+    for i, (s0, e0, name) in enumerate(marks):
+        if name not in ("RETURN", "WITH"):
+            continue
+        body = m_q[e0: marks[i + 1][0] if i + 1 < len(marks) else len(m_q)]
+        if not AGG.search(body):
+            continue
+        depth, cur, items = 0, "", []
+        for ch in body:
+            depth += ch in "([{"
+            depth -= ch in ")]}"
+            if ch == "," and depth == 0:
+                items.append(cur)
+                cur = ""
+            else:
+                cur += ch
+        items.append(cur)
+        for it in items:
+            if AGG.search(it):
+                continue
+            m = re.match(r"\s*(?:DISTINCT\s+)?([A-Za-z_]\w*)", it, re.I)
+            if m:
+                keys.add(m.group(1))
+    return keys
 
 
 def detect(q, question, onto):

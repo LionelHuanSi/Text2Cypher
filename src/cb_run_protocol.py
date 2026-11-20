@@ -45,6 +45,7 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--split", default="test", help="test | train (train dùng làm tập dev)")
     ap.add_argument("--graphs", nargs="+", default=None, help="mặc định: 7 đồ thị test")
+    ap.add_argument("--qids", default=None, help="file danh sách qid (mỗi dòng một qid) thay cho lấy mẫu")
     args = ap.parse_args()
     graphs = args.graphs or TEST_GRAPHS
 
@@ -52,6 +53,9 @@ def main():
     pred_path = out / "predictions.jsonl"
     done = {json.loads(l)["qid"] for l in pred_path.read_text().splitlines() if l.strip()} if pred_path.exists() else set()
     items = subset(load_split(args.split, set(graphs)), args.per_graph, graphs)
+    if args.qids:
+        keep = set(Path(args.qids).read_text().split())
+        items = [x for x in load_split(args.split, set(graphs)) if x.qid in keep]
     schemas = {g: load_schema(g) for g in graphs}
     cards = {g: render_card(g, args.card) for g in graphs} if args.protocol == "cb_chat_card" else {}
     if cards:

@@ -481,6 +481,35 @@ Câu còn sai do đảo **nghĩa** của `subsidiaryOf` giữa hai Company: sche
 
 **Bước tiếp theo:** cài đặt bộ kiểm/sửa đầy đủ (`src/ontology/verifier.py`), chạy trên toàn bộ 2.348 câu với các nhánh đối chứng: chỉ schema / schema + ontology / schema + ontology placebo / thông báo chung chung.
 
+### 2.7 Pipeline trên tập dev, lần 1 (20/11/2026)
+
+**Thiết lập.** Tập dev = 300 câu lấy ngẫu nhiên từ 3 đồ thị TRAIN (art, soccer, terrorist_attack; 100 câu/đồ thị). Mọi luật chỉ được chỉnh trên tập dev; 7 đồ thị test chỉ chạy một lần khi đã chốt. Teacher = Qwen2.5-Coder-7B-Instruct (MLX), cùng prompt CypherBench. Cùng một dự đoán của Teacher, 8 nhánh:
+
+| Nhánh | Sửa tự động | Teacher sửa lại (1 lần) | EX dev |
+|---|---|---|---:|
+| A0 | không | không | 27,00 |
+| S | schema | không | 31,67 |
+| O | schema + ontology | không | 33,67 |
+| Op | schema + ontology placebo | không | 32,67 |
+| S+R | schema | thông báo schema + lỗi Neo4j | 32,67 |
+| O+R | schema + ontology | thông báo schema/ontology + lỗi Neo4j | 34,33 |
+| O+G | schema + ontology | thông báo chung chung (cùng tập câu bị đánh dấu) | 34,33 |
+| Op+R | ontology placebo | thông báo từ ontology placebo | 33,33 |
+
+**Theo từng luật (thắng / thua so với bước trước):**
+- Lật hướng theo schema: kích hoạt 66 câu, +14 / −0.
+- Sửa khoảng thời gian theo ontology: kích hoạt 28 câu, +6 / −0.
+- Thông báo OPTIONAL từ ontology: kích hoạt 22 câu, +0 / −1.
+- Teacher sửa lại nhờ lỗi Neo4j: 55 câu, +2.
+
+**Vấn đề phát hiện được nhờ tập dev (chưa đụng tới test):**
+1. Tập dev ngẫu nhiên có quá ít câu ontology nhắm tới (5 câu thời gian, 16 câu OPTIONAL / 300). Bổ sung **dev2** (154 câu chọn có chủ đích từ train: 40 câu thời gian, 60 câu OPTIONAL, 30 câu gom nhóm 3 nút và 24 câu một thực thể để đo báo nhầm).
+2. Luật thời gian hiểu `{end_year: null}` là "hiện tại" kể cả khi câu hỏi nói "at any time / either currently or in the past". Theo quy ước rút từ đáp án chuẩn của đồ thị train (173 câu "at any time", 75 câu "either currently or in the past" đều **không** lọc thời gian; 40 câu "currently" lọc `end IS NULL`), luật được sửa để đọc tín hiệu thời gian trong câu hỏi; thêm luật O_TIME_CURRENT.
+3. Luật OPTIONAL báo nhầm khi thực thể không phải khóa gom nhóm; sửa: chỉ báo khi thực thể nằm ngoài hàm gộp trong RETURN/WITH.
+4. Placebo cũ tình cờ giữ lại dữ kiện thật (khi đồ thị có ít quan hệ, xáo ngẫu nhiên có thể trả `hasHomeVenue` về đúng chỗ). Placebo mới chọn hoán vị không giữ lại dữ kiện then chốt nào (0 quan hệ giữ đúng trên cả 10 đồ thị).
+
+Đang chạy lại 8 nhánh trên dev1 + dev2 (454 câu).
+
 ## 3. Chưng cất xuống Student 1,5B (RQ4; chưa thực hiện)
 
 ```

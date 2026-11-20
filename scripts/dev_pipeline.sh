@@ -1,10 +1,10 @@
 #!/bin/bash
 # Thí nghiệm pipeline Teacher + kiểm/sửa trên TẬP DEV (đồ thị train), 8 nhánh, rồi chấm.
-# Dùng: scripts/dev_pipeline.sh  (sau khi có results/cypherbench/dev/qwen7b_instruct_A/predictions.jsonl)
+# Dùng: A=<thư mục dự đoán Teacher> OUT=<thư mục kết quả> scripts/dev_pipeline.sh
 set -e
 cd "$(dirname "$0")/.."
-D=results/cypherbench/dev
-A=$D/qwen7b_instruct_A
+A=${A:-results/cypherbench/dev/qwen7b_instruct_A}
+D=${OUT:-results/cypherbench/dev}
 GRAPHS="art soccer terrorist_attack"
 P=".venv-cb/bin/python src/cb_pipeline.py --pred_dir $A --split train"
 C="docker compose -f infra/cypherbench/compose.yaml -p cypherbench"
