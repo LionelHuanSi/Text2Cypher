@@ -1,0 +1,12 @@
+{
+ "pred_dir": "results/cypherbench/dev/teacher_all",
+ "split": "train",
+ "graphs": [
+  "terrorist_attack"
+ ],
+ "level": "ontology",
+ "placebo": false,
+ "repair": "generic",
+ "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+ "out": "results/cypherbench/dev/v3/O_G"
+}

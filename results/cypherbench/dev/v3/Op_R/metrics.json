@@ -1,0 +1,104 @@
+{
+ "n": 454,
+ "overall": {
+  "execution_accuracy": 0.3018,
+  "psjs": 0.44,
+  "executable": 0.8678
+ },
+ "EX_ci95": [
+  0.2599,
+  0.3458
+ ],
+ "by_graph": {
+  "art": {
+   "n": 138,
+   "execution_accuracy": 0.2246,
+   "psjs": 0.4003,
+   "executable": 0.7971
+  },
+  "soccer": {
+   "n": 178,
+   "execution_accuracy": 0.2528,
+   "psjs": 0.3508,
+   "executable": 0.927
+  },
+  "terrorist_attack": {
+   "n": 138,
+   "execution_accuracy": 0.442,
+   "psjs": 0.5947,
+   "executable": 0.8623
+  }
+ },
+ "by_match": {
+  "basic_(n)": {
+   "n": 4,
+   "EX": 0.75
+  },
+  "basic_(n)-(m0)": {
+   "n": 2,
+   "EX": 0.5
+  },
+  "basic_(n)-(m0)-(m1*)": {
+   "n": 46,
+   "EX": 0.1304
+  },
+  "basic_(n)-(m0*)": {
+   "n": 82,
+   "EX": 0.561
+  },
+  "basic_(n)-(m0*),(n)-(m1*)": {
+   "n": 62,
+   "EX": 0.2903
+  },
+  "basic_(n*)": {
+   "n": 33,
+   "EX": 0.8788
+  },
+  "special_comparison": {
+   "n": 21,
+   "EX": 0.3333
+  },
+  "special_optional-match": {
+   "n": 76,
+   "EX": 0.0789
+  },
+  "special_three-node-groupby": {
+   "n": 46,
+   "EX": 0.3696
+  },
+  "special_time-sensitive": {
+   "n": 45,
+   "EX": 0.0
+  },
+  "special_union": {
+   "n": 37,
+   "EX": 0.1081
+  }
+ },
+ "by_return": {
+  "n_agg": {
+   "n": 28,
+   "EX": 0.3214
+  },
+  "n_argmax": {
+   "n": 10,
+   "EX": 0.3
+  },
+  "n_name": {
+   "n": 30,
+   "EX": 0.4667
+  },
+  "n_order_by": {
+   "n": 15,
+   "EX": 0.2667
+  },
+  "n_prop_combined": {
+   "n": 137,
+   "EX": 0.5255
+  },
+  "n_where": {
+   "n": 9,
+   "EX": 0.1111
+  }
+ }
+}
