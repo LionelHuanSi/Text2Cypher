@@ -615,27 +615,73 @@ Các nhóm thường (`(n)-(m0*)`, three-node-groupby) cũng tăng, vì nhiều 
 - OPTIONAL: 17,1% (thông báo chung chung 1,3%, placebo 7,9%). Three-node-groupby: 41,3% (chung chung 32,6%).
 - **Chốt** phần Teacher sửa lại (tag `repair-v1`). Đang chạy 4 nhánh S+R, O+R, O+G, Op+R trên 7 đồ thị test, một lần, qua đêm.
 
-## 3. Chưng cất xuống Student 1,5B (RQ4; chưa thực hiện)
+## 3. Chưng cất có ràng buộc ontology xuống Student 1,5B (RQ4; chưa thực hiện)
+
+### 3.1 Phân biệt: sửa đầu ra và chưng cất có ràng buộc
+
+Giai đoạn 1 (mục 2), nếu đứng riêng, chỉ là **dùng ontology để cải thiện đầu ra của Teacher**. Nó chưa phải "ontology-constrained distillation". Vai trò của giai đoạn 1 đối với đề tài là **xây và kiểm chứng một tập ràng buộc** kiểm tra được bằng máy. Giai đoạn 2 mới dùng tập ràng buộc đó để quyết định Student **được học gì** và **bị đẩy xa khỏi cái gì**.
+
+**Hàm vi phạm.** Ontology tự xây O cho tập ràng buộc C_O và hàm vi phạm V_O(q): số ràng buộc mà câu Cypher q phạm, kèm loại vi phạm.
+
+| Loại ràng buộc | Nguồn trong ontology | Ví dụ vi phạm |
+|---|---|---|
+| Domain/range, hướng | nhãn đầu cạnh, thống kê Neo4j | `(Person)-[:hasCEO]->(Company)` sai chiều |
+| Ngữ nghĩa khoảng thời gian | `interval_properties`, "end rỗng = còn hiệu lực" | so bằng `{start_year: Y, end_year: Y}` thay vì lọc theo khoảng |
+| Bắt buộc / tùy chọn | `mandatory_subj/obj`, tỷ lệ tham gia | gom nhóm qua quan hệ không bắt buộc trong MATCH bắt buộc (cần OPTIONAL MATCH) |
+| Nghĩa của hướng | `reading` từ Wikidata | hai quan hệ cùng kiểu nhưng hiểu ngược vai |
+
+Giai đoạn 1 đã cho hai bằng chứng cần thiết cho giai đoạn 2:
+1. **V_O đúng.** Sửa theo V_O cho 90 câu thắng / 0 câu thua trên test (mục 2.9).
+2. **V_O mang tri thức thật.** Placebo (giữ luật, xáo dữ kiện) và schema không đạt được mức này.
+
+**Luật và dữ kiện.** Luật là khuôn chung, không phụ thuộc KG (ví dụ "quan hệ có khoảng thời gian thì lọc theo khoảng"). Dữ kiện điền vào khuôn (quan hệ nào có khoảng, quan hệ nào bắt buộc) do Builder tự xây. Placebo giữ nguyên luật, chỉ xáo dữ kiện, và mất gần hết lợi ích, nên lợi ích đến từ ontology chứ không từ luật viết tay. Bài báo phải trình bày rõ điểm này.
+
+### 3.2 Ràng buộc đi vào chưng cất ở đâu
+
+Mục tiêu: tối thiểu hóa loss chưng cất **với điều kiện** đầu ra của Student thỏa C_O. Điều kiện này được nới thành hai cách thực thi, cả hai **chỉ dùng chuỗi Cypher** (không truyền token hay logit, nên đổi Teacher nào cũng được):
+
+| Chỗ | Cách ràng buộc | Tính là chưng cất có ràng buộc? |
+|---|---|---|
+| Dữ liệu SFT | Chỉ chưng cất đầu ra của Teacher có V_O(q) = 0 | Có: ràng buộc cứng trên tín hiệu chưng cất |
+| DPO | Cặp (q thỏa C_O, q vi phạm C_O): đẩy Student xa đúng loại vi phạm | Có: ràng buộc mềm qua mục tiêu ưu tiên |
+| Đánh giá | Tỷ lệ vi phạm V_O của Student so với Teacher | Đo xem ràng buộc có được học vào model không |
+| Chạy verifier sau Student | Sửa đầu ra lúc dùng | **Không**: đó là sửa đầu ra; chỉ báo riêng, không tính là đóng góp chưng cất |
 
 ```
-Teacher 7B + ontology (nhánh C) sinh K Cypher/câu trên tập train (4 đồ thị train)
- → thực thi trên Neo4j + bộ luật ontology → giữ câu đúng và không vi phạm
- → SFT Student (Qwen2.5-Coder-1,5B)
- → DPO: cặp (đúng, hợp lệ) tốt hơn (vi phạm ontology hoặc sai); hoặc loss phạt vi phạm
- → đánh giá trên 7 đồ thị test
+Câu hỏi (không dùng Cypher gold)
+ → Pipeline giai đoạn 1 (Teacher + ontology) sinh K ứng viên/câu
+ → tính V_O cho từng ứng viên (+ chạy được trên Neo4j)
+ → SFT: ứng viên có V_O = 0
+ → DPO: (V_O = 0) tốt hơn (V_O > 0)
+ → Student Qwen2.5-Coder-1,5B, đánh giá trên 7 đồ thị test
 ```
 
-| Nhánh (cùng Student, cùng ngân sách) | Mục đích |
-|---|---|
-| SFT thường (lọc chỉ theo thực thi) | Mốc distillation |
-| Lọc/DPO theo schema-only | Tách phần lợi từ schema |
-| Lọc/DPO theo **ontology tự xây** | **Đóng góp chính** |
-| Placebo | Loại trừ hiệu ứng "thêm dữ liệu" |
+### 3.3 Rủi ro: tập train có gold
 
-**Thước đo:**
-- EX, PSJS, Exec.;
-- **tỷ lệ vi phạm ontology**, so giữa Student và Teacher;
-- kích thước model, độ trễ trên máy biên (Apple M5).
+Trên train, CypherBench có Cypher gold. Nếu lọc dữ liệu chưng cất bằng cách so kết quả với gold, gold là bộ lọc mạnh nhất. Phản biện sẽ hỏi "ontology lọc thêm được gì?", và đóng góp dễ bị xem là rejection sampling thông thường.
+
+**Cách đặt bài toán để ontology có vai trò không thay thế được: chưng cất không cần nhãn.** Giả định như khi triển khai trên một KG mới: có câu hỏi, không có Cypher đúng. Khi đó ontology là thứ duy nhất kiểm được Teacher. Gold chỉ dùng làm cận trên để đo khoảng cách.
+
+| Nhánh (cùng Student, cùng câu hỏi, cùng ngân sách) | Bộ lọc dữ liệu | Mục đích |
+|---|---|---|
+| G0 | Không chưng cất (Student zero-shot) | Mốc dưới |
+| G1 | Teacher không lọc | Chưng cất thường |
+| G2 | Chỉ lọc "chạy được trên Neo4j" | Bộ lọc không cần tri thức |
+| G3 | Lọc theo schema | Tách phần lợi của schema |
+| **G4** | **Lọc + DPO theo ontology tự xây** | **Đóng góp chính** |
+| G5 | Lọc + DPO theo ontology placebo | Loại trừ hiệu ứng "lọc bớt dữ liệu" |
+| G6 | Lọc theo gold | Cận trên (cần nhãn) |
+
+Luận điểm cần chứng minh: **G4 tiến gần G6 và vượt G2, G3, G5**. Tức là ontology tự xây thay được nhãn gold khi chưng cất. Điều này cũng nối với RQ3 (KG bất kỳ).
+
+Thí nghiệm phụ cho DPO: phản ví dụ **vi phạm ontology** so với phản ví dụ **sai bất kỳ** (cùng số cặp). Câu hỏi: Student học được "vì sao sai" hay chỉ học "cái này sai"? Đo bằng tỷ lệ vi phạm V_O và EX trên các nhóm time-sensitive và optional-match.
+
+### 3.4 Thước đo
+
+- EX, PSJS, Exec.
+- **Tỷ lệ vi phạm ontology** V_O, theo từng loại ràng buộc, so giữa Student và Teacher.
+- Tỷ lệ giữ lại dữ liệu sau lọc, và độ chính xác của bộ lọc (so với gold, chỉ để phân tích).
+- Kích thước model, độ trễ trên máy biên (Apple M5).
 
 **So với Cypher-RI:** theo cách ở mục 1.7, tức điểm neo SFT 44,34 cộng với lập luận hiệu quả.
 
@@ -659,6 +705,7 @@ Teacher 7B + ontology (nhánh C) sinh K Cypher/câu trên tập train (4 đồ t
 | 20/11/2026 | Đối thủ trực tiếp mới: **CypherGuard** (88,5 trên CypherBench, model API). Định vị lại: model mở nhỏ + tri thức ontology ngoài schema + đối chứng chặt | Pipeline nhiều tầng nói chung đã có người làm trên cùng benchmark |
 | 20/11/2026 | **Thẻ ontology trong prompt không phải đóng góp chính**; chuyển sang dùng ontology chủ động (kiểm/sửa, chọn ứng viên, huấn luyện) | C = placebo trên cả hai backend |
 | 20/11/2026 | Tinh chỉnh chỉ trên **dev (đồ thị train)**, chốt verifier v1 rồi chạy test **một lần** | Tránh rò rỉ từ test; kết quả test (+3,83) khớp dev1 ngẫu nhiên (+4,0) |
+| 21/11/2026 | Giai đoạn 2 đặt là **chưng cất không cần nhãn**: ontology thay gold làm bộ lọc, gold chỉ là cận trên | Train có gold nên lọc bằng gold mạnh nhất; nếu không đặt bài toán như vậy, ontology không có vai trò riêng trong chưng cất |
 
 ## 5. Tái lập kết quả
 
