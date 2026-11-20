@@ -5,14 +5,20 @@ set -e
 cd "$(dirname "$0")/.."
 A=${A:-results/cypherbench/dev/qwen7b_instruct_A}
 D=${OUT:-results/cypherbench/dev}
-GRAPHS="art soccer terrorist_attack"
-P=".venv-cb/bin/python src/cb_pipeline.py --pred_dir $A --split train"
+GRAPHS=${GRAPHS:-art soccer terrorist_attack}
+SPLIT=${SPLIT:-train}
+ARMS=${ARMS:-det llm}
+P=".venv-cb/bin/python src/cb_pipeline.py --pred_dir $A --split $SPLIT"
 C="docker compose -f infra/cypherbench/compose.yaml -p cypherbench"
 # 1) nhánh sửa tự động (không cần Neo4j, không gọi LLM)
+if [[ " $ARMS " == *" det "* ]]; then
 $P --graphs $GRAPHS --level schema   --out $D/S
 $P --graphs $GRAPHS --level ontology --out $D/O
 $P --graphs $GRAPHS --level ontology --placebo --out $D/Op
+SPLIT=$SPLIT GRAPHS="$GRAPHS" scripts/cb_eval_multi.sh $A $D/S $D/O $D/Op
+fi
 # 2) nhánh có Teacher sửa lại (cần Neo4j cho EXPLAIN)
+if [[ " $ARMS " == *" llm "* ]]; then
 for g in $GRAPHS; do
   svc=${g//_/-}
   $C stop >/dev/null 2>&1 || true
@@ -24,4 +30,5 @@ for g in $GRAPHS; do
   $P --graphs $g --level ontology --placebo --repair specific --out $D/Op_R
 done
 # 3) chấm
-SPLIT=train GRAPHS="$GRAPHS" scripts/cb_eval_multi.sh $A $D/S $D/O $D/Op $D/S_R $D/O_R $D/O_G $D/Op_R
+SPLIT=$SPLIT GRAPHS="$GRAPHS" scripts/cb_eval_multi.sh $D/S_R $D/O_R $D/O_G $D/Op_R
+fi

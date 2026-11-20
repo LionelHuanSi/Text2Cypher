@@ -387,7 +387,12 @@ def ontology_issues(q, question, onto):
                     mand = r.mandatory_subj if g_is_subj else r.mandatory_obj
                     part = r.subj_part if g_is_subj else r.obj_part
                     # g phải đã bị ràng buộc bởi điều kiện khác (quan hệ khác hoặc thuộc tính)
-                    other = [hh for hh in hops if hh is not h and g_var in (hh.a_var, hh.b_var)]
+                    # ràng buộc khác của g phải là quan hệ HỢP LỆ theo schema (tránh báo chồng lên câu đang sai schema)
+                    other = [hh for hh in hops if hh is not h and g_var in (hh.a_var, hh.b_var)
+                             and any(onto.get(*(hh.oriented() or (hh.a_lab, hh.b_lab))[:1], tt,
+                                              *(hh.oriented() or (hh.a_lab, hh.b_lab))[1:])
+                                     or (not hh.directed and onto.get(hh.b_lab, tt, hh.a_lab))
+                                     for tt in hh.rel_types)]
                     if mand or not other:
                         continue
                     g_label = r.subj if g_is_subj else r.obj
