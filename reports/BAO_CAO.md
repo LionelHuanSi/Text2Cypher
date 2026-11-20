@@ -593,7 +593,27 @@ Các nhóm thường (`(n)-(m0*)`, three-node-groupby) cũng tăng, vì nhiều 
 - Kết quả test khớp với dev1 lấy ngẫu nhiên (+4,0), nên dev1 là ước lượng đúng; con số dev2 bị phóng đại như đã lưu ý.
 - Không câu nào bị hỏng (0 thua) ở cả ba so sánh: các luật ontology đủ chặt để dùng làm bộ lọc dữ liệu cho Student (mục 3).
 - **Placebo rò một phần tri thức thật ở politics.** Hầu hết quan hệ của politics có khoảng thời gian, nên sau khi xáo, hasHeadOfState vẫn nhận được dữ kiện "có khoảng thời gian" (chỉ khác nghĩa và tính bắt buộc). Vì vậy Op nhỉnh hơn S 0,55 điểm và time-sensitive của Op đạt 18,3. Điều này làm phép so O − Op **thận trọng hơn**, không có lợi cho ontology.
-- Sửa tự động chưa giúp được OPTIONAL và UNION: các nhóm này cần Teacher viết lại (nhánh +R), sẽ chạy trên test sau khi chốt phần sửa lại trên dev.
+- Sửa tự động chưa giúp được OPTIONAL và UNION: các nhóm này cần Teacher viết lại (nhánh +R).
+
+### 2.10 Dev lần 3: Teacher sửa lại, luật OPTIONAL đã chỉnh; chốt (21/11/2026)
+
+| Nhánh (dev 454 câu) | EX |
+|---|---:|
+| S+R schema + Teacher sửa lại | 29,07 |
+| Op+R placebo + Teacher sửa lại | 30,18 |
+| O+G ontology + thông báo chung chung | 38,11 |
+| **O+R ontology + Teacher sửa lại** | **42,07** (lần 2: 41,19) |
+
+| So sánh | Chênh | Thắng / thua | p |
+|---|---:|---|---|
+| O+R − S+R | +13,00 [9,9; 16,1] | 59 / **0** | 3e-18 |
+| O+R − O+G (thông báo ontology so với chung chung) | +3,96 [2,2; 6,0] | 18 / 0 | 8e-6 |
+| O+R − Op+R | +11,89 [9,0; 15,0] | 54 / 0 | 1e-16 |
+| O+R − O (phần lợi của bước Teacher sửa lại) | +5,29 [3,3; 7,5] | 24 / 0 | 1e-7 |
+
+- 4 câu thua ở lần 2 đã hết: không còn câu nào bị hỏng ở mọi phép so.
+- OPTIONAL: 17,1% (thông báo chung chung 1,3%, placebo 7,9%). Three-node-groupby: 41,3% (chung chung 32,6%).
+- **Chốt** phần Teacher sửa lại (tag `repair-v1`). Đang chạy 4 nhánh S+R, O+R, O+G, Op+R trên 7 đồ thị test, một lần, qua đêm.
 
 ## 3. Chưng cất xuống Student 1,5B (RQ4; chưa thực hiện)
 
