@@ -9,12 +9,14 @@
 | Câu hỏi nghiên cứu | Cách chứng minh | Trạng thái |
 |---|---|---|
 | **RQ0.** Baseline và điểm yếu là gì? | Tái lập trên CypherBench, phân loại lỗi | Xong (mục 1) |
+| **RQ1 (dùng chủ động).** Ontology dùng để kiểm/sửa có vượt schema không? | Cùng dự đoán Teacher, sửa theo schema / schema + ontology / placebo | **Có, trên test:** +3,83 điểm so với schema, +3,28 so với placebo, 90 thắng / 0 thua (mục 2.9) |
 | **RQ1.** Ontology tự xây có giúp **vượt hơn schema** không? | So 4 nhánh cùng model, cùng ngân sách: schema-only / schema + `graph_info` (chú thích tay của tác giả) / **ontology tự xây** / placebo | **Chưa chứng minh được với thẻ v0.1.** Đủ 4 nhánh trên 2 backend: C (ontology) = D (placebo) trên cả hai (chênh 0,04 và 0,00 điểm). Mức tăng +3,9 trên MLX đến từ khuôn thẻ (liệt kê lại các mẫu quan hệ đúng hướng), không phải từ tri thức ontology (mục 2.4) |
 | **RQ2.** Có giúp **model nào cũng lợi** không? | Lặp RQ1 trên ≥ 3 họ model (Qwen, Llama, Gemma/Phi), nhiều cỡ (1,5B → 7B) | Chưa bắt đầu |
 | **RQ3.** Có **tổng quát cho KG bất kỳ** không? | Builder chỉ được nhìn đồ thị train khi thiết kế, rồi chạy nguyên trạng trên 7 đồ thị test chưa thấy; báo kết quả theo từng đồ thị | Chưa bắt đầu |
 | **RQ4.** Có **chưng cất** xuống 1,5B mà giữ được lợi ích không? | Teacher + ontology sinh dữ liệu → lọc/DPO theo ontology → Student 1,5B; so EX và tỷ lệ vi phạm với Teacher | Chưa bắt đầu (mục 3) |
 
 **Kết quả chính đến nay:**
+- **Ontology dùng chủ động (kiểm/sửa) vượt schema trên test:** EX 21,59 (Teacher) → 28,71 (sửa theo schema) → **32,54** (schema + ontology). Ontology hơn schema +3,83 [3,1; 4,6] và hơn placebo +3,28, với 90 câu thắng / 0 câu thua. Câu hỏi thời gian: 1,7% → 85,0% (mục 2.9).
 - Teacher (Qwen2.5-Coder-7B-Instruct, zero-shot) đạt **21,59% EX** trên test CypherBench.
 - **28,5% số câu** sai vì vi phạm schema: đảo hướng, sai kiểu đầu cạnh, hoặc dùng phần tử không tồn tại. Nhóm này **schema đã đủ** để bắt, nên tính cho nhánh schema-only.
 - Các nhóm cần **tri thức ngoài schema** có EX gần 0:
@@ -553,7 +555,45 @@ Cùng 8 nhánh như mục 2.7, sau khi sửa luật thời gian, luật OPTIONAL
 
 **Lưu ý khi viết bài:** dev2 được chọn có chủ đích vào nhóm ontology nhắm tới, nên con số tổng 454 câu phóng đại so với phân bố tự nhiên; con số đại diện là dev1 (+4,0 điểm) và kết quả trên test.
 
-**Chốt phiên bản:** phần sửa tự động chốt ở commit `648ec50` (verifier v1). Đang chạy: 3 nhánh sửa tự động trên 7 đồ thị test (một lần, không chỉnh thêm), và chạy lại các nhánh có Teacher sửa lại trên dev với luật OPTIONAL mới.
+**Chốt phiên bản:** phần sửa tự động chốt ở commit `648ec50` (verifier v1). Kết quả trên test ở mục 2.9.
+
+### 2.9 Kết quả trên test: sửa tự động, verifier v1 chốt (20/11/2026)
+
+Chạy **một lần** trên 7 đồ thị test (2.348 câu), không chỉnh gì sau khi xem kết quả. Đầu vào là dự đoán zero-shot của Teacher (MLX). So ghép cặp: CI 95% bootstrap, McNemar.
+
+| Nhánh | EX | PSJS |
+|---|---:|---:|
+| A Teacher zero-shot | 21,59 | 31,65 |
+| S sửa theo schema | 28,71 | 42,41 |
+| Op sửa theo ontology placebo | 29,26 | 43,09 |
+| **O sửa theo schema + ontology** | **32,54** | **46,89** |
+
+| So sánh | Chênh EX | CI 95% | Thắng / thua | McNemar p |
+|---|---:|---|---|---|
+| S − A (schema) | +7,11 | [6,1; 8,2] | 167 / 0 | 1e-50 |
+| **O − S (ontology vượt schema)** | **+3,83** | **[3,1; 4,6]** | **90 / 0** | **2e-27** |
+| **O − Op (ontology so với placebo)** | **+3,28** | **[2,6; 4,0]** | **77 / 0** | **1e-23** |
+| O − A (tổng) | +10,95 | [9,7; 12,2] | 257 / 0 | 9e-78 |
+
+**Theo đồ thị (O − S):** company +10,7; politics +8,2; nba +7,8. Bốn đồ thị còn lại (fictional_character, flight_accident, geography, movie) +0,0. Ontology chỉ có tác dụng ở các đồ thị có quan hệ mang khoảng thời gian, và không làm hỏng câu nào ở những đồ thị không có.
+
+**Theo loại câu hỏi:**
+
+| Nhóm | n | A | S | Op | O |
+|---|---:|---:|---:|---:|---:|
+| time-sensitive | 60 | 1,7 | 1,7 | 18,3 | **85,0** |
+| three-node-groupby | 260 | 20,4 | 28,9 | 28,9 | 31,5 |
+| `(n)-(m0*)` | 356 | 38,2 | 55,9 | 56,7 | 62,1 |
+| optional-match | 268 | 4,5 | 4,9 | 4,9 | 5,6 |
+| union | 310 | 2,9 | 3,9 | 3,9 | 3,9 |
+
+Các nhóm thường (`(n)-(m0*)`, three-node-groupby) cũng tăng, vì nhiều câu trong đó có điều kiện thời gian ("currently", "in 2010").
+
+**Nhận xét:**
+- Kết quả test khớp với dev1 lấy ngẫu nhiên (+4,0), nên dev1 là ước lượng đúng; con số dev2 bị phóng đại như đã lưu ý.
+- Không câu nào bị hỏng (0 thua) ở cả ba so sánh: các luật ontology đủ chặt để dùng làm bộ lọc dữ liệu cho Student (mục 3).
+- **Placebo rò một phần tri thức thật ở politics.** Hầu hết quan hệ của politics có khoảng thời gian, nên sau khi xáo, hasHeadOfState vẫn nhận được dữ kiện "có khoảng thời gian" (chỉ khác nghĩa và tính bắt buộc). Vì vậy Op nhỉnh hơn S 0,55 điểm và time-sensitive của Op đạt 18,3. Điều này làm phép so O − Op **thận trọng hơn**, không có lợi cho ontology.
+- Sửa tự động chưa giúp được OPTIONAL và UNION: các nhóm này cần Teacher viết lại (nhánh +R), sẽ chạy trên test sau khi chốt phần sửa lại trên dev.
 
 ## 3. Chưng cất xuống Student 1,5B (RQ4; chưa thực hiện)
 
@@ -598,6 +638,7 @@ Teacher 7B + ontology (nhánh C) sinh K Cypher/câu trên tập train (4 đồ t
 | 20/11/2026 | **Chỉ so trong cùng backend** (MLX bf16 riêng, Kaggle fp16 riêng) | Hai backend cho dự đoán khác nhau ở 82% câu |
 | 20/11/2026 | Đối thủ trực tiếp mới: **CypherGuard** (88,5 trên CypherBench, model API). Định vị lại: model mở nhỏ + tri thức ontology ngoài schema + đối chứng chặt | Pipeline nhiều tầng nói chung đã có người làm trên cùng benchmark |
 | 20/11/2026 | **Thẻ ontology trong prompt không phải đóng góp chính**; chuyển sang dùng ontology chủ động (kiểm/sửa, chọn ứng viên, huấn luyện) | C = placebo trên cả hai backend |
+| 20/11/2026 | Tinh chỉnh chỉ trên **dev (đồ thị train)**, chốt verifier v1 rồi chạy test **một lần** | Tránh rò rỉ từ test; kết quả test (+3,83) khớp dev1 ngẫu nhiên (+4,0) |
 
 ## 5. Tái lập kết quả
 

@@ -1,0 +1,18 @@
+{
+ "pred_dir": "results/cypherbench/zero_shot/qwen2.5-coder-7b-instruct",
+ "split": "test",
+ "graphs": [
+  "company",
+  "fictional_character",
+  "flight_accident",
+  "geography",
+  "movie",
+  "nba",
+  "politics"
+ ],
+ "level": "ontology",
+ "placebo": true,
+ "repair": "none",
+ "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+ "out": "results/cypherbench/test_pipeline/Op"
+}
