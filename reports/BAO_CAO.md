@@ -510,6 +510,51 @@ Câu còn sai do đảo **nghĩa** của `subsidiaryOf` giữa hai Company: sche
 
 Đang chạy lại 8 nhánh trên dev1 + dev2 (454 câu).
 
+### 2.8 Pipeline trên tập dev, lần 2: dev1 + dev2 = 454 câu (20/11/2026)
+
+Cùng 8 nhánh như mục 2.7, sau khi sửa luật thời gian, luật OPTIONAL và placebo. So ghép cặp (CI 95% bootstrap, McNemar).
+
+**Tổng (454 câu):**
+
+| Nhánh | EX |
+|---|---:|
+| A0 Teacher | 22,69 |
+| S sửa schema | 26,65 |
+| **O sửa schema + ontology** | **36,78** |
+| Op ontology placebo | 26,65 |
+| S+R schema + Teacher sửa lại | 29,07 |
+| **O+R ontology + Teacher sửa lại** | **41,19** |
+| O+G ontology + thông báo chung chung | 38,11 |
+| Op+R placebo + Teacher sửa lại | 29,30 |
+
+| So sánh | Toàn bộ 454 | dev1 ngẫu nhiên (300) | dev2 có chủ đích (154) |
+|---|---|---|---|
+| S − A0 (schema) | +3,96 [2,2; 5,7] | +4,67 | +2,60 |
+| **O − S (ontology vượt schema, sửa tự động)** | **+10,13 [7,3; 13,0]**, +46/−0 | **+4,00 [2,0; 6,3]**, +12/−0 | +22,08 |
+| **O − Op (ontology so với placebo)** | **+10,13**, p = 3e-14 | +4,00 | +22,08 |
+| **O+R − S+R (khi có Teacher sửa lại)** | **+12,11 [9,0; 15,4]**, +59/−4 | +4,67 | +26,62 |
+| O+R − O+G (thông báo ontology so với chung chung) | +3,08 [1,5; 4,9], p = 5e-4 | +1,00 (không ý nghĩa) | +7,14 |
+| O+R − Op+R | +11,89 [9,0; 14,8] | +4,67 | +25,97 |
+
+**Theo loại câu hỏi (EX):**
+
+| Nhóm | n | A0 | S | O | Op | S+R | O+R | O+G | Op+R |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| time-sensitive | 45 | 0,0 | 0,0 | **84,4** | 0,0 | 0,0 | **84,4** | 84,4 | 0,0 |
+| optional-match | 76 | 0,0 | 0,0 | 0,0 | 0,0 | 1,3 | **15,8** | 1,3 | 6,6 |
+| `(n)-(m0*)` | 82 | 43,9 | 54,9 | 61,0 | 54,9 | 56,1 | 62,2 | 62,2 | 56,1 |
+| three-node-groupby | 46 | 10,9 | 26,1 | 30,4 | 26,1 | 37,0 | 34,8 | 32,6 | 30,4 |
+| union | 37 | 8,1 | 8,1 | 8,1 | 8,1 | 10,8 | 10,8 | 8,1 | 10,8 |
+
+**Nguồn gốc phần lợi:**
+- 46/46 câu ontology sửa đúng (O so với S) đều nhờ luật **khoảng thời gian** (O_TIME_EQ): kích hoạt 84 lần, **không làm hỏng câu nào**. Teacher gần như luôn viết điều kiện thời gian thành so bằng trên map của quan hệ (`{start_year: Y, end_year: Y}` hoặc `{end_year: null}`); ontology biết quan hệ nào có khoảng thời gian và ngữ nghĩa "end rỗng = còn hiệu lực" nên viết lại đúng. Ở dev1 ngẫu nhiên, phần lợi đến từ các câu "at any time / either currently or in the past": bỏ điều kiện null sai.
+- Câu OPTIONAL: thông báo từ ontology đưa EX từ 0 lên 15,8, so với 1,3 (thông báo chung chung) và 6,6 (placebo). Vẫn thấp, còn nhiều dư địa.
+- 4 câu thua (O+R so với S+R) đều do luật OPTIONAL báo chồng lên câu đang sai schema. Đã sửa: chỉ báo khi ràng buộc còn lại của thực thể là quan hệ hợp lệ theo schema.
+
+**Lưu ý khi viết bài:** dev2 được chọn có chủ đích vào nhóm ontology nhắm tới, nên con số tổng 454 câu phóng đại so với phân bố tự nhiên; con số đại diện là dev1 (+4,0 điểm) và kết quả trên test.
+
+**Chốt phiên bản:** phần sửa tự động chốt ở commit `648ec50` (verifier v1). Đang chạy: 3 nhánh sửa tự động trên 7 đồ thị test (một lần, không chỉnh thêm), và chạy lại các nhánh có Teacher sửa lại trên dev với luật OPTIONAL mới.
+
 ## 3. Chưng cất xuống Student 1,5B (RQ4; chưa thực hiện)
 
 ```
