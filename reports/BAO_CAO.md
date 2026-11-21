@@ -17,6 +17,7 @@
 
 **Kết quả chính đến nay:**
 - **Ontology dùng chủ động (kiểm/sửa) vượt schema trên test:** EX 21,59 (Teacher) → 28,71 (sửa theo schema) → **32,54** (schema + ontology). Ontology hơn schema +3,83 [3,1; 4,6] và hơn placebo +3,28, với 90 câu thắng / 0 câu thua. Câu hỏi thời gian: 1,7% → 85,0% (mục 2.9).
+- **Thêm bước Teacher sửa lại (test):** O+R đạt **34,03**, hơn S+R (29,94) +4,09 và hơn placebo +2,94. Bước sửa lại chỉ thêm +1,49 (dev +5,29), vì luật O_SEMANTIC_DIR chưa từng kích hoạt trên dev đã làm hỏng 42 câu. Các luật đã thử trên dev vẫn không gây câu thua nào (mục 2.11).
 - Teacher (Qwen2.5-Coder-7B-Instruct, zero-shot) đạt **21,59% EX** trên test CypherBench.
 - **28,5% số câu** sai vì vi phạm schema: đảo hướng, sai kiểu đầu cạnh, hoặc dùng phần tử không tồn tại. Nhóm này **schema đã đủ** để bắt, nên tính cho nhánh schema-only.
 - Các nhóm cần **tri thức ngoài schema** có EX gần 0:
@@ -615,6 +616,64 @@ Các nhóm thường (`(n)-(m0*)`, three-node-groupby) cũng tăng, vì nhiều 
 - OPTIONAL: 17,1% (thông báo chung chung 1,3%, placebo 7,9%). Three-node-groupby: 41,3% (chung chung 32,6%).
 - **Chốt** phần Teacher sửa lại (tag `repair-v1`). Đang chạy 4 nhánh S+R, O+R, O+G, Op+R trên 7 đồ thị test, một lần, qua đêm.
 
+### 2.11 Kết quả trên test: Teacher sửa lại, `repair-v1` (21/11/2026)
+
+Chạy một lần trên 2.348 câu, 7 đồ thị, MLX bf16, cùng dự đoán Teacher với mục 2.9.
+
+| Nhánh (test 2.348 câu) | EX | CI95 | PSJS | Chạy được |
+|---|---:|---|---:|---:|
+| A Teacher zero-shot | 21,59 | [19,9; 23,3] | 31,65 | 78,0 |
+| S sửa tự động theo schema | 28,71 | [26,9; 30,5] | 42,41 | 78,0 |
+| O sửa tự động theo ontology | 32,54 | [30,7; 34,5] | 46,89 | 78,0 |
+| S+R schema + Teacher sửa lại | 29,94 | [28,1; 31,8] | 47,59 | 80,4 |
+| Op+R placebo + Teacher sửa lại | 31,09 | [29,3; 32,9] | 48,40 | 79,9 |
+| O+G ontology + thông báo chung chung | 33,65 | [31,7; 35,6] | 48,71 | 79,1 |
+| **O+R ontology + Teacher sửa lại** | **34,03** | [32,2; 35,9] | **51,66** | 79,8 |
+
+| So sánh (ghép cặp) | Chênh | Thắng / thua | p (McNemar) | Trên dev (mục 2.10) |
+|---|---:|---|---|---:|
+| O+R − S+R | **+4,09** [3,0; 5,3] | 141 / 45 | 1e-12 | +13,00 |
+| O+R − Op+R | **+2,94** [2,0; 3,9] | 95 / 26 | 2e-10 | +11,89 |
+| O+R − O+G | +0,38 [−0,5; 1,3] | 62 / 53 | 0,46 | +3,96 |
+| O+R − O (phần lợi của bước Teacher sửa lại) | +1,49 [0,6; 2,4] | 77 / 42 | 0,002 | +5,29 |
+| S+R − S | +1,24 | 29 / 0 | 4e-9 | |
+| O+G − O | +1,11 | 29 / 3 | 3e-6 | |
+
+**Kết luận chính:**
+- **Ontology vẫn hơn schema và placebo khi có Teacher sửa lại:** O+R hơn S+R +4,09 và hơn placebo +2,94, có ý nghĩa thống kê. Mức chênh với schema gần bằng mức ở phần sửa tự động (+3,83, mục 2.9), tức là bước Teacher sửa lại không làm mất lợi thế của ontology.
+- **Bước Teacher sửa lại chỉ thêm +1,49 trên test** (dev +5,29). Thông báo cụ thể theo ontology **không** hơn thông báo chung chung trên test (+0,38, không có ý nghĩa), trái với dev (+3,96).
+- **Lần đầu xuất hiện câu thua:** O+R làm hỏng 42 câu mà O đã đúng (trên dev là 0).
+
+**Nguyên nhân của 42 câu thua: luật O_SEMANTIC_DIR chưa được thử trên dev.**
+
+| Luật kích hoạt (O+R so với O) | Số câu | Thắng | Thua |
+|---|---:|---:|---:|
+| Chỉ O_SEMANTIC_DIR | 391 | 31 | **42** |
+| O_OPTIONAL (có hoặc không kèm O_SEMANTIC_DIR) | 78 | 21 | 0 |
+| Chỉ luật schema / lỗi thực thi | 617 | 25 | 0 |
+| Không có cảnh báo | 1.262 | 0 | 0 |
+
+- **Cả 42 câu thua đều do luật O_SEMANTIC_DIR.** Luật này nhắc Teacher kiểm tra hướng quan hệ theo nghĩa (vd. "x là con của y"). Với quan hệ cùng kiểu đầu (Character–Character: hasFather, hasSpouse, killedBy, hasStudent), Teacher thường đảo hướng sai một truy vấn vốn đúng. Ví dụ "Ai đã giết vợ/chồng của Petyr Baelish?": O viết đúng `(spouse)-[:killedBy]->(killer)`, O+R đảo thành `(spouse)<-[:killedBy]-(killer)`.
+- Số câu thua theo đồ thị: fictional_character 16, company 14, politics 6, geography 6.
+- **Trên dev, luật này không kích hoạt câu nào** (0/454): các đồ thị train không có quan hệ gây ra nó. Vì vậy luật đã được chốt mà chưa hề được thử. Đây là lỗi quy trình, không phải do tinh chỉnh trên test.
+- Thông báo chung chung (O+G) không nêu hướng cụ thể nên gần như không làm hỏng câu nào (3 câu thua, 29 câu thắng). Điều này giải thích vì sao O+G gần bằng O+R trên test.
+- **Các luật đã thử trên dev thì giữ được tính chất "không thua"** trên test: OPTIONAL 21/0, luật schema và lỗi thực thi 25/0.
+
+**Theo loại câu hỏi (O+R so với O):**
+- OPTIONAL MATCH: 5,6 → **13,1** (21 thắng / 1 thua). So với S+R: 4,9 → 13,1.
+- Câu hỏi thời gian: 85,0 → 86,7 (S+R: 3,3).
+- Three-node-groupby: 31,5 → 28,1 (3 thắng / 12 thua), phần lớn do O_SEMANTIC_DIR.
+- UNION và `(n)=(m)` vẫn rất thấp (4,8 và 20,2). Verifier chưa có luật cho hai loại này.
+
+**Phân tích sau khi xem test, không dùng làm kết quả chính:**
+- Nếu bỏ phần sửa lại ở các câu chỉ bị O_SEMANTIC_DIR cảnh báo, O+R sẽ đạt khoảng 34,50 và có 0 câu thua.
+- Con số này chỉ để chẩn đoán. Kết quả công bố cho `repair-v1` vẫn là **34,03**.
+
+**Quy tắc mới:**
+- Một luật được dùng để sửa trên test chỉ khi đã kích hoạt trên dev đủ số câu, tạm đặt ít nhất 20 câu, và không gây thua trên dev.
+- Luật chưa đủ điều kiện vẫn được báo trong vết chạy (trace), nhưng không được gửi cho Teacher.
+- Phiên bản tiếp theo (`repair-v2`) cần một tập dev có quan hệ cùng kiểu đầu và cuối, lấy từ đồ thị train, rồi mới chạy test lại một lần.
+
 ## 3. Chưng cất có ràng buộc ontology xuống Student 1,5B (RQ4; chưa thực hiện)
 
 ### 3.1 Phân biệt: sửa đầu ra và chưng cất có ràng buộc
@@ -705,6 +764,7 @@ Thí nghiệm phụ cho DPO: phản ví dụ **vi phạm ontology** so với ph�
 | 20/11/2026 | Đối thủ trực tiếp mới: **CypherGuard** (88,5 trên CypherBench, model API). Định vị lại: model mở nhỏ + tri thức ontology ngoài schema + đối chứng chặt | Pipeline nhiều tầng nói chung đã có người làm trên cùng benchmark |
 | 20/11/2026 | **Thẻ ontology trong prompt không phải đóng góp chính**; chuyển sang dùng ontology chủ động (kiểm/sửa, chọn ứng viên, huấn luyện) | C = placebo trên cả hai backend |
 | 20/11/2026 | Tinh chỉnh chỉ trên **dev (đồ thị train)**, chốt verifier v1 rồi chạy test **một lần** | Tránh rò rỉ từ test; kết quả test (+3,83) khớp dev1 ngẫu nhiên (+4,0) |
+| 21/11/2026 | Luật chỉ được gửi cho Teacher sửa khi **đã kích hoạt trên dev ≥ 20 câu và 0 câu thua**; kết quả test `repair-v1` giữ nguyên 34,03 | O_SEMANTIC_DIR chưa từng kích hoạt trên dev, đến test làm hỏng 42 câu |
 | 21/11/2026 | Giai đoạn 2 đặt là **chưng cất không cần nhãn**: ontology thay gold làm bộ lọc, gold chỉ là cận trên | Train có gold nên lọc bằng gold mạnh nhất; nếu không đặt bài toán như vậy, ontology không có vai trò riêng trong chưng cất |
 
 ## 5. Tái lập kết quả

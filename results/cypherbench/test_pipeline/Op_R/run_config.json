@@ -1,0 +1,12 @@
+{
+ "pred_dir": "results/cypherbench/zero_shot/qwen2.5-coder-7b-instruct",
+ "split": "test",
+ "graphs": [
+  "politics"
+ ],
+ "level": "ontology",
+ "placebo": true,
+ "repair": "specific",
+ "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+ "out": "results/cypherbench/test_pipeline/Op_R"
+}
